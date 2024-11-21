@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Nord";
+  font-weight: 100;
+  font-style: normal;
+  src:
+    local("Nord-Thin"),
+    url("./fonts/otf/nord-thin.otf") format("otf"),
+    url("./fonts/ttf/nord-thin.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Nord";
+  font-weight: 100;
+  font-style: italic;
+  src:
+    local("Nord-Thin-Italic"),
+    url("./fonts/otf/nord-thinitalic.otf") format("otf"),
+    url("./fonts/ttf/nord-thinitalic.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Nord";
+  font-weight: 200;
+  font-style: normal;
+  src:
+    local("Nord-Light"),
+    url("./fonts/otf/nord-light.otf") format("otf"),
+    url("./fonts/ttf/nord-light.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Nord";
+  font-weight: 200;
+  font-style: italic;
+  src:
+    local("Nord-Light-Italic"),
+    url("./fonts/otf/nord-lightitalic.otf") format("otf"),
+    url("./fonts/ttf/nord-lightitalic.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Nord";
+  font-weight: 300;
+  font-style: normal;
+  src:
+    local("Nord-Book"),
+    url("./fonts/otf/nord-book.otf") format("otf"),
+    url("./fonts/ttf/nord-book.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Nord";
+  font-weight: 300;
+  font-style: italic;
+  src:
+    local("Nord-Book-Italic"),
+    url("./fonts/otf/nord-bookitalic.otf") format("otf"),
+    url("./fonts/ttf/nord-bookitalic.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Nord";
+  font-weight: 400;
+  font-style: normal;
+  src:
+    local("Nord-Regular"),
+    url("./fonts/otf/nord-regular.otf") format("otf"),
+    url("./fonts/ttf/nord-regular.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Nord";
+  font-weight: 400;
+  font-style: italic;
+  src:
+    local("Nord-Italic"),
+    url("./fonts/otf/nord-italic.otf") format("otf"),
+    url("./fonts/ttf/nord-italic.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Nord";
+  font-weight: 500;
+  font-style: normal;
+  src:
+    local("Nord-Medium"),
+    url("./fonts/otf/nord-medium.otf") format("otf"),
+    url("./fonts/ttf/nord-medium.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Nord";
+  font-weight: 500;
+  font-style: italic;
+  src:
+    local("Nord-Medium-Italic"),
+    url("./fonts/otf/nord-mediumitalic.otf") format("otf"),
+    url("./fonts/ttf/nord-mediumitalic.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Nord";
+  font-weight: 600;
+  font-style: normal;
+  src:
+    local("Nord-Semibold"),
+    url("./fonts/otf/nord-medium.otf") format("otf"),
+    url("./fonts/ttf/nord-medium.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Nord";
+  font-weight: 600;
+  font-style: italic;
+  src:
+    local("Nord-Semibold-Italic"),
+    url("./fonts/otf/nord-mediumitalic.otf") format("otf"),
+    url("./fonts/ttf/nord-mediumitalic.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Nord";
+  font-weight: 700;
+  font-style: normal;
+  src:
+    local("Nord-Bold"),
+    url("./fonts/otf/nord-bold.otf") format("otf"),
+    url("./fonts/ttf/nord-bold.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Nord";
+  font-weight: 700;
+  font-style: italic;
+  src:
+    local("Nord-Bold-Italic"),
+    url("./fonts/otf/nord-bolditalic.otf") format("otf"),
+    url("./fonts/ttf/nord-bolditalic.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Nord";
+  font-weight: 800;
+  font-style: normal;
+  src:
+    local("Nord-Extrabold"),
+    url("./fonts/otf/nord-bold.otf") format("otf"),
+    url("./fonts/ttf/nord-bold.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Nord";
+  font-weight: 800;
+  font-style: italic;
+  src:
+    local("Nord-Extrabold-Italic"),
+    url("./fonts/otf/nord-bolditalic.otf") format("otf"),
+    url("./fonts/ttf/nord-bolditalic.ttf") format("ttf");
+}
+
+@font-face {
+  font-family: "Nord";
+  font-weight: 900;
+  font-style: normal;
+  src:
+    local("Nord-Black"),
+    url("./fonts/otf/nord-black.otf") format("otf"),
+    url("./fonts/ttf/nord-black.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Nord";
+  font-weight: 900;
+  font-style: italic;
+  src:
+    local("Nord-Black-Italic"),
+    url("./fonts/otf/nord-blackitalic.otf") format("otf"),
+    url("./fonts/ttf/nord-blackitalic.ttf") format("ttf");
+}
+
+@layer base {
+  :root {
+    --background: 44 27% 92%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 44 27% 92%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 44 27% 92%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 44 27% 92%;
+    --primary: 44 27% 92%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 44 27% 92%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 44 27% 92%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 44 27% 92%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
