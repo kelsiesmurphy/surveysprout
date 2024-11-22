@@ -30,7 +30,6 @@ export type Step = {
 };
 
 export default function Page() {
-  
   useEffect(() => {
     const lenis = new Lenis();
     function raf(time: number) {
@@ -88,13 +87,7 @@ export default function Page() {
 
   const [currentStep, setCurrentStep] = useState<Step>(steps[0]!);
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    trigger,
-    formState: { errors },
-  } = useForm<Inputs>({
+  const { handleSubmit, reset, trigger } = useForm<Inputs>({
     resolver: zodResolver(FormDataSchema),
   });
 
