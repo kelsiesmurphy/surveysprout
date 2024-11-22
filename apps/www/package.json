@@ -11,6 +11,8 @@
   "dependencies": {
     "@hookform/resolvers": "catalog:",
     "@repo/ui": "workspace:*",
+    "lenis": "catalog:",
+    "lucide-react": "catalog:",
     "next": "14.2.8",
     "react": "catalog:react18",
     "react-dom": "catalog:react18",
