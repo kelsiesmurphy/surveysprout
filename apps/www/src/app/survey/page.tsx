@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@repo/ui/components/ui/button";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FormDataSchema } from "~/src/lib/schema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import SurveyPagination from "~/src/components/survey/SurveyPagination";
@@ -30,11 +30,14 @@ export type Step = {
 };
 
 export default function Page() {
+  const lenisRef = useRef<Lenis | null>(null);
+
   useEffect(() => {
     const lenis = new Lenis();
+    lenisRef.current = lenis;
+
     function raf(time: number) {
       lenis.raf(time);
-
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
@@ -113,6 +116,8 @@ export default function Page() {
       console.log("Submitting form...");
       await handleSubmit(processForm)();
     }
+
+    lenisRef.current?.scrollTo(0);
   };
 
   return (
