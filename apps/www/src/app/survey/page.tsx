@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@repo/ui/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 import { FormDataSchema } from "~/src/lib/schema";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import SurveyPagination from "~/src/components/survey/SurveyPagination";
 import { z } from "zod";
 import {
@@ -18,6 +18,8 @@ import {
 } from "lucide-react";
 import React from "react";
 import Lenis from "lenis";
+import SocialOptions from "~/src/components/survey/SocialOptions";
+import Link from "next/link";
 
 type Inputs = z.infer<typeof FormDataSchema>;
 
@@ -29,7 +31,7 @@ export type Step = {
   fields: string[];
 };
 
-export default function Page() {
+export default function SurveyPage() {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
@@ -90,20 +92,18 @@ export default function Page() {
 
   const [currentStep, setCurrentStep] = useState<Step>(steps[0]!);
 
-  const { handleSubmit, reset, trigger } = useForm<Inputs>({
+  const methods = useForm<Inputs>({
     resolver: zodResolver(FormDataSchema),
   });
 
   const processForm: SubmitHandler<Inputs> = (data) => {
     console.log(data);
-    reset();
+    methods.reset();
   };
 
   const next = async () => {
-    if (!currentStep) return;
-
     const fields = steps[currentStep.id]?.fields;
-    const isValid = await trigger(fields as (keyof Inputs)[], {
+    const isValid = await methods.trigger(fields as (keyof Inputs)[], {
       shouldFocus: true,
     });
 
@@ -114,41 +114,45 @@ export default function Page() {
       setCurrentStep(nextStep);
     } else {
       console.log("Submitting form...");
-      await handleSubmit(processForm)();
+      await methods.handleSubmit(processForm)();
     }
 
     lenisRef.current?.scrollTo(0);
   };
 
   return (
-    <section className="min-h-screen text-primary flex justify-center py-12 md:pt-40">
-      <form className="gap-10 flex-1 px-4 min-h-[1000px] max-w-sm text-center flex flex-col">
-        <div className="flex-1 mb-32 md:mb-52 flex flex-col items-center space-y-6">
-          <div className="p-3.5 rounded-xl border shadow-sm">
-            {React.createElement(currentStep.icon)}
+    <FormProvider {...methods}>
+      <section className="min-h-screen text-primary flex justify-center py-12 md:pt-40">
+        <form className="gap-10 flex-1 px-4 min-h-[1000px] max-w-sm text-center flex flex-col">
+          <div className="flex-1 mb-32 md:mb-52 flex flex-col items-center space-y-6">
+            <div className="p-3.5 rounded-xl border shadow-sm">
+              {React.createElement(currentStep.icon)}
+            </div>
+            <div className="space-y-2">
+              <h2 className="font-semibold text-2xl">{currentStep.title}</h2>
+              <p className="text-muted-foreground">{currentStep.subtitle}</p>
+            </div>
+            {currentStep.id === 0 && <SocialOptions />}
           </div>
-          <div className="space-y-2">
-            <h2 className="font-semibold text-2xl">{currentStep.title}</h2>
-            <p className="text-muted-foreground">{currentStep.subtitle}</p>
-          </div>
-        </div>
-      </form>
-      <div className="fixed bg-background px-4 bottom-0 w-full max-w-sm text-center flex flex-col gap-4 md:gap-8 pb-5 md:pb-24">
-        <div className="w-full h-4 -mt-4 bg-gradient-to-t from-background" />
-        <Button className="w-full" onClick={next}>
-          Continue
-        </Button>
-        <SurveyPagination steps={steps} currentStep={currentStep} />
-        <p className="text-xs text-muted-foreground">
-          Powered by{" "}
-          <Button
-            className="text-green-900 font-medium p-0 h-min text-xs"
-            variant="link"
-          >
-            SurveySprout
+        </form>
+        <div className="fixed bg-background px-4 bottom-0 w-full max-w-sm text-center flex flex-col gap-4 md:gap-8 pb-5 md:pb-24">
+          <div className="w-full h-4 -mt-4 bg-gradient-to-t from-background" />
+          <Button className="w-full" onClick={next}>
+            Continue
           </Button>
-        </p>
-      </div>
-    </section>
+          <SurveyPagination steps={steps} currentStep={currentStep} />
+          <p className="text-xs text-muted-foreground">
+            Powered by{" "}
+            <Button
+              className="text-green-900 font-medium p-0 h-min text-xs"
+              variant="link"
+              asChild
+            >
+              <Link href="/">SurveySprout</Link>
+            </Button>
+          </p>
+        </div>
+      </section>
+    </FormProvider>
   );
 }
