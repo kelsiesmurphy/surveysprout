@@ -6,8 +6,8 @@ import { Toaster } from "@repo/ui/components/ui/toaster";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "OfflineCollective",
-  description: "We are OfflineCollective",
+  title: "SurveySprout",
+  description: "We are SurveySprout",
 };
 
 export default function RootLayout({

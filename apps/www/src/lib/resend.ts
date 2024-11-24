@@ -1,7 +1,7 @@
 // export const createResendContact = async (email: string) => {
 //   try {
 //     const { error } = await fetch(
-//       "https://api.offlinecollective.co/newsletter-contact",
+//       "https://api.surveysprout.co/newsletter-contact",
 //       {
 //         method: "POST",
 //         body: JSON.stringify({
