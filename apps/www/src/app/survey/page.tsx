@@ -22,6 +22,7 @@ import SocialOptions from "~/src/components/survey/SocialOptions";
 import Link from "next/link";
 import Options from "~/src/components/survey/Options";
 import TextAreaOther from "~/src/components/survey/TextAreaOther";
+import SliderScreen from "~/src/components/survey/Slider";
 
 type Inputs = z.infer<typeof FormDataSchema>;
 
@@ -86,7 +87,7 @@ export default function SurveyPage() {
     {
       id: 5,
       title: "Would you recommend us to a friend?",
-      subtitle: "Select one option",
+      subtitle: "Move the slider between 1 and 10",
       icon: Users,
       fields: ["other"],
     },
@@ -125,7 +126,7 @@ export default function SurveyPage() {
   return (
     <FormProvider {...methods}>
       <section className="min-h-screen text-primary flex justify-center py-12 md:pt-40">
-        <form className="gap-10 flex-1 px-4 min-h-[1000px] max-w-sm text-center flex flex-col">
+        <form className="gap-10 flex-1 px-4 max-w-sm text-center flex flex-col">
           <div className="flex-1 mb-32 md:mb-52 flex flex-col items-center space-y-6">
             <div className="p-3.5 rounded-xl border shadow-sm">
               {React.createElement(currentStep.icon)}
@@ -171,6 +172,7 @@ export default function SurveyPage() {
                 customOtherFieldText="None of these? Let us know"
               />
             )}
+            {currentStep.id === 5 && <SliderScreen />}
           </div>
         </form>
         <div className="fixed bg-background px-4 bottom-0 w-full max-w-sm text-center flex flex-col gap-4 md:gap-8 pb-5 md:pb-24">
