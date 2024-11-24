@@ -27,7 +27,7 @@ export default function TextAreaOther({
         }
         maxLength={100}
         onChange={handleTextAreaChange}
-        className={`w-full p-4 border rounded-xl shadow-sm ${tallTextArea && "min-h-48"}`}
+        className={`w-full p-4 border rounded-xl shadow-sm ${tallTextArea && "min-h-48 md:min-h-40"}`}
       />
       <p className="text-sm text-muted-foreground">
         {100 - textAreaCharactersLength} characters left

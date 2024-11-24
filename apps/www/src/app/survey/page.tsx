@@ -23,6 +23,7 @@ import Link from "next/link";
 import Options from "~/src/components/survey/Options";
 import TextAreaOther from "~/src/components/survey/TextAreaOther";
 import SliderScreen from "~/src/components/survey/Slider";
+import { useRouter } from "next/navigation";
 
 type Inputs = z.infer<typeof FormDataSchema>;
 
@@ -35,6 +36,7 @@ export type Step = {
 };
 
 export default function SurveyPage() {
+  const router = useRouter();
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
@@ -118,6 +120,7 @@ export default function SurveyPage() {
     } else {
       console.log("Submitting form...");
       await methods.handleSubmit(processForm)();
+      router.push("/survey-complete");
     }
 
     lenisRef.current?.scrollTo(0);
@@ -127,7 +130,7 @@ export default function SurveyPage() {
     <FormProvider {...methods}>
       <section className="min-h-screen text-primary flex justify-center py-12 md:pt-40">
         <form className="gap-10 flex-1 px-4 max-w-sm text-center flex flex-col">
-          <div className="flex-1 mb-32 md:mb-52 flex flex-col items-center space-y-6">
+          <div className="flex-1 mb-32 md:mb-60 flex flex-col items-center space-y-6">
             <div className="p-3.5 rounded-xl border shadow-sm">
               {React.createElement(currentStep.icon)}
             </div>
