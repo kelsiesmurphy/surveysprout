@@ -1,13 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import { Button } from "@repo/ui/components/ui/button";
 import { MouseEvent, useState } from "react";
+import TextAreaOther from "./TextAreaOther";
 
 type SocialOption = {
   name: string;
   logo: string;
 };
 
-export default function SocialOptions() {
+export default function SocialOptions({
+  customOtherFieldText,
+}: {
+  customOtherFieldText?: string;
+}) {
   const options = [
     {
       name: "Instagram",
@@ -39,16 +44,15 @@ export default function SocialOptions() {
     option: string,
   ) => {
     e.preventDefault();
-    setSelectedOption(option);
-  };
-
-  const handleOtherChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const value = e.target.value;
-    setSelectedOption("Other: " + value);
+    if (option === selectedOption) {
+      setSelectedOption(null);
+    } else {
+      setSelectedOption(option);
+    }
   };
 
   return (
-    <ul className="flex-1 w-full space-y-5">
+    <ul className="w-full space-y-5">
       {options.map((option: SocialOption, index: number) => {
         return (
           <li key={index}>
@@ -56,9 +60,8 @@ export default function SocialOptions() {
               variant="outline"
               size="lg"
               className={`shadow-sm w-full h-auto rounded-xl justify-start flex items-center gap-3 py-4 px-5 ${
-                selectedOption === option.name
-                  ? "bg-primary/5 hover:bg-primary/10 border-primary"
-                  : ""
+                selectedOption === option.name &&
+                "bg-primary/5 hover:bg-primary/10 border-primary"
               }`}
               onClick={(e) => handleOptionClick(e, option.name)}
             >
@@ -72,11 +75,9 @@ export default function SocialOptions() {
           </li>
         );
       })}
-      <textarea
-        // {...register("socialOption")}
-        placeholder="Other (please specify)"
-        onChange={handleOtherChange}
-        className="w-full p-4 border rounded-xl shadow-sm"
+      <TextAreaOther
+        customOtherFieldText={customOtherFieldText}
+        setSelectedOption={setSelectedOption}
       />
     </ul>
   );

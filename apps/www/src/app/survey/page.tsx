@@ -20,6 +20,8 @@ import React from "react";
 import Lenis from "lenis";
 import SocialOptions from "~/src/components/survey/SocialOptions";
 import Link from "next/link";
+import Options from "~/src/components/survey/Options";
+import TextAreaOther from "~/src/components/survey/TextAreaOther";
 
 type Inputs = z.infer<typeof FormDataSchema>;
 
@@ -55,8 +57,8 @@ export default function SurveyPage() {
     },
     {
       id: 1,
-      title: "Conditional Follow Up",
-      subtitle: "Select one option",
+      title: "Could you give more details?",
+      subtitle: "Tell us more about how you found us?",
       icon: Phone,
       fields: ["other"],
     },
@@ -133,6 +135,42 @@ export default function SurveyPage() {
               <p className="text-muted-foreground">{currentStep.subtitle}</p>
             </div>
             {currentStep.id === 0 && <SocialOptions />}
+            {currentStep.id === 1 && (
+              <TextAreaOther
+                tallTextArea
+                setSelectedOption={undefined}
+                customOtherFieldText="e.g. I saw an advert on Instagram for this product"
+              />
+            )}
+            {currentStep.id === 2 && (
+              <Options
+                options={[
+                  { name: "Our mission", order: 0 },
+                  { name: "Our shipping options", order: 1 },
+                ]}
+                includeOtherField
+              />
+            )}
+            {currentStep.id === 3 && (
+              <Options
+                options={[
+                  { name: "Today", order: 0 },
+                  { name: "In the past week", order: 1 },
+                  { name: "Over a week ago", order: 1 },
+                ]}
+              />
+            )}
+            {currentStep.id === 4 && (
+              <Options
+                options={[
+                  { name: "Myself", order: 0 },
+                  { name: "Friend or family", order: 1 },
+                  { name: "Coworker or client", order: 1 },
+                ]}
+                includeOtherField
+                customOtherFieldText="None of these? Let us know"
+              />
+            )}
           </div>
         </form>
         <div className="fixed bg-background px-4 bottom-0 w-full max-w-sm text-center flex flex-col gap-4 md:gap-8 pb-5 md:pb-24">
