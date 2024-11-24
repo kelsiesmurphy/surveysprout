@@ -3,13 +3,14 @@ import { useState } from "react";
 
 export default function SliderScreen() {
   const [sliderPosition, setSliderPosition] = useState<number>(5);
+
   return (
     <div className="w-full h-full flex items-center">
       <div className="space-y-8 flex-1">
         <p className="text-3xl font-semibold">{sliderPosition}</p>
         <Slider
           value={[sliderPosition]}
-          onValueChange={(e) => setSliderPosition(e)}
+          onValueChange={(e) => setSliderPosition(e[0] ?? sliderPosition)}
           max={10}
           step={1}
           className="w-full"

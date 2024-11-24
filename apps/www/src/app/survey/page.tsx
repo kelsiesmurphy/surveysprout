@@ -10,10 +10,10 @@ import { z } from "zod";
 import {
   Banana,
   Ear,
-  Key,
   LucideIcon,
   MessageCircleQuestion,
   Phone,
+  Squirrel,
   Users,
 } from "lucide-react";
 import React from "react";
@@ -24,6 +24,7 @@ import Options from "~/src/components/survey/Options";
 import TextAreaOther from "~/src/components/survey/TextAreaOther";
 import SliderScreen from "~/src/components/survey/Slider";
 import { useRouter } from "next/navigation";
+import SurveyStart from "~/src/components/survey/SurveyStart";
 
 type Inputs = z.infer<typeof FormDataSchema>;
 
@@ -55,7 +56,7 @@ export default function SurveyPage() {
       id: 0,
       title: "How did you hear about us?",
       subtitle: "Select one option",
-      icon: Key,
+      icon: Squirrel,
       fields: ["other"],
     },
     {
@@ -94,8 +95,7 @@ export default function SurveyPage() {
       fields: ["other"],
     },
   ];
-
-  const [currentStep, setCurrentStep] = useState<Step>(steps[0]!);
+  const [currentStep, setCurrentStep] = useState<Step | null>(null);
 
   const methods = useForm<Inputs>({
     resolver: zodResolver(FormDataSchema),
@@ -106,95 +106,108 @@ export default function SurveyPage() {
     methods.reset();
   };
 
-  const next = async () => {
-    const fields = steps[currentStep.id]?.fields;
-    const isValid = await methods.trigger(fields as (keyof Inputs)[], {
-      shouldFocus: true,
-    });
+  const next = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    if (currentStep != null) {
+      const fields = steps[currentStep.id]?.fields;
+      const isValid = await methods.trigger(fields as (keyof Inputs)[], {
+        shouldFocus: true,
+      });
 
-    if (!isValid) return;
+      if (!isValid) return;
 
-    const nextStep = steps[currentStep.id + 1];
-    if (nextStep) {
-      setCurrentStep(nextStep);
-    } else {
-      console.log("Submitting form...");
-      await methods.handleSubmit(processForm)();
-      router.push("/survey-complete");
+      const nextStep = steps[currentStep.id + 1];
+      if (nextStep) {
+        setCurrentStep(nextStep);
+      } else {
+        console.log("Submitting form...");
+        await methods.handleSubmit(processForm)();
+        router.push("/survey-complete");
+      }
+
+      lenisRef.current?.scrollTo(0);
     }
-
-    lenisRef.current?.scrollTo(0);
   };
 
   return (
     <FormProvider {...methods}>
       <section className="min-h-screen text-primary flex justify-center py-12 md:pt-40">
         <form className="gap-10 flex-1 px-4 max-w-sm text-center flex flex-col">
-          <div className="flex-1 mb-32 md:mb-60 flex flex-col items-center space-y-6">
-            <div className="p-3.5 rounded-xl border shadow-sm">
-              {React.createElement(currentStep.icon)}
-            </div>
-            <div className="space-y-2">
-              <h2 className="font-semibold text-2xl">{currentStep.title}</h2>
-              <p className="text-muted-foreground">{currentStep.subtitle}</p>
-            </div>
-            {currentStep.id === 0 && <SocialOptions />}
-            {currentStep.id === 1 && (
-              <TextAreaOther
-                tallTextArea
-                setSelectedOption={undefined}
-                customOtherFieldText="e.g. I saw an advert on Instagram for this product"
-              />
-            )}
-            {currentStep.id === 2 && (
-              <Options
-                options={[
-                  { name: "Our mission", order: 0 },
-                  { name: "Our shipping options", order: 1 },
-                ]}
-                includeOtherField
-              />
-            )}
-            {currentStep.id === 3 && (
-              <Options
-                options={[
-                  { name: "Today", order: 0 },
-                  { name: "In the past week", order: 1 },
-                  { name: "Over a week ago", order: 1 },
-                ]}
-              />
-            )}
-            {currentStep.id === 4 && (
-              <Options
-                options={[
-                  { name: "Myself", order: 0 },
-                  { name: "Friend or family", order: 1 },
-                  { name: "Coworker or client", order: 1 },
-                ]}
-                includeOtherField
-                customOtherFieldText="None of these? Let us know"
-              />
-            )}
-            {currentStep.id === 5 && <SliderScreen />}
-          </div>
+          {currentStep ? (
+            <>
+              <div className="flex-1 mb-32 md:mb-60 flex flex-col items-center space-y-6">
+                <div className="p-3.5 rounded-xl border shadow-sm">
+                  {React.createElement(currentStep.icon)}
+                </div>
+                <div className="space-y-2">
+                  <h2 className="font-semibold text-2xl">
+                    {currentStep.title}
+                  </h2>
+                  <p className="text-muted-foreground">
+                    {currentStep.subtitle}
+                  </p>
+                </div>
+                {currentStep.id === 0 && <SocialOptions />}
+                {currentStep.id === 1 && (
+                  <TextAreaOther
+                    tallTextArea
+                    setSelectedOption={undefined}
+                    customOtherFieldText="e.g. I saw an advert on Instagram for this product"
+                  />
+                )}
+                {currentStep.id === 2 && (
+                  <Options
+                    options={[
+                      { name: "Our mission", order: 0 },
+                      { name: "Our shipping options", order: 1 },
+                    ]}
+                    includeOtherField
+                  />
+                )}
+                {currentStep.id === 3 && (
+                  <Options
+                    options={[
+                      { name: "Today", order: 0 },
+                      { name: "In the past week", order: 1 },
+                      { name: "Over a week ago", order: 1 },
+                    ]}
+                  />
+                )}
+                {currentStep.id === 4 && (
+                  <Options
+                    options={[
+                      { name: "Myself", order: 0 },
+                      { name: "Friend or family", order: 1 },
+                      { name: "Coworker or client", order: 1 },
+                    ]}
+                    includeOtherField
+                    customOtherFieldText="None of these? Let us know"
+                  />
+                )}
+                {currentStep.id === 5 && <SliderScreen />}
+              </div>
+              <div className="fixed bg-background px-4 bottom-0 w-full max-w-sm text-center flex flex-col gap-4 md:gap-8 pb-5 md:pb-24">
+                <div className="w-full h-4 -mt-4 bg-gradient-to-t from-background" />
+                <Button className="w-full" onClick={(e) => next(e)}>
+                  Continue
+                </Button>
+                <SurveyPagination steps={steps} currentStep={currentStep} />
+                <p className="text-xs text-muted-foreground">
+                  Powered by{" "}
+                  <Button
+                    className="text-green-900 font-medium p-0 h-min text-xs"
+                    variant="link"
+                    asChild
+                  >
+                    <Link href="/">SurveySprout</Link>
+                  </Button>
+                </p>
+              </div>
+            </>
+          ) : (
+            <SurveyStart step={steps[0]} setCurrentStep={setCurrentStep} />
+          )}
         </form>
-        <div className="fixed bg-background px-4 bottom-0 w-full max-w-sm text-center flex flex-col gap-4 md:gap-8 pb-5 md:pb-24">
-          <div className="w-full h-4 -mt-4 bg-gradient-to-t from-background" />
-          <Button className="w-full" onClick={next}>
-            Continue
-          </Button>
-          <SurveyPagination steps={steps} currentStep={currentStep} />
-          <p className="text-xs text-muted-foreground">
-            Powered by{" "}
-            <Button
-              className="text-green-900 font-medium p-0 h-min text-xs"
-              variant="link"
-              asChild
-            >
-              <Link href="/">SurveySprout</Link>
-            </Button>
-          </p>
-        </div>
       </section>
     </FormProvider>
   );

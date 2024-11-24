@@ -1,11 +1,10 @@
 import "@repo/ui/globals.css";
 import type { Metadata } from "next";
-import { Montserrat_Alternates } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Toaster } from "@repo/ui/components/ui/toaster";
 
-const montserratAlternates = Montserrat_Alternates({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -20,7 +19,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={montserratAlternates.className + " min-w-72"}>
+      <body className={inter.className + " min-w-72"}>
         <main>{children}</main>
         <Toaster />
       </body>
