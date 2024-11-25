@@ -1,4 +1,6 @@
+import { Button } from "@repo/ui/components/ui/button";
 import { Montserrat_Alternates } from "next/font/google";
+import Link from "next/link";
 
 const montserratAlternates = Montserrat_Alternates({
   subsets: ["latin"],
@@ -20,6 +22,7 @@ export default function Page() {
         <p className="text-muted-foreground">
           Coming soon. Join our waitlist to be first in the know.
         </p>
+        <Button asChild><Link href="/survey">Go to Test Survey</Link></Button>
       </div>
     </section>
   );
