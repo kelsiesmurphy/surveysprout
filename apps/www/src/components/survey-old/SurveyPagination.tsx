@@ -1,4 +1,4 @@
-import { Step } from "~/src/app/survey/page";
+import { Step } from "~/src/app/survey-old/page";
 
 export default function SurveyPagination({
   steps,

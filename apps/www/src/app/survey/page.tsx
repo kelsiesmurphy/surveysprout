@@ -1,214 +1,339 @@
 "use client";
 
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@repo/ui/components/ui/button";
-import { useEffect, useRef, useState } from "react";
-import { FormDataSchema } from "~/src/lib/schema";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import SurveyPagination from "~/src/components/survey/SurveyPagination";
-import { z } from "zod";
+import * as z from "zod";
+import { Slider } from "@repo/ui/components/ui/slider";
 import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@repo/ui/components/ui/form";
+import { Textarea } from "@repo/ui/components/ui/textarea";
+import { Button } from "@repo/ui/components/ui/button";
+import {
+  Squirrel,
+  Phone,
   Banana,
   Ear,
-  LucideIcon,
   MessageCircleQuestion,
-  Phone,
-  Squirrel,
   Users,
+  LucideIcon,
 } from "lucide-react";
-import React from "react";
-import Lenis from "lenis";
-import SocialOptions from "~/src/components/survey/SocialOptions";
-import Link from "next/link";
-import Options from "~/src/components/survey/Options";
-import TextAreaOther from "~/src/components/survey/TextAreaOther";
-import SliderScreen from "~/src/components/survey/Slider";
-import { useRouter } from "next/navigation";
-import SurveyStart from "~/src/components/survey/SurveyStart";
-
-type Inputs = z.infer<typeof FormDataSchema>;
 
 export type Step = {
   id: number;
   title: string;
   subtitle: string;
   icon: LucideIcon;
+  questionType: "SocialOptions" | "Options" | "Text" | "Slider";
   fields: string[];
 };
 
-export default function SurveyPage() {
-  const router = useRouter();
-  const lenisRef = useRef<Lenis | null>(null);
+const steps: Step[] = [
+  {
+    id: 0,
+    title: "How did you hear about us?",
+    subtitle: "Select one option",
+    icon: Squirrel,
+    questionType: "SocialOptions",
+    fields: ["other"],
+  },
+  {
+    id: 1,
+    title: "Could you give more details?",
+    subtitle: "Tell us more about how you found us?",
+    icon: Phone,
+    questionType: "Text",
+    fields: ["other"],
+  },
+  {
+    id: 2,
+    title: "What about our products appeal to you?",
+    subtitle: "Select one option",
+    icon: Banana,
+    questionType: "Options",
+    fields: ["other"],
+  },
+  {
+    id: 3,
+    title: "When did you first hear about us?",
+    subtitle: "Select one option",
+    icon: Ear,
+    questionType: "Options",
+    fields: ["other"],
+  },
+  {
+    id: 4,
+    title: "Who is this purchase for?",
+    subtitle: "Select one option",
+    icon: MessageCircleQuestion,
+    questionType: "Options",
+    fields: ["other"],
+  },
+  {
+    id: 5,
+    title: "Would you recommend us to a friend?",
+    subtitle: "Move the slider between 1 and 10",
+    icon: Users,
+    questionType: "Slider",
+    fields: ["other"],
+  },
+];
 
-  useEffect(() => {
-    const lenis = new Lenis();
-    lenisRef.current = lenis;
+const surveySchema = z.object({
+  q1: z.string().optional(),
+  q1_other: z.string().optional(),
+  q2: z.string().optional(),
+  q3: z.string().optional(),
+  q3_other: z.string().optional(),
+  q4: z.string().optional(),
+  q5: z.string().optional(),
+  q5_other: z.string().optional(),
+  q6: z.number().min(1).max(10, "Please rate between 1 and 10"),
+});
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-  }, []);
+type SurveyForm = z.infer<typeof surveySchema>;
 
-  const steps: Step[] = [
-    {
-      id: 0,
-      title: "How did you hear about us?",
-      subtitle: "Select one option",
-      icon: Squirrel,
-      fields: ["other"],
+export default function Survey() {
+  const form = useForm<SurveyForm>({
+    resolver: zodResolver(surveySchema),
+    defaultValues: {
+      q6: 5,
     },
-    {
-      id: 1,
-      title: "Could you give more details?",
-      subtitle: "Tell us more about how you found us?",
-      icon: Phone,
-      fields: ["other"],
-    },
-    {
-      id: 2,
-      title: "What about our products appeal to you?",
-      subtitle: "Select one option",
-      icon: Banana,
-      fields: ["other"],
-    },
-    {
-      id: 3,
-      title: "When did you first hear about us?",
-      subtitle: "Select one option",
-      icon: Ear,
-      fields: ["other"],
-    },
-    {
-      id: 4,
-      title: "Who is this purchase for?",
-      subtitle: "Select one option",
-      icon: MessageCircleQuestion,
-      fields: ["other"],
-    },
-    {
-      id: 5,
-      title: "Would you recommend us to a friend?",
-      subtitle: "Move the slider between 1 and 10",
-      icon: Users,
-      fields: ["other"],
-    },
-  ];
-  const [currentStep, setCurrentStep] = useState<Step | null>(null);
-
-  const methods = useForm<Inputs>({
-    resolver: zodResolver(FormDataSchema),
   });
 
-  const processForm: SubmitHandler<Inputs> = (data) => {
+  const onSubmit = (data: SurveyForm) => {
     console.log(data);
-    methods.reset();
   };
 
-  const next = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if (currentStep != null) {
-      const fields = steps[currentStep.id]?.fields;
-      const isValid = await methods.trigger(fields as (keyof Inputs)[], {
-        shouldFocus: true,
-      });
-
-      if (!isValid) return;
-
-      const nextStep = steps[currentStep.id + 1];
-      if (nextStep) {
-        setCurrentStep(nextStep);
-      } else {
-        console.log("Submitting form...");
-        await methods.handleSubmit(processForm)();
-        router.push("/survey-complete");
-      }
-
-      lenisRef.current?.scrollTo(0);
-    }
-  };
+  const options = [
+    { name: "Today", order: 0 },
+    { name: "In the past week", order: 1 },
+    { name: "Over a week ago", order: 1 },
+  ];
 
   return (
-    <FormProvider {...methods}>
-      <section className="min-h-screen text-primary flex justify-center py-12 md:pt-40">
-        <form className="gap-10 flex-1 px-4 max-w-sm text-center flex flex-col">
-          {currentStep ? (
-            <>
-              <div className="flex-1 mb-32 md:mb-60 flex flex-col items-center space-y-6">
-                <div className="p-3.5 rounded-xl border shadow-sm">
-                  {React.createElement(currentStep.icon)}
-                </div>
-                <div className="space-y-2">
-                  <h2 className="font-semibold text-2xl">
-                    {currentStep.title}
-                  </h2>
-                  <p className="text-muted-foreground">
-                    {currentStep.subtitle}
-                  </p>
-                </div>
-                {currentStep.id === 0 && <SocialOptions />}
-                {currentStep.id === 1 && (
-                  <TextAreaOther
-                    tallTextArea
-                    setSelectedOption={undefined}
-                    customOtherFieldText="e.g. I saw an advert on Instagram for this product"
+    <div className="max-w-xl mx-auto py-10">
+      <h1 className="text-2xl font-bold mb-6">Survey</h1>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          {/* Question 1 */}
+          <label className="block font-semibold mb-2">Question 1</label>
+          <FormField
+            control={form.control}
+            name="q1"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <ul className="w-full space-y-5">
+                    {options
+                      .sort(
+                        (a: { order: number }, b: { order: number }) =>
+                          a.order - b.order,
+                      )
+                      .map((option, index: number) => {
+                        const isSelected = field.value === option.name;
+                        return (
+                          <li key={index}>
+                            <Button
+                              variant="outline"
+                              size="lg"
+                              className={`shadow-sm w-full justify-between h-auto rounded-xl flex items-center gap-3 py-6 px-5 ${
+                                isSelected &&
+                                "bg-primary/5 hover:bg-primary/10 border-primary"
+                              }`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                if (form.watch("q1") === option.name) {
+                                  form.setValue("q1", undefined);
+                                } else {
+                                  form.setValue("q1", option.name);
+                                }
+                              }}
+                            >
+                              <p className="font-semibold">{option.name}</p>
+                              <div
+                                className={`h-4 w-4 rounded-full flex justify-center items-center transition-colors duration-200 ${
+                                  isSelected ? "bg-primary" : "border"
+                                }`}
+                              >
+                                {isSelected && (
+                                  <div className="rounded-full h-1.5 w-1.5 bg-background" />
+                                )}
+                              </div>
+                            </Button>
+                          </li>
+                        );
+                      })}
+                  </ul>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="q1_other"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Other</FormLabel>
+                <FormControl className="w-full text-left space-y-1.5">
+                  <Textarea
+                    className="rounded-xl"
+                    maxLength={100}
+                    placeholder="Other (specify)"
+                    {...field}
                   />
-                )}
-                {currentStep.id === 2 && (
-                  <Options
-                    options={[
-                      { name: "Our mission", order: 0 },
-                      { name: "Our shipping options", order: 1 },
-                    ]}
-                    includeOtherField
-                  />
-                )}
-                {currentStep.id === 3 && (
-                  <Options
-                    options={[
-                      { name: "Today", order: 0 },
-                      { name: "In the past week", order: 1 },
-                      { name: "Over a week ago", order: 1 },
-                    ]}
-                  />
-                )}
-                {currentStep.id === 4 && (
-                  <Options
-                    options={[
-                      { name: "Myself", order: 0 },
-                      { name: "Friend or family", order: 1 },
-                      { name: "Coworker or client", order: 1 },
-                    ]}
-                    includeOtherField
-                    customOtherFieldText="None of these? Let us know"
-                  />
-                )}
-                {currentStep.id === 5 && <SliderScreen />}
-              </div>
-              <div className="fixed bg-background px-4 bottom-0 w-full max-w-sm text-center flex flex-col gap-4 md:gap-8 pb-5 md:pb-24">
-                <div className="w-full h-4 -mt-4 bg-gradient-to-t from-background" />
-                <Button className="w-full" onClick={(e) => next(e)}>
-                  Continue
-                </Button>
-                <SurveyPagination steps={steps} currentStep={currentStep} />
-                <p className="text-xs text-muted-foreground">
-                  Powered by{" "}
-                  <Button
-                    className="text-green-900 font-medium p-0 h-min text-xs"
-                    variant="link"
-                    asChild
-                  >
-                    <Link href="/">SurveySprout</Link>
-                  </Button>
+                </FormControl>
+                <FormDescription>
+                  {100 - (field.value?.length || 0)} characters left
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Question 2 */}
+          <div>
+            <label className="block font-semibold mb-2">Question 2</label>
+            <div className="w-full text-left space-y-1.5">
+              <Textarea
+                maxLength={100}
+                placeholder="Other (specify)"
+                {...form.register("q2")}
+                className={`w-full p-4 border rounded-xl shadow-sm`}
+              />
+              <p className="text-sm text-muted-foreground">
+                {100 - (form.watch("q2")?.length || 0)} characters left
+              </p>
+            </div>
+            {form.formState.errors.q2 && (
+              <p className="text-red-500">{form.formState.errors.q2.message}</p>
+            )}
+          </div>
+
+          {/* Question 3 */}
+          <div>
+            <label className="block font-semibold mb-2">Question 3</label>
+            <div className="space-y-2">
+              <label>
+                <input type="radio" value="Option 1" {...form.register("q3")} />{" "}
+                Option 1
+              </label>
+              <label>
+                <input type="radio" value="Option 2" {...form.register("q3")} />{" "}
+                Option 2
+              </label>
+              <div className="w-full text-left space-y-1.5">
+                <Textarea
+                  maxLength={100}
+                  placeholder="Other (specify)"
+                  {...form.register("q3_other")}
+                  className={`w-full p-4 border rounded-xl shadow-sm`}
+                />
+                <p className="text-sm text-muted-foreground">
+                  {100 - (form.watch("q3_other")?.length || 0)} characters left
                 </p>
               </div>
-            </>
-          ) : (
-            <SurveyStart step={steps[0]} setCurrentStep={setCurrentStep} />
-          )}
+            </div>
+            {form.formState.errors.q3 && (
+              <p className="text-red-500">{form.formState.errors.q3.message}</p>
+            )}
+          </div>
+
+          {/* Question 4 */}
+          <div>
+            <label className="block font-semibold mb-2">Question 4</label>
+            <div className="space-y-2">
+              <label>
+                <input type="radio" value="Option 1" {...form.register("q4")} />{" "}
+                Option 1
+              </label>
+              <label>
+                <input type="radio" value="Option 2" {...form.register("q4")} />{" "}
+                Option 2
+              </label>
+            </div>
+            {form.formState.errors.q4 && (
+              <p className="text-red-500">{form.formState.errors.q4.message}</p>
+            )}
+          </div>
+
+          {/* Question 5 */}
+          <div>
+            <label className="block font-semibold mb-2">Question 5</label>
+            <div className="space-y-2">
+              <label>
+                <input type="radio" value="Option 1" {...form.register("q5")} />{" "}
+                Option 1
+              </label>
+              <label>
+                <input type="radio" value="Option 2" {...form.register("q5")} />{" "}
+                Option 2
+              </label>
+              <div className="w-full text-left space-y-1.5">
+                <Textarea
+                  maxLength={100}
+                  placeholder="Other (specify)"
+                  {...form.register("q5_other")}
+                  className={`w-full p-4 border rounded-xl shadow-sm`}
+                />
+                <p className="text-sm text-muted-foreground">
+                  {100 - (form.watch("q5_other")?.length || 0)} characters left
+                </p>
+              </div>
+            </div>
+            {form.formState.errors.q5 && (
+              <p className="text-red-500">{form.formState.errors.q5.message}</p>
+            )}
+          </div>
+
+          {/* Question 6 */}
+          <div>
+            <label className="block font-semibold mb-2">Question 6</label>
+            <FormField
+              control={form.control}
+              name="q6"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    Slider: {JSON.stringify(form.getValues("q6"))}
+                  </FormLabel>
+                  <FormControl>
+                    <Slider
+                      value={[field.value]}
+                      min={0}
+                      max={10}
+                      step={1}
+                      onValueChange={(value) => {
+                        form.setValue(
+                          "q6",
+                          value[0] != undefined ? value[0] : 5,
+                        );
+                      }}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            {form.formState.errors.q6 && (
+              <p className="text-red-500">{form.formState.errors.q6.message}</p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            Submit
+          </button>
         </form>
-      </section>
-    </FormProvider>
+      </Form>
+    </div>
   );
 }
