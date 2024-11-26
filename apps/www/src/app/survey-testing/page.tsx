@@ -11,6 +11,7 @@ import {
   FormItem,
   FormLabel,
 } from "@repo/ui/components/ui/form";
+import { Textarea } from "@repo/ui/components/ui/textarea";
 
 const surveySchema = z.object({
   q1: z.string().optional(),
@@ -29,6 +30,9 @@ type SurveyForm = z.infer<typeof surveySchema>;
 export default function Survey() {
   const form = useForm<SurveyForm>({
     resolver: zodResolver(surveySchema),
+    defaultValues: {
+      q6: 5,
+    },
   });
 
   const onSubmit = (data: SurveyForm) => {
@@ -56,11 +60,17 @@ export default function Survey() {
                 <input type="radio" value="Option 3" {...form.register("q1")} />{" "}
                 Option 3
               </label>
-              <textarea
-                placeholder="Other (specify)"
-                {...form.register("q1_other")}
-                className="border w-full p-2"
-              />
+              <div className="w-full text-left space-y-1.5">
+                <Textarea
+                  maxLength={100}
+                  placeholder="Other (specify)"
+                  {...form.register("q1_other")}
+                  className={`w-full p-4 border rounded-xl shadow-sm`}
+                />
+                <p className="text-sm text-muted-foreground">
+                  {100 - (form.watch("q1_other")?.length || 0)} characters left
+                </p>
+              </div>
             </div>
             {form.formState.errors.q1 && (
               <p className="text-red-500">{form.formState.errors.q1.message}</p>
@@ -70,7 +80,17 @@ export default function Survey() {
           {/* Question 2 */}
           <div>
             <label className="block font-semibold mb-2">Question 2</label>
-            <textarea {...form.register("q2")} className="border w-full p-2" />
+            <div className="w-full text-left space-y-1.5">
+              <Textarea
+                maxLength={100}
+                placeholder="Other (specify)"
+                {...form.register("q2")}
+                className={`w-full p-4 border rounded-xl shadow-sm`}
+              />
+              <p className="text-sm text-muted-foreground">
+                {100 - (form.watch("q2")?.length || 0)} characters left
+              </p>
+            </div>
             {form.formState.errors.q2 && (
               <p className="text-red-500">{form.formState.errors.q2.message}</p>
             )}
@@ -88,11 +108,17 @@ export default function Survey() {
                 <input type="radio" value="Option 2" {...form.register("q3")} />{" "}
                 Option 2
               </label>
-              <textarea
-                placeholder="Other (specify)"
-                {...form.register("q3_other")}
-                className="border w-full p-2"
-              />
+              <div className="w-full text-left space-y-1.5">
+                <Textarea
+                  maxLength={100}
+                  placeholder="Other (specify)"
+                  {...form.register("q3_other")}
+                  className={`w-full p-4 border rounded-xl shadow-sm`}
+                />
+                <p className="text-sm text-muted-foreground">
+                  {100 - (form.watch("q3_other")?.length || 0)} characters left
+                </p>
+              </div>
             </div>
             {form.formState.errors.q3 && (
               <p className="text-red-500">{form.formState.errors.q3.message}</p>
@@ -129,11 +155,17 @@ export default function Survey() {
                 <input type="radio" value="Option 2" {...form.register("q5")} />{" "}
                 Option 2
               </label>
-              <textarea
-                placeholder="Other (specify)"
-                {...form.register("q5_other")}
-                className="border w-full p-2"
-              />
+              <div className="w-full text-left space-y-1.5">
+                <Textarea
+                  maxLength={100}
+                  placeholder="Other (specify)"
+                  {...form.register("q5_other")}
+                  className={`w-full p-4 border rounded-xl shadow-sm`}
+                />
+                <p className="text-sm text-muted-foreground">
+                  {100 - (form.watch("q5_other")?.length || 0)} characters left
+                </p>
+              </div>
             </div>
             {form.formState.errors.q5 && (
               <p className="text-red-500">{form.formState.errors.q5.message}</p>
@@ -148,12 +180,21 @@ export default function Survey() {
               name="q6"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Slider</FormLabel>
+                  <FormLabel>
+                    Slider: {JSON.stringify(form.getValues("q6"))}
+                  </FormLabel>
                   <FormControl>
                     <Slider
                       value={[field.value]}
+                      min={0}
+                      max={10}
+                      step={1}
                       onValueChange={(value) => {
-                        form.setValue("q6", value[0] ? value[0] : 5);
+                        console.log(value[0]);
+                        form.setValue(
+                          "q6",
+                          value[0] != undefined ? value[0] : 5,
+                        );
                       }}
                     />
                   </FormControl>
