@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { Form } from "@repo/ui/components/ui/form";
 
-import { createElement, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SurveyStart from "~/src/components/survey/SurveyStart";
 import Lenis from "lenis";
 import SurveyOptions from "~/src/components/survey/SurveyOptions";
@@ -68,7 +68,7 @@ export default function SurveyPage() {
           {currentQuestion ? (
             <>
               <div className="flex-1 mb-32 md:mb-60 flex flex-col items-center space-y-6">
-                <SurveyHeader currentQuestion={currentQuestion}/>
+                <SurveyHeader currentQuestion={currentQuestion} />
                 {questions.map((question: Question) => {
                   if (question === currentQuestion)
                     switch (question.questionType) {
