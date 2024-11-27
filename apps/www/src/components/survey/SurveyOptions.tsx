@@ -8,6 +8,7 @@ import {
   FormDescription,
 } from "@repo/ui/components/ui/form";
 import { Textarea } from "@repo/ui/components/ui/textarea";
+import { useEffect } from "react";
 import { UseFormReturn } from "react-hook-form";
 import { Question } from "~/src/content/SurveyQuestions";
 import { SurveyForm, SurveySchema } from "~/src/lib/schema";
@@ -19,6 +20,10 @@ export default function SurveyOptions({
   form: UseFormReturn<SurveyForm, any, undefined>;
   question: Question;
 }) {
+  useEffect(() => {
+    form.resetField(`${question.fieldName}.otherText`);
+  }, [question.fieldName, form]);
+
   return (
     <>
       <FormField

@@ -21,8 +21,7 @@ export default function SurveyPage() {
   const router = useRouter();
   const lenisRef = useRef<Lenis | null>(null);
 
-  const canContinue = true
-  // const [canContinue] = useState(true);
+  const [canContinue, setCanContinue] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
 
   useEffect(() => {
@@ -33,7 +32,12 @@ export default function SurveyPage() {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    const frameId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(frameId);
+      lenis.destroy();
+    };
   }, []);
 
   const form = useForm<SurveyForm>({
@@ -70,72 +74,75 @@ export default function SurveyPage() {
     form.reset();
   };
 
-  const next = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    if (currentQuestion != null) {
-      const nextQuestion = questions[currentQuestion.id + 1];
-      if (nextQuestion) {
-        setCurrentQuestion(nextQuestion);
-      } else {
-        console.log("Submitting form...");
-        form.handleSubmit(processForm)();
-        router.push("/survey-complete");
-      }
-
+  const handleNextQuestion = () => {
+    if (!currentQuestion) return;
+    const nextQuestion = questions[currentQuestion.id + 1];
+    if (nextQuestion) {
+      setCurrentQuestion(nextQuestion);
       lenisRef.current?.scrollTo(0);
+    } else {
+      console.log("Submitting form...");
+      form.handleSubmit(processForm)();
+      router.push("/survey-complete");
     }
   };
 
+  const next = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    handleNextQuestion();
+  };
+
+  useEffect(() => {
+    const subscription = form.watch((values) => {
+      if (!currentQuestion?.fieldName) {
+        setCanContinue(false);
+        return;
+      }
+
+      const isValid = !!(
+        values[currentQuestion.fieldName]?.answer ||
+        values[currentQuestion.fieldName]?.otherText
+      );
+      setCanContinue(isValid);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [currentQuestion, form]);
+
   return (
     <Form {...form}>
-      <p className="fixed">
-        form: {JSON.stringify(form.watch())}
-        <br />
-        <br />
-        currentQuestion: {JSON.stringify(currentQuestion?.fieldName)}
-      </p>
       <section className="min-h-screen text-primary flex justify-center py-12 md:pt-40">
         <form className="gap-10 flex-1 px-4 max-w-sm text-center flex flex-col">
           {currentQuestion ? (
             <>
               <div className="flex-1 mb-32 md:mb-60 flex flex-col items-center space-y-6">
                 <SurveyHeader currentQuestion={currentQuestion} />
-                {questions.map((question: Question) => {
-                  if (question === currentQuestion)
-                    switch (question.questionType) {
+                <div className="w-full text-left space-y-5">
+                  {(() => {
+                    switch (currentQuestion.questionType) {
                       case "Options":
                         return (
-                          <div
-                            className="w-full text-left space-y-5"
-                            key={question.id}
-                          >
-                            <SurveyOptions form={form} question={question} />
-                          </div>
+                          <SurveyOptions
+                            form={form}
+                            question={currentQuestion}
+                          />
                         );
                       case "Text":
                         return (
-                          <div
-                            className="w-full text-left space-y-5"
-                            key={question.id}
-                          >
-                            <SurveyText form={form} question={question} />
-                          </div>
+                          <SurveyText form={form} question={currentQuestion} />
                         );
                       case "Slider":
                         return (
-                          <div
-                            className="w-full text-left space-y-5"
-                            key={question.id}
-                          >
-                            <SurveySlider form={form} question={question} />
-                          </div>
+                          <SurveySlider
+                            form={form}
+                            question={currentQuestion}
+                          />
                         );
                       default:
-                        <div className="w-full text-left space-y-5" key="Error">
-                          <SurveyError />
-                        </div>;
+                        return <SurveyError />;
                     }
-                })}
+                  })()}
+                </div>
               </div>
               <SurveyFooter
                 canContinue={canContinue}
