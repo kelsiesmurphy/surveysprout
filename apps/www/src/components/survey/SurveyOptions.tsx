@@ -54,7 +54,7 @@ export default function SurveyOptions({
                                 if (
                                   form.watch(question.fieldName) === option.name
                                 ) {
-                                  form.setValue(question.fieldName, undefined);
+                                  form.setValue(question.fieldName, null);
                                 } else {
                                   form.setValue(
                                     question.fieldName,
@@ -93,26 +93,28 @@ export default function SurveyOptions({
           </FormItem>
         )}
       />
-      <FormField
-        control={form.control}
-        name={"q1_other"}
-        render={({ field }) => (
-          <FormItem>
-            <FormControl className="w-full text-left space-y-1.5">
-              <Textarea
-                className="rounded-xl"
-                maxLength={100}
-                placeholder="Other (specify)"
-                {...field}
-              />
-            </FormControl>
-            <FormDescription>
-              {100 - (field.value?.length || 0)} characters left
-            </FormDescription>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
+      {question.allowOther && (
+        <FormField
+          control={form.control}
+          name={`${question.fieldName}_other` as keyof SurveyForm}
+          render={({ field }) => (
+            <FormItem>
+              <FormControl className="w-full text-left space-y-1.5">
+                <Textarea
+                  className="rounded-xl"
+                  maxLength={100}
+                  placeholder="Other (specify)"
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription>
+                {100 - (field.value?.toString().length || 0)} characters left
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+      )}
     </>
   );
 }

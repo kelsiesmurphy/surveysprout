@@ -15,11 +15,13 @@ import { Question, questions } from "~/src/content/SurveyQuestions";
 import { SurveyForm, SurveySchema } from "~/src/lib/schema";
 import SurveyFooter from "~/src/components/survey/SurveyFooter";
 import SurveyHeader from "~/src/components/survey/SurveyHeader";
+import SurveyError from "~/src/components/survey/SurveyError";
 
 export default function SurveyPage() {
   const router = useRouter();
   const lenisRef = useRef<Lenis | null>(null);
 
+  const [canContinue, setCanContinue] = useState(true);
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
 
   useEffect(() => {
@@ -36,8 +38,17 @@ export default function SurveyPage() {
   const form = useForm<SurveyForm>({
     resolver: zodResolver(SurveySchema),
     defaultValues: {
+      q1: null,
+      q1_other: "",
+      q2: "",
+      q3: null,
+      q3_other: "",
+      q4: null,
+      q5: null,
+      q5_other: "",
       q6: 5,
     },
+    mode: "onChange",
   });
 
   const processForm: SubmitHandler<SurveyForm> = (data) => {
@@ -63,6 +74,12 @@ export default function SurveyPage() {
 
   return (
     <Form {...form}>
+      <p className="fixed">
+        form: {JSON.stringify(form.watch())}
+        <br />
+        <br />
+        currentQuestion: {JSON.stringify(currentQuestion?.fieldName)}
+      </p>
       <section className="min-h-screen text-primary flex justify-center py-12 md:pt-40">
         <form className="gap-10 flex-1 px-4 max-w-sm text-center flex flex-col">
           {currentQuestion ? (
@@ -100,17 +117,17 @@ export default function SurveyPage() {
                           </div>
                         );
                       default:
-                        // TODO: Replace with error screen?
-                        <div
-                          className="w-full text-left space-y-5"
-                          key={question.id}
-                        >
-                          <SurveyText form={form} question={question} />
+                        <div className="w-full text-left space-y-5" key="Error">
+                          <SurveyError />
                         </div>;
                     }
                 })}
               </div>
-              <SurveyFooter currentQuestion={currentQuestion} next={next} />
+              <SurveyFooter
+                canContinue={canContinue}
+                currentQuestion={currentQuestion}
+                next={next}
+              />
             </>
           ) : (
             <SurveyStart

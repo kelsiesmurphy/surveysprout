@@ -7,15 +7,21 @@ import Link from "next/link";
 
 export default function SurveyFooter({
   currentQuestion,
+  canContinue,
   next,
 }: {
   currentQuestion: Question;
+  canContinue: boolean;
   next: Function;
 }) {
   return (
     <div className="fixed bg-background px-4 bottom-0 w-full max-w-sm text-center flex flex-col gap-4 md:gap-8 pb-5 md:pb-24">
       <div className="w-full h-4 -mt-4 bg-gradient-to-t from-background" />
-      <Button className="w-full" onClick={(e) => next(e)}>
+      <Button
+        disabled={!canContinue}
+        className="w-full"
+        onClick={(e) => next(e)}
+      >
         Continue
       </Button>
       <SurveyPagination
