@@ -1,7 +1,6 @@
 import {
   FormField,
   FormItem,
-  FormLabel,
   FormControl,
 } from "@repo/ui/components/ui/form";
 import { Slider } from "@repo/ui/components/ui/slider";
