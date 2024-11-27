@@ -54,10 +54,14 @@ export default function SurveyOptions({
                                 if (
                                   form.watch(question.fieldName) === option.name
                                 ) {
-                                  form.setValue(question.fieldName, null);
-                                } else {
                                   form.setValue(
-                                    question.fieldName,
+                                    `${question.fieldName}.option`,
+                                    null,
+                                  );
+                                } else {
+                                  console.log(option);
+                                  form.setValue(
+                                    `${question.fieldName}.option`,
                                     option.name,
                                   );
                                 }
@@ -96,7 +100,7 @@ export default function SurveyOptions({
       {question.allowOther && (
         <FormField
           control={form.control}
-          name={`${question.fieldName}_other` as keyof SurveyForm}
+          name={`${question.fieldName}.otherText`}
           render={({ field }) => (
             <FormItem>
               <FormControl className="w-full text-left space-y-1.5">

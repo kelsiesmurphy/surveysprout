@@ -38,14 +38,23 @@ export default function SurveyPage() {
   const form = useForm<SurveyForm>({
     resolver: zodResolver(SurveySchema),
     defaultValues: {
-      q1: null,
-      q1_other: "",
+      q1: {
+        option: null,
+        otherText: "",
+      },
       q2: "",
-      q3: null,
-      q3_other: "",
-      q4: null,
-      q5: null,
-      q5_other: "",
+      q3: {
+        option: null,
+        otherText: "",
+      },
+      q4: {
+        option: null,
+        otherText: "",
+      },
+      q5: {
+        option: null,
+        otherText: "",
+      },
       q6: 5,
     },
     mode: "onChange",
