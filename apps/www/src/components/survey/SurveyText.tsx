@@ -25,7 +25,7 @@ export default function SurveyText({
         <FormItem>
           <FormControl className="w-full text-left space-y-1.5">
             <Textarea
-              className="rounded-xl"
+              className="rounded-xl min-h-48"
               maxLength={100}
               placeholder="e.g. I saw an advert on Instagram for this product"
               {...field}

@@ -21,10 +21,10 @@ export default function SurveySlider({
       control={form.control}
       name={question.fieldName}
       render={({ field }) => (
-        <FormItem>
-          <FormLabel className="text-center">
-            Slider: {JSON.stringify(form.getValues(question.fieldName))}
-          </FormLabel>
+        <FormItem className="h-full flex flex-col gap-8 justify-center">
+          <p className="text-center flex justify-center w-full text-3xl font-semibold">
+            {form.getValues(`${question.fieldName}.answer`)}
+          </p>
           <FormControl>
             <Slider
               value={[Number(field.value.answer)]}

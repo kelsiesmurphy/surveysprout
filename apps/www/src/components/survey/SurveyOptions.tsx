@@ -21,6 +21,7 @@ export default function SurveyOptions({
   question: Question;
 }) {
   useEffect(() => {
+    form.resetField(`${question.fieldName}.answer`);
     form.resetField(`${question.fieldName}.otherText`);
   }, [question.fieldName, form]);
 
