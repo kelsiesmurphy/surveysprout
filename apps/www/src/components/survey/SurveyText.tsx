@@ -20,7 +20,7 @@ export default function SurveyText({
   return (
     <FormField
       control={form.control}
-      name={question.fieldName}
+      name={`${question.fieldName}.answer`}
       render={({ field }) => (
         <FormItem>
           <FormControl className="w-full text-left space-y-1.5">

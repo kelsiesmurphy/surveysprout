@@ -21,7 +21,8 @@ export default function SurveyPage() {
   const router = useRouter();
   const lenisRef = useRef<Lenis | null>(null);
 
-  const [canContinue, setCanContinue] = useState(true);
+  const canContinue = true
+  // const [canContinue] = useState(true);
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
 
   useEffect(() => {
@@ -39,23 +40,27 @@ export default function SurveyPage() {
     resolver: zodResolver(SurveySchema),
     defaultValues: {
       q1: {
-        option: null,
+        answer: "",
         otherText: "",
       },
-      q2: "",
+      q2: {
+        answer: "",
+      },
       q3: {
-        option: null,
+        answer: "",
         otherText: "",
       },
       q4: {
-        option: null,
+        answer: "",
         otherText: "",
       },
       q5: {
-        option: null,
+        answer: "",
         otherText: "",
       },
-      q6: 5,
+      q6: {
+        answer: "5",
+      },
     },
     mode: "onChange",
   });
@@ -65,7 +70,7 @@ export default function SurveyPage() {
     form.reset();
   };
 
-  const next = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const next = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (currentQuestion != null) {
       const nextQuestion = questions[currentQuestion.id + 1];
@@ -73,7 +78,7 @@ export default function SurveyPage() {
         setCurrentQuestion(nextQuestion);
       } else {
         console.log("Submitting form...");
-        await form.handleSubmit(processForm)();
+        form.handleSubmit(processForm)();
         router.push("/survey-complete");
       }
 

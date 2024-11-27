@@ -10,7 +10,7 @@ import {
 import { Textarea } from "@repo/ui/components/ui/textarea";
 import { UseFormReturn } from "react-hook-form";
 import { Question } from "~/src/content/SurveyQuestions";
-import { SurveyForm } from "~/src/lib/schema";
+import { SurveyForm, SurveySchema } from "~/src/lib/schema";
 
 export default function SurveyOptions({
   form,
@@ -39,7 +39,9 @@ export default function SurveyOptions({
                         option: { name: string; image?: string; order: number },
                         index: number,
                       ) => {
-                        const isSelected = field.value === option.name;
+                        const isSelected = field.value
+                          ? field.value?.answer === option.name
+                          : false;
                         return (
                           <li key={index}>
                             <Button
@@ -51,20 +53,10 @@ export default function SurveyOptions({
                               }`}
                               onClick={(e) => {
                                 e.preventDefault();
-                                if (
-                                  form.watch(question.fieldName) === option.name
-                                ) {
-                                  form.setValue(
-                                    `${question.fieldName}.option`,
-                                    null,
-                                  );
-                                } else {
-                                  console.log(option);
-                                  form.setValue(
-                                    `${question.fieldName}.option`,
-                                    option.name,
-                                  );
-                                }
+                                form.setValue(question.fieldName, {
+                                  ...form.watch(question.fieldName),
+                                  answer: isSelected ? "" : option.name,
+                                });
                               }}
                             >
                               <div className="flex gap-3 items-center">
@@ -97,7 +89,7 @@ export default function SurveyOptions({
           </FormItem>
         )}
       />
-      {question.allowOther && (
+      {SurveySchema.shape[question.fieldName].shape.otherText && (
         <FormField
           control={form.control}
           name={`${question.fieldName}.otherText`}

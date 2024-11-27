@@ -27,15 +27,15 @@ export default function SurveySlider({
           </FormLabel>
           <FormControl>
             <Slider
-              value={[Number(field.value)]}
+              value={[Number(field.value.answer)]}
               min={0}
               max={10}
               step={1}
               onValueChange={(value) => {
-                form.setValue(
-                  question.fieldName,
-                  value[0] != undefined ? value[0] : 5,
-                );
+                form.setValue(question.fieldName, {
+                  ...form.watch(question.fieldName),
+                  answer: value[0]?.toString(),
+                });
               }}
             />
           </FormControl>

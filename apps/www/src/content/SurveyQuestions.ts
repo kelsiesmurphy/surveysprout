@@ -19,7 +19,6 @@ export type Question = {
   icon: LucideIcon;
   questionType: "Options" | "Text" | "Slider";
   options?: { name: string; image?: string; order: number }[];
-  allowOther: boolean;
 };
 
 export const questions: Question[] = [
@@ -62,7 +61,6 @@ export const questions: Question[] = [
         order: 4,
       },
     ],
-    allowOther: true
   },
   {
     id: 1,
@@ -71,7 +69,6 @@ export const questions: Question[] = [
     subtitle: "Tell us more about how you found us?",
     icon: Phone,
     questionType: "Text",
-    allowOther: false
   },
   {
     id: 2,
@@ -84,7 +81,6 @@ export const questions: Question[] = [
       { name: "Our mission", order: 0 },
       { name: "Our shipping options", order: 1 },
     ],
-    allowOther: true
   },
   {
     id: 3,
@@ -98,7 +94,6 @@ export const questions: Question[] = [
       { name: "In the past week", order: 1 },
       { name: "Over a week ago", order: 2 },
     ],
-    allowOther: true
   },
   {
     id: 4,
@@ -112,7 +107,6 @@ export const questions: Question[] = [
       { name: "Friend or family", order: 1 },
       { name: "Coworker or client", order: 1 },
     ],
-    allowOther: true
   },
   {
     id: 5,
@@ -121,6 +115,5 @@ export const questions: Question[] = [
     subtitle: "Move the slider between 1 and 10",
     icon: Users,
     questionType: "Slider",
-    allowOther: false
   },
 ];
