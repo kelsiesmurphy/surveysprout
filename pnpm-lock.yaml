@@ -70,6 +70,12 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:packages/typescript-config
+      eslint-config:
+        specifier: link:@/eslint-config
+        version: link:@/eslint-config
+      eslint-config-turbo:
+        specifier: 2.1.1
+        version: 2.1.1(eslint@8.57.0)
       prettier:
         specifier: 'catalog:'
         version: 3.3.3

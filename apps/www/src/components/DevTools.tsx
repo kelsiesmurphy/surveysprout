@@ -1,10 +1,10 @@
 import { ModeToggle } from "./ModeToggle";
 
 export default function DevTools() {
-//   if (process.env.NODE_ENV === "production") return null;
+  if (process.env.NODE_ENV === "production") return null;
 
   return (
-    <div className="fixed bottom-1 right-1 z-50 flex items-center gap-2 rounded-full bg-background px-4 py-2">
+    <div className="fixed top-1 right-1 z-50 flex items-center gap-2 rounded-full bg-background px-4 py-2">
       <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-800 p-3 font-mono text-xs text-white">
         <div className="block sm:hidden">xs</div>
         <div className="hidden sm:block md:hidden">sm</div>
