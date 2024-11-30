@@ -1,3 +1,9 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Survey Complete! | SurveySprout",
+};
+
 export default function SurveyCompletePage() {
   return (
     <section className="min-h-screen text-primary flex justify-center items-center p-4">

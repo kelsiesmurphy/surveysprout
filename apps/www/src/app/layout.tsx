@@ -9,7 +9,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "SurveySprout",
-  description: "We are SurveySprout",
+  description: "SurveySprout is a post-purchase survey tool with a focus on sustainability.",
 };
 
 export default function RootLayout({

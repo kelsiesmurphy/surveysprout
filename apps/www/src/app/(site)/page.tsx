@@ -1,4 +1,5 @@
 import { Button } from "@repo/ui/components/ui/button";
+import { Metadata } from "next";
 import { Montserrat_Alternates } from "next/font/google";
 import Link from "next/link";
 
@@ -6,6 +7,11 @@ const montserratAlternates = Montserrat_Alternates({
   subsets: ["latin"],
   weight: "700",
 });
+
+export const metadata: Metadata = {
+  title: "Home | SurveySprout",
+  description: "SurveySprout is a post-purchase survey tool with a focus on sustainability.",
+};
 
 export default function Page() {
   return (

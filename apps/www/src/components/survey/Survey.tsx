@@ -17,7 +17,7 @@ import SurveyHeader from "~/src/components/survey/SurveyHeader";
 import SurveyError from "~/src/components/survey/SurveyError";
 import useLenis from "~/src/hooks/useLenis";
 
-export default function SurveyPage() {
+export default function Survey() {
   const lenisRef = useLenis();
   const router = useRouter();
 
@@ -55,7 +55,6 @@ export default function SurveyPage() {
 
   const processForm: SubmitHandler<SurveyForm> = (data) => {
     console.log(data);
-    form.reset();
   };
 
   const handleNextQuestion = () => {
@@ -68,6 +67,7 @@ export default function SurveyPage() {
       console.log("Submitting form...");
       form.handleSubmit(processForm)();
       router.push("/survey-complete");
+      form.reset();
     }
   };
 
