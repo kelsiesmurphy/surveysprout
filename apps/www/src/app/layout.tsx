@@ -2,6 +2,8 @@ import "@repo/ui/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "@repo/ui/components/ui/toaster";
+import { ThemeProvider } from "next-themes";
+import DevTools from "../components/DevTools";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -9,7 +11,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "SurveySprout",
-  description: "SurveySprout is a post-purchase survey tool with a focus on sustainability.",
+  description:
+    "SurveySprout is a post-purchase survey tool with a focus on sustainability.",
 };
 
 export default function RootLayout({
@@ -20,8 +23,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className + " min-w-72"}>
-        <main>{children}</main>
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main>{children}</main>
+          <Toaster />
+          <DevTools />
+        </ThemeProvider>
       </body>
     </html>
   );
