@@ -1,8 +1,8 @@
 import { Button } from "@repo/ui/components/ui/button";
 
 import React from "react";
-import { Question, questions } from "~/src/content/SurveyQuestions";
-import SurveyPagination from "./SurveyPagination";
+import { Question, questions } from "~/src/content/survey-questions";
+import SurveyPagination from "./survey-pagination";
 import Link from "next/link";
 
 export default function SurveyFooter({

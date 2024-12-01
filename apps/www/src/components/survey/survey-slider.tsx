@@ -1,11 +1,7 @@
-import {
-  FormField,
-  FormItem,
-  FormControl,
-} from "@repo/ui/components/ui/form";
+import { FormField, FormItem, FormControl } from "@repo/ui/components/ui/form";
 import { Slider } from "@repo/ui/components/ui/slider";
 import { UseFormReturn } from "react-hook-form";
-import { Question } from "~/src/content/SurveyQuestions";
+import { Question } from "~/src/content/survey-questions";
 import { SurveyForm } from "~/src/lib/schema";
 
 export default function SurveySlider({

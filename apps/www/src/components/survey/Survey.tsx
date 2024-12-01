@@ -6,15 +6,15 @@ import { useRouter } from "next/navigation";
 import { Form } from "@repo/ui/components/ui/form";
 
 import { useEffect, useState } from "react";
-import SurveyStart from "~/src/components/survey/SurveyStart";
-import SurveyOptions from "~/src/components/survey/SurveyOptions";
-import SurveyText from "~/src/components/survey/SurveyText";
-import SurveySlider from "~/src/components/survey/SurveySlider";
-import { Question, questions } from "~/src/content/SurveyQuestions";
+import SurveyStart from "~/src/components/survey/survey-start";
+import SurveyOptions from "~/src/components/survey/survey-options";
+import SurveyText from "~/src/components/survey/survey-text";
+import SurveySlider from "~/src/components/survey/survey-slider";
+import { Question, questions } from "~/src/content/survey-questions";
 import { SurveyForm, SurveySchema } from "~/src/lib/schema";
-import SurveyFooter from "~/src/components/survey/SurveyFooter";
-import SurveyHeader from "~/src/components/survey/SurveyHeader";
-import SurveyError from "~/src/components/survey/SurveyError";
+import SurveyFooter from "~/src/components/survey/survey-footer";
+import SurveyHeader from "~/src/components/survey/survey-header";
+import SurveyError from "~/src/components/survey/survey-error";
 import useLenis from "~/src/hooks/useLenis";
 
 export default function Survey() {

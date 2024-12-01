@@ -1,4 +1,4 @@
-import { ModeToggle } from "./ModeToggle";
+import { ModeToggle } from "./mode-toggle";
 
 export default function DevTools() {
   if (process.env.NODE_ENV === "production") return null;

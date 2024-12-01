@@ -7,7 +7,7 @@ import {
 } from "@repo/ui/components/ui/form";
 import { Textarea } from "@repo/ui/components/ui/textarea";
 import { UseFormReturn } from "react-hook-form";
-import { Question } from "~/src/content/SurveyQuestions";
+import { Question } from "~/src/content/survey-questions";
 import { SurveyForm } from "~/src/lib/schema";
 
 export default function SurveyText({

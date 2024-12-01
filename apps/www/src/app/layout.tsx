@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "@repo/ui/components/ui/toaster";
 import { ThemeProvider } from "next-themes";
-import DevTools from "../components/DevTools";
+import DevTools from "../components/dev-tools";
 
 const inter = Inter({
   subsets: ["latin"],

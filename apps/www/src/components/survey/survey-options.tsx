@@ -10,7 +10,7 @@ import {
 import { Textarea } from "@repo/ui/components/ui/textarea";
 import { useEffect } from "react";
 import { UseFormReturn } from "react-hook-form";
-import { Question } from "~/src/content/SurveyQuestions";
+import { Question } from "~/src/content/survey-questions";
 import { SurveyForm, SurveySchema } from "~/src/lib/schema";
 
 export default function SurveyOptions({

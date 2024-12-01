@@ -1,5 +1,4 @@
-import { Question } from "~/src/content/SurveyQuestions";
-
+import { Question } from "~/src/content/survey-questions";
 
 export default function SurveyPagination({
   questions,
