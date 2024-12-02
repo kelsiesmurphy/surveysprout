@@ -15,7 +15,7 @@ export const surveys = [
     description: "Example Survey 1",
     theme: {
       color: "red",
-      radius: 0,
+      radius: 0.5,
     },
   },
   {

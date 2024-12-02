@@ -53,7 +53,7 @@ export default function SurveyOptions({
                             <Button
                               variant="outline"
                               size="lg"
-                              className={`shadow-sm w-full justify-between h-auto rounded-xl flex items-center gap-3 py-6 px-5 ${
+                              className={`shadow-sm w-full justify-between h-auto flex items-center gap-3 py-6 px-5 ${
                                 isSelected &&
                                 "bg-primary/5 hover:bg-primary/10 border-primary"
                               }`}
@@ -103,7 +103,6 @@ export default function SurveyOptions({
             <FormItem>
               <FormControl className="w-full text-left space-y-1.5">
                 <Textarea
-                  className="rounded-xl"
                   maxLength={100}
                   placeholder="Other (specify)"
                   {...field}
