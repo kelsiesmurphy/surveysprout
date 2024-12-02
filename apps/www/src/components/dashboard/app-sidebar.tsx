@@ -1,3 +1,5 @@
+"use client";
+
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -24,29 +26,42 @@ import {
   Settings,
   User2,
 } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import { Survey, surveys } from "~/src/content/test-data/example-surveys";
+import { generateSurveyUrl } from "~/src/lib/utils/navigation";
 
-const surveySlug = "hi";
+export function AppSidebar({ surveySlug }: { surveySlug: string }) {
+  const router = useRouter();
+  const pathname = usePathname();
 
-const items = [
-  {
-    title: "Home",
-    url: `/dashboard/${surveySlug}`,
-    icon: Home,
-  },
-  {
-    title: "Editor",
-    url: `/dashboard/${surveySlug}/editor`,
-    icon: FileEditIcon,
-  },
-  {
-    title: "Survey Settings",
-    url: `/dashboard/${surveySlug}/settings`,
-    icon: Settings,
-  },
-];
+  const surveyName = surveys.find((survey) => {
+    return survey.id === surveySlug;
+  })?.name;
 
-export function AppSidebar() {
+  const items = [
+    {
+      title: "Home",
+      url: generateSurveyUrl(surveySlug),
+      icon: Home,
+    },
+    {
+      title: "Editor",
+      url: generateSurveyUrl(surveySlug, "editor"),
+      icon: FileEditIcon,
+    },
+    {
+      title: "Survey Settings",
+      url: generateSurveyUrl(surveySlug, "settings"),
+      icon: Settings,
+    },
+  ];
+
+  const handleSurveyChange = (surveySlug: string) => {
+    const currentPage = pathname.split("/")[3] || "";
+    const newPath = generateSurveyUrl(surveySlug, currentPage);
+    router.push(newPath);
+  };
+
   return (
     <Sidebar>
       <SidebarHeader>
@@ -55,14 +70,17 @@ export function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  Select Survey
+                  {surveyName ? surveyName : "Select Survey"}
                   <ChevronDown className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
                 {surveys.map((survey: Survey) => {
                   return (
-                    <DropdownMenuItem>
+                    <DropdownMenuItem
+                      key={survey.id}
+                      onClick={() => handleSurveyChange(survey.id)}
+                    >
                       <span>{survey.name}</span>
                     </DropdownMenuItem>
                   );
@@ -92,6 +110,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
+        <SidebarGroupLabel>Survey ID: {surveySlug}</SidebarGroupLabel>
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
