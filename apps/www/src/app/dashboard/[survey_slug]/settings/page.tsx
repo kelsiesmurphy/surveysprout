@@ -5,11 +5,5 @@ export const metadata: Metadata = {
 };
 
 export default function DashboardSettingsPage() {
-  return (
-    <section className="min-h-screen text-primary flex justify-center items-center p-4">
-      <div className="gap-10 flex-1 max-w-xl text-center flex flex-col items-center">
-        <p className="text-muted-foreground">Dashboard Settings</p>
-      </div>
-    </section>
-  );
+  return <p>Dashboard Settings</p>;
 }

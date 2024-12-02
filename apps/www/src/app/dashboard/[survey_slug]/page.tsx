@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { DashboardTable } from "~/src/components/dashboard/dashboard-table";
 
 export const metadata: Metadata = {
   title: "Dashboard | SurveySprout",
@@ -6,10 +7,9 @@ export const metadata: Metadata = {
 
 export default function DashboardPage() {
   return (
-    <section className="min-h-screen text-primary flex justify-center items-center p-4">
-      <div className="gap-10 flex-1 max-w-xl text-center flex flex-col items-center">
-        <p className="text-muted-foreground">Dashboard</p>
-      </div>
-    </section>
+    <div className="space-y-6">
+      <h1 className="text-3xl font-semibold">Home</h1>
+      <DashboardTable />
+    </div>
   );
 }

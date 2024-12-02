@@ -1,15 +1,23 @@
+import { Button } from "@repo/ui/components/ui/button";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Survey Editor | SurveySprout",
 };
 
-export default function DashboardEditorPage() {
+export default async function DashboardEditorPage({
+  params,
+}: {
+  params: Promise<{ survey_slug: string }>;
+}) {
+  const surveySlug = (await params).survey_slug;
   return (
-    <section className="min-h-screen text-primary flex justify-center items-center p-4">
-      <div className="gap-10 flex-1 max-w-xl text-center flex flex-col items-center">
-        <p className="text-muted-foreground">Dashboard Survey Editor</p>
-      </div>
-    </section>
+    <>
+      <p>Dashboard Survey Editor</p>
+      <Button asChild>
+        <Link href={`/survey/${surveySlug}`}>Go to Survey</Link>
+      </Button>
+    </>
   );
 }

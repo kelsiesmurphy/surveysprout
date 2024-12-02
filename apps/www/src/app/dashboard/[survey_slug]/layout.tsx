@@ -2,7 +2,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@repo/ui/components/ui/sidebar";
-import { AppSidebar } from "~/src/components/dashboard/app-sidebar";
+import { AppSidebar } from "~/src/components/dashboard/dashboard-sidebar";
 
 export default async function DashboardLayout({
   children,
@@ -15,9 +15,11 @@ export default async function DashboardLayout({
   return (
     <SidebarProvider>
       <AppSidebar surveySlug={surveySlug} />
-      <main>
+      <main className="flex-1 flex flex-col">
         <SidebarTrigger />
-        {children}
+        <section className="flex-1 container py-16">
+          {children}
+        </section>
       </main>
     </SidebarProvider>
   );

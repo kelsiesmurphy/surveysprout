@@ -11,10 +11,11 @@
   "dependencies": {
     "@hookform/resolvers": "catalog:",
     "@repo/ui": "workspace:*",
+    "@tanstack/react-table": "^8.20.5",
     "lenis": "catalog:",
-    "next-themes": "catalog:",
     "lucide-react": "catalog:",
     "next": "14.2.8",
+    "next-themes": "catalog:",
     "react": "catalog:react18",
     "react-dom": "catalog:react18",
     "react-hook-form": "catalog:",

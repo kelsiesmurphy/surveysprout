@@ -17,7 +17,7 @@ import SurveyHeader from "~/src/components/survey/survey-header";
 import SurveyError from "~/src/components/survey/survey-error";
 import useLenis from "~/src/hooks/useLenis";
 
-export default function Survey() {
+export default function Survey({ surveySlug }: { surveySlug: string }) {
   const lenisRef = useLenis();
   const router = useRouter();
 
@@ -138,6 +138,7 @@ export default function Survey() {
             <SurveyStart
               question={questions[0]}
               setCurrentQuestion={setCurrentQuestion}
+              surveySlug={surveySlug}
             />
           )}
         </form>
