@@ -85,11 +85,166 @@ importers:
 
   apps/backend: {}
 
-  apps/frontend:
+  apps/dashboard:
     dependencies:
       '@hookform/resolvers':
         specifier: 'catalog:'
         version: 3.9.1(react-hook-form@7.53.2(react@18.3.1))
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@repo/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@tanstack/react-table':
+        specifier: ^8.20.5
+        version: 8.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      lenis:
+        specifier: 'catalog:'
+        version: 1.1.16(react@18.3.1)
+      lucide-react:
+        specifier: 'catalog:'
+        version: 0.451.0(react@18.3.1)
+      next:
+        specifier: 14.2.8
+        version: 14.2.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next-themes:
+        specifier: 'catalog:'
+        version: 0.4.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react:
+        specifier: catalog:react18
+        version: 18.3.1
+      react-dom:
+        specifier: catalog:react18
+        version: 18.3.1(react@18.3.1)
+      react-hook-form:
+        specifier: 'catalog:'
+        version: 7.53.2(react@18.3.1)
+      zod:
+        specifier: 'catalog:'
+        version: 3.23.8
+    devDependencies:
+      '@next/eslint-plugin-next':
+        specifier: 14.2.8
+        version: 14.2.8
+      '@types/eslint':
+        specifier: 'catalog:'
+        version: 8.56.2
+      '@types/node':
+        specifier: 'catalog:'
+        version: 20.11.6
+      '@types/react':
+        specifier: catalog:react18
+        version: 18.3.11
+      '@types/react-dom':
+        specifier: catalog:react18
+        version: 18.3.1
+      autoprefixer:
+        specifier: ^10.4.20
+        version: 10.4.20(postcss@8.4.49)
+      eslint:
+        specifier: 'catalog:'
+        version: 8.57.0
+      postcss:
+        specifier: ^8.4.49
+        version: 8.4.49
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 3.4.13
+      typescript:
+        specifier: 'catalog:'
+        version: 5.6.3
+
+  apps/survey:
+    dependencies:
+      '@hookform/resolvers':
+        specifier: 'catalog:'
+        version: 3.9.1(react-hook-form@7.53.2(react@18.3.1))
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@repo/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
+      '@tanstack/react-table':
+        specifier: ^8.20.5
+        version: 8.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      lenis:
+        specifier: 'catalog:'
+        version: 1.1.16(react@18.3.1)
+      lucide-react:
+        specifier: 'catalog:'
+        version: 0.451.0(react@18.3.1)
+      next:
+        specifier: 14.2.8
+        version: 14.2.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      next-themes:
+        specifier: 'catalog:'
+        version: 0.4.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react:
+        specifier: catalog:react18
+        version: 18.3.1
+      react-dom:
+        specifier: catalog:react18
+        version: 18.3.1(react@18.3.1)
+      react-hook-form:
+        specifier: 'catalog:'
+        version: 7.53.2(react@18.3.1)
+      zod:
+        specifier: 'catalog:'
+        version: 3.23.8
+    devDependencies:
+      '@next/eslint-plugin-next':
+        specifier: 14.2.8
+        version: 14.2.8
+      '@types/eslint':
+        specifier: 'catalog:'
+        version: 8.56.2
+      '@types/node':
+        specifier: 'catalog:'
+        version: 20.11.6
+      '@types/react':
+        specifier: catalog:react18
+        version: 18.3.11
+      '@types/react-dom':
+        specifier: catalog:react18
+        version: 18.3.1
+      autoprefixer:
+        specifier: ^10.4.20
+        version: 10.4.20(postcss@8.4.49)
+      eslint:
+        specifier: 'catalog:'
+        version: 8.57.0
+      postcss:
+        specifier: ^8.4.49
+        version: 8.4.49
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 3.4.13
+      typescript:
+        specifier: 'catalog:'
+        version: 5.6.3
+
+  apps/www:
+    dependencies:
+      '@hookform/resolvers':
+        specifier: 'catalog:'
+        version: 3.9.1(react-hook-form@7.53.2(react@18.3.1))
+      '@repo/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -178,6 +333,34 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 5.6.3
+
+  packages/shared:
+    dependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      '@repo/ui':
+        specifier: workspace:*
+        version: link:../ui
+      lenis:
+        specifier: 'catalog:'
+        version: 1.1.16(react@18.3.1)
+      lucide-react:
+        specifier: 'catalog:'
+        version: 0.451.0(react@18.3.1)
+    devDependencies:
+      '@types/node':
+        specifier: 'catalog:'
+        version: 20.11.6
+      '@types/react':
+        specifier: catalog:react18
+        version: 18.3.11
+      '@types/react-dom':
+        specifier: catalog:react18
+        version: 18.3.1
 
   packages/typescript-config: {}
 
