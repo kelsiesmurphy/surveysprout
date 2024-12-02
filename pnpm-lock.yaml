@@ -83,7 +83,9 @@ importers:
         specifier: 2.3.3
         version: 2.3.3
 
-  apps/www:
+  apps/backend: {}
+
+  apps/frontend:
     dependencies:
       '@hookform/resolvers':
         specifier: 'catalog:'

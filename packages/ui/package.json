@@ -45,6 +45,7 @@
   "exports": {
     "./globals.css": "./src/styles/globals.css",
     "./themes.css": "./src/styles/themes.css",
+    "./styles/shadcn-base-colors.ts": "./src/styles/shadcn-base-colors.ts",
     "./postcss.config": "./postcss.config.mjs",
     "./tailwind.config": "./tailwind.config.ts",
     "./lib/*": "./src/lib/*.ts",
