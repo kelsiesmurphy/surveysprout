@@ -1,4 +1,5 @@
 import "@repo/ui/globals.css";
+import "@repo/ui/themes.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "@repo/ui/components/ui/toaster";

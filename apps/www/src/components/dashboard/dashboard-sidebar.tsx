@@ -34,6 +34,7 @@ export function AppSidebar({ surveySlug }: { surveySlug: string }) {
   const router = useRouter();
   const pathname = usePathname();
 
+  // TODO - remove and switch with real api calls
   const surveyName = surveys.find((survey) => {
     return survey.id === surveySlug;
   })?.name;

@@ -15,7 +15,7 @@ import { SurveyForm, SurveySchema } from "~/src/lib/schema";
 import SurveyFooter from "~/src/components/survey/survey-footer";
 import SurveyHeader from "~/src/components/survey/survey-header";
 import SurveyError from "~/src/components/survey/survey-error";
-import useLenis from "~/src/hooks/useLenis";
+import useLenis from "~/src/hooks/use-lenis";
 
 export default function Survey({ surveySlug }: { surveySlug: string }) {
   const lenisRef = useLenis();
@@ -95,7 +95,7 @@ export default function Survey({ surveySlug }: { surveySlug: string }) {
 
   return (
     <Form {...form}>
-      <section className="min-h-screen text-primary flex justify-center py-12 md:pt-40">
+      <section className="min-h-screen text-foreground flex justify-center py-12 md:pt-40">
         <form className="gap-10 flex-1 max-w-sm text-center flex flex-col">
           {currentQuestion ? (
             <>
