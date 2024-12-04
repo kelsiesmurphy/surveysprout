@@ -32,9 +32,9 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:react18",
     "@types/react-dom": "catalog:react18",
-    "autoprefixer": "^10.4.20",
+    "autoprefixer": "catalog:",
     "eslint": "catalog:",
-    "postcss": "^8.4.49",
+    "postcss": "catalog:",
     "tailwindcss": "catalog:",
     "typescript": "catalog:"
   }
