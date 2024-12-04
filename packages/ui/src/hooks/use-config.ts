@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 
-import { BaseColor } from "@repo/ui/styles/shadcn-base-colors";
+import { BaseColor } from "../styles/shadcn-base-colors";
 
 type Config = {
   style: "default";

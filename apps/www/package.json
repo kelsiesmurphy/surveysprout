@@ -10,9 +10,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "catalog:",
-    "@repo/ui": "workspace:*",
     "@repo/shared": "workspace:*",
-    "@tanstack/react-table": "^8.20.5",
+    "@repo/ui": "workspace:*",
     "lenis": "catalog:",
     "lucide-react": "catalog:",
     "next": "14.2.8",

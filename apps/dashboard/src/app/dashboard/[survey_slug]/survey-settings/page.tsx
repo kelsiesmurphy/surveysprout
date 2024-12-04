@@ -1,3 +1,4 @@
+import { ThemeCustomizer } from "@repo/ui/components/theme-customiser";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,5 +6,10 @@ export const metadata: Metadata = {
 };
 
 export default function DashboardSettingsPage() {
-  return <p>Dashboard Settings</p>;
+  return (
+    <>
+      <p>Dashboard Settings</p>
+      <ThemeCustomizer />
+    </>
+  );
 }

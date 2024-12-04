@@ -20,9 +20,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@repo/ui/components/ui/tooltip";
-import { baseColors } from "@repo/ui/styles/shadcn-base-colors";
-
-import "@/styles/mdx.css";
+import { baseColors } from "../styles/shadcn-base-colors";
 
 export function ThemeCustomizer() {
   const [config, setConfig] = useConfig();

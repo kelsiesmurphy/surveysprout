@@ -2,19 +2,16 @@
   "name": "@repo/shared",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "echo 'Add dev script here'",
-    "build": "echo 'Add build script here'",
-    "test": "echo 'Add test script here'",
-    "lint": "echo 'Add lint script here'"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/ui": "workspace:*",
     "lenis": "catalog:",
-    "lucide-react": "catalog:"
+    "lucide-react": "catalog:",
+    "next-themes": "catalog:"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

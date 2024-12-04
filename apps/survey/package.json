@@ -10,9 +10,10 @@
   },
   "dependencies": {
     "@hookform/resolvers": "catalog:",
-    "@repo/ui": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
     "@repo/shared": "workspace:*",
-    "@tanstack/react-table": "^8.20.5",
+    "@repo/typescript-config": "workspace:*",
+    "@repo/ui": "workspace:*",
     "lenis": "catalog:",
     "lucide-react": "catalog:",
     "next": "14.2.8",
@@ -20,14 +21,13 @@
     "react": "catalog:react18",
     "react-dom": "catalog:react18",
     "react-hook-form": "catalog:",
-    "zod": "catalog:",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*"
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "14.2.8",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@repo/ui": "workspace:*",
     "@types/eslint": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:react18",
@@ -36,7 +36,6 @@
     "eslint": "catalog:",
     "postcss": "^8.4.49",
     "tailwindcss": "catalog:",
-    "typescript": "catalog:",
-    "@repo/ui": "workspace:*"
+    "typescript": "catalog:"
   }
 }
