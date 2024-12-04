@@ -21,6 +21,11 @@
     "react-dom": "catalog:react18",
     "react-hook-form": "catalog:",
     "zod": "catalog:",
+    "autoprefixer": "catalog:",
+    "eslint": "catalog:",
+    "postcss": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*"
   },
@@ -32,11 +37,6 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:react18",
     "@types/react-dom": "catalog:react18",
-    "autoprefixer": "catalog:",
-    "eslint": "catalog:",
-    "postcss": "catalog:",
-    "tailwindcss": "catalog:",
-    "typescript": "catalog:",
     "@repo/ui": "workspace:*"
   }
 }

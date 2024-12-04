@@ -107,6 +107,12 @@ importers:
       '@tanstack/react-table':
         specifier: ^8.20.5
         version: 8.20.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      autoprefixer:
+        specifier: 'catalog:'
+        version: 10.4.20(postcss@8.4.49)
+      eslint:
+        specifier: 'catalog:'
+        version: 8.57.0
       lenis:
         specifier: 'catalog:'
         version: 1.1.16(react@18.3.1)
@@ -119,6 +125,9 @@ importers:
       next-themes:
         specifier: 'catalog:'
         version: 0.4.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      postcss:
+        specifier: 'catalog:'
+        version: 8.4.49
       react:
         specifier: catalog:react18
         version: 18.3.1
@@ -128,6 +137,12 @@ importers:
       react-hook-form:
         specifier: 'catalog:'
         version: 7.53.2(react@18.3.1)
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 3.4.13
+      typescript:
+        specifier: 'catalog:'
+        version: 5.6.3
       zod:
         specifier: 'catalog:'
         version: 3.23.8
@@ -147,21 +162,6 @@ importers:
       '@types/react-dom':
         specifier: catalog:react18
         version: 18.3.1
-      autoprefixer:
-        specifier: 'catalog:'
-        version: 10.4.20(postcss@8.4.49)
-      eslint:
-        specifier: 'catalog:'
-        version: 8.57.0
-      postcss:
-        specifier: 'catalog:'
-        version: 8.4.49
-      tailwindcss:
-        specifier: 'catalog:'
-        version: 3.4.13
-      typescript:
-        specifier: 'catalog:'
-        version: 5.6.3
 
   apps/survey:
     dependencies:
@@ -180,6 +180,12 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      autoprefixer:
+        specifier: 'catalog:'
+        version: 10.4.20(postcss@8.4.49)
+      eslint:
+        specifier: 'catalog:'
+        version: 8.57.0
       lenis:
         specifier: 'catalog:'
         version: 1.1.16(react@18.3.1)
@@ -192,6 +198,9 @@ importers:
       next-themes:
         specifier: 'catalog:'
         version: 0.4.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      postcss:
+        specifier: 'catalog:'
+        version: 8.4.49
       react:
         specifier: catalog:react18
         version: 18.3.1
@@ -201,6 +210,12 @@ importers:
       react-hook-form:
         specifier: 'catalog:'
         version: 7.53.2(react@18.3.1)
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 3.4.13
+      typescript:
+        specifier: 'catalog:'
+        version: 5.6.3
       zod:
         specifier: 'catalog:'
         version: 3.23.8
@@ -220,21 +235,6 @@ importers:
       '@types/react-dom':
         specifier: catalog:react18
         version: 18.3.1
-      autoprefixer:
-        specifier: 'catalog:'
-        version: 10.4.20(postcss@8.4.49)
-      eslint:
-        specifier: 'catalog:'
-        version: 8.57.0
-      postcss:
-        specifier: 'catalog:'
-        version: 8.4.49
-      tailwindcss:
-        specifier: 'catalog:'
-        version: 3.4.13
-      typescript:
-        specifier: 'catalog:'
-        version: 5.6.3
 
   apps/www:
     dependencies:
@@ -247,6 +247,12 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      autoprefixer:
+        specifier: 'catalog:'
+        version: 10.4.20(postcss@8.4.49)
+      eslint:
+        specifier: 'catalog:'
+        version: 8.57.0
       lenis:
         specifier: 'catalog:'
         version: 1.1.16(react@18.3.1)
@@ -259,6 +265,9 @@ importers:
       next-themes:
         specifier: 'catalog:'
         version: 0.4.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      postcss:
+        specifier: 'catalog:'
+        version: 8.4.49
       react:
         specifier: catalog:react18
         version: 18.3.1
@@ -268,6 +277,12 @@ importers:
       react-hook-form:
         specifier: 'catalog:'
         version: 7.53.2(react@18.3.1)
+      tailwindcss:
+        specifier: 'catalog:'
+        version: 3.4.13
+      typescript:
+        specifier: 'catalog:'
+        version: 5.6.3
       zod:
         specifier: 'catalog:'
         version: 3.23.8
@@ -293,21 +308,6 @@ importers:
       '@types/react-dom':
         specifier: catalog:react18
         version: 18.3.1
-      autoprefixer:
-        specifier: 'catalog:'
-        version: 10.4.20(postcss@8.4.49)
-      eslint:
-        specifier: 'catalog:'
-        version: 8.57.0
-      postcss:
-        specifier: 'catalog:'
-        version: 8.4.49
-      tailwindcss:
-        specifier: 'catalog:'
-        version: 3.4.13
-      typescript:
-        specifier: 'catalog:'
-        version: 5.6.3
 
   packages/eslint-config:
     devDependencies:
@@ -419,6 +419,12 @@ importers:
       next-themes:
         specifier: ^0.4.3
         version: 0.4.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      postcss:
+        specifier: ^8.4.49
+        version: 8.4.49
+      postcss-load-config:
+        specifier: ^6
+        version: 6.0.1(jiti@1.21.6)(postcss@8.4.49)(yaml@2.6.1)
       react:
         specifier: ^18
         version: 18.3.1
@@ -428,9 +434,15 @@ importers:
       tailwind-merge:
         specifier: ^2.3.0
         version: 2.3.0
+      tailwindcss:
+        specifier: ^3.4.16
+        version: 3.4.16
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.16)
+      typescript:
+        specifier: 'catalog:'
+        version: 5.6.3
       zod:
         specifier: 'catalog:'
         version: 3.23.8
@@ -447,18 +459,6 @@ importers:
       '@types/react':
         specifier: catalog:react18
         version: 18.3.11
-      postcss:
-        specifier: ^8.4.49
-        version: 8.4.49
-      postcss-load-config:
-        specifier: ^6
-        version: 6.0.1(jiti@1.21.6)(postcss@8.4.49)(yaml@2.6.1)
-      tailwindcss:
-        specifier: ^3.4.16
-        version: 3.4.16
-      typescript:
-        specifier: 'catalog:'
-        version: 5.6.3
 
 packages:
 

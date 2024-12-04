@@ -19,7 +19,12 @@
     "react": "catalog:react18",
     "react-dom": "catalog:react18",
     "react-hook-form": "catalog:",
-    "zod": "catalog:"
+    "zod": "catalog:",
+    "autoprefixer": "catalog:",
+    "eslint": "catalog:",
+    "postcss": "catalog:",
+    "tailwindcss": "catalog:",
+    "typescript": "catalog:"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "14.2.8",
@@ -28,11 +33,6 @@
     "@types/eslint": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:react18",
-    "@types/react-dom": "catalog:react18",
-    "autoprefixer": "catalog:",
-    "eslint": "catalog:",
-    "postcss": "catalog:",
-    "tailwindcss": "catalog:",
-    "typescript": "catalog:"
+    "@types/react-dom": "catalog:react18"
   }
 }

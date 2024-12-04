@@ -13,12 +13,7 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/node": "catalog:",
-    "@types/react": "catalog:react18",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.49",
-    "postcss-load-config": "^6",
-    "tailwindcss": "^3.4.16",
-    "typescript": "catalog:"
+    "@types/react": "catalog:react18"
   },
   "dependencies": {
     "@hookform/resolvers": "catalog:",
@@ -38,7 +33,11 @@
     "jotai": "^2.10.3",
     "lenis": "^1.1.16",
     "lucide-react": "catalog:",
+    "postcss-load-config": "^6",
+    "postcss": "^8.4.49",
     "next-themes": "^0.4.3",
+    "tailwindcss": "^3.4.16",
+    "typescript": "catalog:",
     "react-hook-form": "catalog:",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
