@@ -1,0 +1,14 @@
+[[redirects]]
+  from = "/*"
+  to = "/www/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/survey/*"
+  to = "/survey/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/dashboard/*"
+  to = "/dashboard/:splat"
+  status = 200
