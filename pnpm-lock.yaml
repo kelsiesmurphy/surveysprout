@@ -15,6 +15,9 @@ catalogs:
     '@types/node':
       specifier: ^20
       version: 20.11.6
+    autoprefixer:
+      specifier: ^10.4.20
+      version: 10.4.20
     eslint:
       specifier: ^8.57.0
       version: 8.57.0
@@ -27,6 +30,9 @@ catalogs:
     next-themes:
       specifier: ^0.4.3
       version: 0.4.3
+    postcss:
+      specifier: ^8.4.49
+      version: 8.4.49
     prettier:
       specifier: ^3.3.3
       version: 3.3.3
@@ -142,13 +148,13 @@ importers:
         specifier: catalog:react18
         version: 18.3.1
       autoprefixer:
-        specifier: ^10.4.20
+        specifier: 'catalog:'
         version: 10.4.20(postcss@8.4.49)
       eslint:
         specifier: 'catalog:'
         version: 8.57.0
       postcss:
-        specifier: ^8.4.49
+        specifier: 'catalog:'
         version: 8.4.49
       tailwindcss:
         specifier: 'catalog:'
@@ -215,13 +221,13 @@ importers:
         specifier: catalog:react18
         version: 18.3.1
       autoprefixer:
-        specifier: ^10.4.20
+        specifier: 'catalog:'
         version: 10.4.20(postcss@8.4.49)
       eslint:
         specifier: 'catalog:'
         version: 8.57.0
       postcss:
-        specifier: ^8.4.49
+        specifier: 'catalog:'
         version: 8.4.49
       tailwindcss:
         specifier: 'catalog:'
@@ -288,13 +294,13 @@ importers:
         specifier: catalog:react18
         version: 18.3.1
       autoprefixer:
-        specifier: ^10.4.20
+        specifier: 'catalog:'
         version: 10.4.20(postcss@8.4.49)
       eslint:
         specifier: 'catalog:'
         version: 8.57.0
       postcss:
-        specifier: ^8.4.49
+        specifier: 'catalog:'
         version: 8.4.49
       tailwindcss:
         specifier: 'catalog:'
