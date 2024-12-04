@@ -16,7 +16,7 @@ export default async function DashboardEditorPage({
     <>
       <p>Dashboard Survey Editor</p>
       <Button asChild>
-        <Link href={`/survey/${surveySlug}`}>Go to Survey</Link>
+        <Link href={`${process.env.SURVEY_BASE_URL}/${surveySlug}`}>Go to Survey</Link>
       </Button>
     </>
   );

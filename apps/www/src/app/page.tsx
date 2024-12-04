@@ -32,7 +32,7 @@ export default function Page() {
           Coming soon. Join our waitlist to be first in the know.
         </p>
         <Button asChild>
-          <Link href={`/survey/${firstSurvey?.id}`}>Go to Test Survey</Link>
+          <Link href={`${process.env.SURVEY_BASE_URL}/${firstSurvey?.id}`}>Go to Test Survey</Link>
         </Button>
       </div>
     </section>
