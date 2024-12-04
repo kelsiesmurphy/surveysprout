@@ -24,12 +24,11 @@
     "eslint": "catalog:",
     "postcss": "catalog:",
     "tailwindcss": "catalog:",
-    "typescript": "catalog:"
+    "typescript": "catalog:",
+    "@repo/typescript-config": "workspace:*",
+    "@repo/eslint-config": "workspace:*"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "14.2.8",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
     "@types/eslint": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:react18",
