@@ -253,6 +253,18 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@types/eslint':
+        specifier: 'catalog:'
+        version: 8.56.2
+      '@types/node':
+        specifier: 'catalog:'
+        version: 20.11.6
+      '@types/react':
+        specifier: catalog:react18
+        version: 18.3.11
+      '@types/react-dom':
+        specifier: catalog:react18
+        version: 18.3.1
       autoprefixer:
         specifier: 'catalog:'
         version: 10.4.20(postcss@8.4.49)
@@ -292,19 +304,6 @@ importers:
       zod:
         specifier: 'catalog:'
         version: 3.23.8
-    devDependencies:
-      '@types/eslint':
-        specifier: 'catalog:'
-        version: 8.56.2
-      '@types/node':
-        specifier: 'catalog:'
-        version: 20.11.6
-      '@types/react':
-        specifier: catalog:react18
-        version: 18.3.11
-      '@types/react-dom':
-        specifier: catalog:react18
-        version: 18.3.1
 
   packages/eslint-config:
     devDependencies:
