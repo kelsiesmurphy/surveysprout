@@ -26,12 +26,13 @@
     "tailwindcss": "catalog:",
     "typescript": "catalog:",
     "@repo/typescript-config": "workspace:*",
-    "@repo/eslint-config": "workspace:*"
-  },
-  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
     "@types/eslint": "catalog:",
     "@types/node": "catalog:",
     "@types/react": "catalog:react18",
     "@types/react-dom": "catalog:react18"
+  },
+  "devDependencies": {
+    
   }
 }
