@@ -28,16 +28,18 @@ export default function SurveyFooter({
         questions={questions}
         currentQuestion={currentQuestion}
       />
-      <p className="text-xs text-muted-foreground">
-        Powered by{" "}
-        <Button
-          className="text-green-900 font-medium p-0 h-min text-xs"
-          variant="link"
-          asChild
-        >
-          <Link href="/">SurveySprout</Link>
-        </Button>
-      </p>
+      {process.env.WWW_BASE_URL ? (
+        <p className="text-xs text-muted-foreground">
+          Powered by{" "}
+          <Button
+            className="text-green-900 font-medium p-0 h-min text-xs"
+            variant="link"
+            asChild
+          >
+            <Link href={process.env.WWW_BASE_URL}>SurveySprout</Link>
+          </Button>
+        </p>
+      ) : null}
     </div>
   );
 }
