@@ -14,42 +14,24 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Step 2: Print current directory (debugging)
-    - name: Print working directory
-      run: pwd
-
-    # Step 3: List files in current directory (debugging)
-    - name: List files in directory
-      run: ls -R
-
-    # Step 4: Change directory to backend for subsequent commands
+    # Step 2: Change directory to backend for subsequent commands
     - name: Set working directory to backend
       working-directory: apps/backend
       run: echo "Changed working directory to apps/backend"
 
-    # Step 5: Print working directory in backend (debugging)
-    - name: Print backend working directory
-      working-directory: apps/backend
-      run: pwd
-
-    # Step 6: List files in backend directory (debugging)
-    - name: List files in backend directory
-      working-directory: apps/backend
-      run: ls -R
-
-    # Step 7: Log in to Azure
+    # Step 3: Log in to Azure
     - name: Log in to Azure
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    # Step 8: Build the Docker image
+    # Step 4: Build the Docker image
     - name: Build Docker image
       working-directory: apps/backend
       run: |
         docker build -t surveysproutcontainerregistry.azurecr.io/surveysprout-image:latest . --platform="linux/amd64"
 
-    # Step 9: Push the Docker image to ACR
+    # Step 5: Push the Docker image to ACR
     - name: Push Docker image
       working-directory: apps/backend
       run: |
