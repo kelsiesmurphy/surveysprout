@@ -44,7 +44,7 @@ func main() {
 
 	route.GET("/ping", func(context *gin.Context) {
 		context.JSON(http.StatusOK, gin.H{
-			"message": "pang",
+			"message": "poong",
 		})
 	})
 
