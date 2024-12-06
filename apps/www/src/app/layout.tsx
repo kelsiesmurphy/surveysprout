@@ -5,6 +5,8 @@ import { Inter } from "next/font/google";
 import { Toaster } from "@repo/ui/components/ui/toaster";
 import { ThemeProvider } from "next-themes";
 import DevTools from "@repo/shared/components/dev-tools";
+import Header from "../components/header";
+import Footer from "../components/footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,14 +25,18 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={inter.className + " min-w-72"}>
+      <body className={inter.className + " min-h-screen bg-red-400 container"}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <main>{children}</main>
+          <main>
+            <Header />
+            {children}
+            <Footer />
+          </main>
           <Toaster />
           <DevTools />
         </ThemeProvider>
