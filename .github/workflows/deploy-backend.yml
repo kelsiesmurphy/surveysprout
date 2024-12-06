@@ -1,0 +1,37 @@
+name: Deploy Go Backend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Step 2: Change directory to the backend
+    - name: Set working directory to backend
+      working-directory: apps/backend
+      run: echo "Changed working directory to apps/backend"
+
+    # Step 3: Log in to Azure
+    - name: Log in to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    # Step 4: Build the Docker image
+    - name: Build Docker image
+      run: |
+        docker build -t surveysproutcontainerregistry.azurecr.io/surveysprout-image:latest . --platform="linux/amd64"
+
+    # Step 5: Push the Docker image to ACR
+    - name: Push Docker image
+      run: |
+        az acr login --name surveysproutcontainerregistry
+        docker push surveysproutcontainerregistry.azurecr.io/surveysprout-image:latest
