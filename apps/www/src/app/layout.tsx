@@ -25,7 +25,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={inter.className + " min-h-screen bg-red-400 container"}>
+      <body className={inter.className + " min-h-screen"}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
