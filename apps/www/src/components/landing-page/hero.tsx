@@ -11,10 +11,12 @@ export default function Hero({ content }: { content: HeroSection }) {
           <Badge>{content.badge.subtext}</Badge>
           <p className="text-sm font-medium">{content.badge.text}</p>
         </div>
-        <h1 className="text-4xl md:text-7xl font-semibold transition-all">{content.heading}</h1>
-        <h2 className="text-muted-foreground max-w-lg md:text-xl transition-all">
+        <h1 className="text-4xl md:text-7xl font-semibold transition-all">
+          {content.heading}
+        </h1>
+        <p className="text-muted-foreground max-w-lg md:text-xl transition-all">
           {content.subheading}
-        </h2>
+        </p>
         <CTAButtons isLargeButtons />
       </div>
     </section>
