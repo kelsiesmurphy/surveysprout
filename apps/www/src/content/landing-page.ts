@@ -68,123 +68,105 @@ export const landingPageContent: LandingPageContent = {
   hero: {
     badge: {
       subtext: "New",
-      text: "Disy v2.0 is now available",
+      text: "SurveySprout is here!",
       link: null,
     },
-    heading: "Design effective products in Figma",
+    heading: "Make every survey meaningful.",
     subheading:
-      "Disy is a minimalist Design System/UI Kit to help you build human-centered product experience.",
+      "SurveySprout turns post-purchase feedback into action. Delight your users with intuitive surveys and contribute to planting a tree with every completion.",
   },
   socialProof: {
-    heading: "Used by designers from top companies",
+    heading: "Trusted by eco-conscious businesses worldwide",
     logos: [
       {
         image: "/path/to/logo1.png",
-        altText: "Company 1 Logo",
+        altText: "Eco Brand 1 Logo",
       },
       {
         image: "/path/to/logo2.png",
-        altText: "Company 2 Logo",
+        altText: "Eco Brand 2 Logo",
       },
     ],
   },
   keyFeatures: {
     headings: {
-      lineOne: "Less reproducing.",
-      lineTwo: "More designing.",
+      lineOne: "Engaging surveys.",
+      lineTwo: "Real-world impact.",
     },
     subheading:
-      "Don’t waste time reinventing every component. Customize colors, typography, and layouts without starting from scratch.",
+      "SurveySprout combines exceptional user experience with environmental stewardship. Gather valuable insights while making a difference.",
     features: [
       {
         icon: Settings,
-        heading: "Streamlined component library",
-        body: "Discover a vast collection of customizable advanced components.",
+        heading: "Post-purchase survey focus",
+        body: "Optimize customer satisfaction with targeted post-purchase surveys.",
         image: null,
       },
       {
         icon: PanelsLeftRight,
-        heading: "Flexible style customization",
-        body: "Customize colors, typography, and layouts to align with your brand identity.",
+        heading: "Effortless integration",
+        body: "Seamlessly connect with your e-commerce platform for smooth data collection.",
         image: null,
       },
       {
         icon: Monitor,
-        heading: "Dozens of samples to get you inspired",
-        body: "Explore a collection of handmade design samples to spark your creativity.",
+        heading: "Beautiful, intuitive design",
+        body: "Surveys your customers will enjoy completing.",
         image: null,
       },
     ],
   },
   features: {
     headings: {
-      lineOne: "Everything you need.",
-      lineTwo: "In a single file.",
+      lineOne: "Insights you need.",
+      lineTwo: "Impact you care about.",
     },
     subheading:
-      "Thoughtful details, personalized design. Customize Disy to create a design system that embodies your project style.",
+      "SurveySprout empowers businesses to grow their feedback strategies and contribute to a greener planet.",
     features: [
       {
         icon: Settings,
-        heading: "Large library of components",
-        body: "Enjoy +2,000 handcrafted components and variants.",
-        image: "",
+        heading: "Robust analytics dashboard",
+        body: "Track responses and trends to continuously improve your offerings.",
+        image: null,
       },
       {
         icon: PanelsLeftRight,
-        heading: "4px grid system",
-        body: "Leverage a consistent grid system for cohesive and scalable interfaces.",
-        image: "",
+        heading: "Customizable survey themes",
+        body: "Reflect your brand identity with tailored survey designs.",
+        image: null,
       },
       {
         icon: Monitor,
-        heading: "Ready-to-use layout samples",
-        body: "Discover design possibilities with ready-to-use layout samples.",
-        image: "",
-      },
-      {
-        icon: Settings,
-        heading: "Large library of components",
-        body: "Enjoy +2,000 handcrafted components and variants.",
-        image: "",
-      },
-      {
-        icon: PanelsLeftRight,
-        heading: "4px grid system",
-        body: "Leverage a consistent grid system for cohesive and scalable interfaces.",
-        image: "",
-      },
-      {
-        icon: Monitor,
-        heading: "Ready-to-use layout samples",
-        body: "Discover design possibilities with ready-to-use layout samples.",
-        image: "",
+        heading: "Tree-planting program integration",
+        body: "Every survey completion plants a tree. Simple and impactful.",
+        image: null,
       },
     ],
   },
   pricing: {
-    heading: "Pricing",
-    subheading: "Pay once and get access to all content",
+    heading: "Transparent pricing",
+    subheading: "Choose a plan that scales with your growth.",
   },
   frequentlyAskedQuestions: {
-    heading: "Frequently asked questions",
+    heading: "Got questions? We have answers.",
     subheading:
-      "Considering Disy? Explore our FAQ section for answers to common questions about our UI kit.",
+      "Learn more about SurveySprout's features, pricing, and impact in our FAQ section.",
     questions: [
       {
-        question: "What is the interest of this UI kit?",
+        question: "How does SurveySprout contribute to tree planting?",
         answer:
-          "The interest of this UI kit lies in its ability to save time and effort for designers and developers. With a comprehensive set of pre-designed components, layouts, and styles, the kit allows for quick customization and reuse, ensuring consistency throughout projects. The UI kit offers extensive customization options, empowering users to align designs with their brand or project requirements. Detailed documentation is provided to assist users throughout the process. Overall, this UI kit streamlines workflow, maintains design consistency, and facilitates the delivery of high-quality user interfaces efficiently.",
+          "For every survey completed on our platform, we partner with reforestation programs to plant a tree in regions that need it most. It's part of our mission to combine actionable insights with sustainable impact.",
       },
       {
-        question: "What is the interest of this UI kit?",
+        question: "Is SurveySprout suitable for my small business?",
         answer:
-          "The interest of this UI kit lies in its ability to save time and effort for designers and developers. With a comprehensive set of pre-designed components, layouts, and styles, the kit allows for quick customization and reuse, ensuring consistency throughout projects. The UI kit offers extensive customization options, empowering users to align designs with their brand or project requirements. Detailed documentation is provided to assist users throughout the process. Overall, this UI kit streamlines workflow, maintains design consistency, and facilitates the delivery of high-quality user interfaces efficiently.",
+          "Absolutely! Our platform is designed to be flexible, whether you're just starting out or managing a large-scale operation. SurveySprout grows with you.",
       },
       {
-        question: "What is the interest of this UI kit?",
+        question: "Can I customize the surveys?",
         answer:
-          "The interest of this UI kit lies in its ability to save time and effort for designers and developers. With a comprehensive set of pre-designed components, layouts, and styles, the kit allows for quick customization and reuse, ensuring consistency throughout projects. The UI kit offers extensive customization options, empowering users to align designs with their brand or project requirements. Detailed documentation is provided to assist users throughout the process. Overall, this UI kit streamlines workflow, maintains design consistency, and facilitates the delivery of high-quality user interfaces efficiently.",
+          "Yes, you can fully customize survey themes, questions, and formats to align with your brand and goals.",
       },
     ],
   },
