@@ -1,11 +1,23 @@
 "use client";
 
 import { useTheme } from "next-themes";
+import { useState, useEffect } from "react";
 
 const SurveySproutLogo = () => {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  const textColor = theme === "light" ? "#052E16" : "hsl(var(--foreground))";
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  const textColor =
+    resolvedTheme === "light" ? "#052E16" : "hsl(var(--foreground))";
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -4,6 +4,9 @@ import {
   Drawer,
   DrawerContent,
   DrawerTrigger,
+  DrawerHeader,
+  DrawerDescription,
+  DrawerTitle,
 } from "@repo/ui/components/ui/drawer";
 import { Button } from "@repo/ui/components/ui/button";
 import { useState } from "react";
@@ -17,7 +20,7 @@ export function MobileNav() {
       <DrawerTrigger asChild>
         <Button
           variant="ghost"
-          className="-ml-2 mr-2 h-8 w-8 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+          className="-ml-2 mr-2 h-8 w-8 px-0 text-base hover:bg-transparent focus-visible:bg-transparent md:hidden"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -37,6 +40,12 @@ export function MobileNav() {
         </Button>
       </DrawerTrigger>
       <DrawerContent className="max-h-[60svh] pb-4 px-4 space-y-4">
+        <DrawerHeader className="sr-only">
+          <DrawerTitle >SurveySprout Mobile Menu</DrawerTitle>
+          <DrawerDescription >
+            Select an option from the buttons below
+          </DrawerDescription>
+        </DrawerHeader>
         <NavItems />
       </DrawerContent>
     </Drawer>

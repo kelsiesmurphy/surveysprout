@@ -4,7 +4,7 @@ import { Card } from "@repo/ui/components/ui/card";
 
 export default function KeyFeatures({ content }: { content: FeaturesSection }) {
   return (
-    <section className="container flex flex-col gap-24 items-center md:gap-32 py-16 md:py-48">
+    <section className="container flex flex-col gap-24 items-center md:gap-32 py-16 md:py-24">
       <div className="text-center flex flex-col gap-6 items-center max-w-2xl">
         <h2 className="text-3xl md:text-6xl/[4.5rem] font-semibold">
           <span className="text-muted-foreground">
@@ -17,10 +17,10 @@ export default function KeyFeatures({ content }: { content: FeaturesSection }) {
           {content.subheading}
         </p>
       </div>
-      <ul className="w-full space-y-24 md:space-y-32">
-        {content.features.map((feature) => {
+      <ul className="w-full space-y-16 md:space-y-32">
+        {content.features.map((feature, index) => {
           return (
-            <li className="flex gap-12 md:gap-24 justify-center items-center flex-wrap even:flex-row-reverse">
+            <li key={index} className="flex gap-12 md:gap-24 justify-center items-center flex-wrap even:flex-row-reverse">
               <div className="max-w-md space-y-4 md:space-y-6">
                 <Card className="p-3.5 border shadow-sm w-min">
                   {createElement(feature.icon)}

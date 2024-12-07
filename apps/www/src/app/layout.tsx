@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.className + " min-h-screen"}>
         <ThemeProvider
           attribute="class"
