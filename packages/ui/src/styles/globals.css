@@ -85,8 +85,11 @@
   }
 }
 
-@layer components {
+@layer utilities {
   .outline-brand {
     @apply ring-offset-background focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+  .paused {
+    animation-play-state: paused;
   }
 }

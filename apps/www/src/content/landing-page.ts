@@ -1,4 +1,10 @@
-import { Clock, Monitor, PanelsLeftRight, Settings, TreeDeciduous } from "lucide-react";
+import {
+  Clock,
+  Monitor,
+  PanelsLeftRight,
+  Settings,
+  TreeDeciduous,
+} from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
 interface Badge {
@@ -79,12 +85,28 @@ export const landingPageContent: LandingPageContent = {
     heading: "Trusted by eco-conscious businesses worldwide",
     logos: [
       {
-        image: "/path/to/logo1.png",
-        altText: "Eco Brand 1 Logo",
+        image: "/social_proof/Cubekit.svg",
+        altText: "Cubekit Logo",
       },
       {
-        image: "/path/to/logo2.png",
-        altText: "Eco Brand 2 Logo",
+        image: "/social_proof/EasyTax.svg",
+        altText: "EasyTax Logo",
+      },
+      {
+        image: "/social_proof/Eclipseful.svg",
+        altText: "Eclipseful Logo",
+      },
+      {
+        image: "/social_proof/Eightball.svg",
+        altText: "Eightball Logo",
+      },
+      {
+        image: "/social_proof/Elasticware.svg",
+        altText: "Elasticware Logo",
+      },
+      {
+        image: "/social_proof/Ennlabs.svg",
+        altText: "Ennlabs Logo",
       },
     ],
   },
