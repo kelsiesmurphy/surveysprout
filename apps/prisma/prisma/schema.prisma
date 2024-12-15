@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Survey {
+  id         Int        @id @default(autoincrement())
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  deletedAt  DateTime
+  title      String     @db.VarChar(255)
+  metadata   Json
+  surveyType SurveyType @default(POSTPURCHASE)
+
+  SurveyQuestion SurveyQuestion[]
+  SurveyResponse SurveyResponse[]
+}
+
+model QuestionOption {
+  id               Int             @id @default(autoincrement())
+  name             String
+  image            String?
+  order            Int
+  SurveyQuestion   SurveyQuestion? @relation(fields: [surveyQuestionId], references: [id])
+  surveyQuestionId Int?
+  SurveyAnswer     SurveyAnswer[]
+}
+
+model SurveyQuestion {
+  id           Int              @id @default(autoincrement())
+  createdAt    DateTime         @default(now())
+  survey       Survey           @relation(fields: [surveyId], references: [id])
+  surveyId     Int
+  fieldName    String
+  title        String
+  subtitle     String
+  icon         String
+  questionType QuestionType
+  options      QuestionOption[]
+  SurveyAnswer SurveyAnswer[]
+}
+
+model SurveyResponse {
+  id           Int            @id @default(autoincrement())
+  createdAt    DateTime       @default(now())
+  deletedAt    DateTime
+  survey       Survey         @relation(fields: [surveyId], references: [id])
+  surveyId     Int
+  SurveyAnswer SurveyAnswer[]
+}
+
+model SurveyAnswer {
+  id               Int             @id @default(autoincrement())
+  createdAt        DateTime        @default(now())
+  surveyResponse   SurveyResponse  @relation(fields: [surveyResponseId], references: [id])
+  surveyResponseId Int
+  surveyQuestion   SurveyQuestion  @relation(fields: [surveyQuestionId], references: [id])
+  surveyQuestionId Int
+  textAnswer       String?
+  selectedOption   QuestionOption? @relation(fields: [questionOptionId], references: [id])
+  sliderValue      Int?
+  questionOptionId Int?
+}
+
+model ExampleBusiness {
+  id      Int    @id @default(autoincrement())
+  name    String @db.VarChar(255)
+  theme   Json
+  logoUrl String
+
+  ExampleBusinessProduct ExampleBusinessProduct[]
+}
+
+model ExampleBusinessProduct {
+  id                Int                         @id @default(autoincrement())
+  exampleBusiness   ExampleBusiness             @relation(fields: [exampleBusinessId], references: [id])
+  exampleBusinessId Int
+  name              String                      @db.VarChar(255)
+  description       String
+  size              ExampleBusinessProductSize?
+}
+
+model NewsletterContact {
+  id    Int    @id @default(autoincrement())
+  email String @unique
+}
+
+enum ExampleBusinessProductSize {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum QuestionType {
+  Options
+  Text
+  Slider
+}
+
+enum SurveyType {
+  POSTPURCHASE
+}
