@@ -6,7 +6,10 @@
     "dev": "echo 'Add dev script here'",
     "build": "echo 'Add build script here'",
     "test": "echo 'Add test script here'",
-    "lint": "echo 'Add lint script here'"
+    "lint": "echo 'Add lint script here'",
+    "prisma:init": "npx prisma migrate dev --name init",
+    "prisma:seed": "npx prisma db seed ",
+    "prisma:reset": "npx prisma migrate reset"
   },
   "description": "",
   "main": "index.js",
