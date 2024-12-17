@@ -1,34 +1,23 @@
-# Base image
+# Use the official Node.js 20 LTS image as the base image
 FROM node:20
 
 # Install pnpm globally
 RUN npm install -g pnpm
 
-# Create app directory
-WORKDIR /usr/src/app
+# Set the working directory inside the container
+WORKDIR /app
 
-# A wildcard is used to ensure both package.json AND pnpm-lock.yaml are copied
+# Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
-# Install app dependencies using pnpm
+# Install project dependencies
 RUN pnpm install
 
-# Bundle app source
+# Copy the rest of the application source code to the container
 COPY . .
 
-# Copy Prisma-related files from the monorepo's /prisma package
-COPY packages/prisma/schema.prisma ./prisma/
-COPY packages/prisma/migrations ./prisma/migrations/
+# Expose the port your Nest.js application is listening on
+EXPOSE 3004
 
-# Copy environment files from /prisma
-COPY packages/prisma/.env ./
-
-
-# Creates a "dist" folder with the production build
-RUN pnpm run build
-
-# Expose the port on which the app will run
-EXPOSE 3001
-
-# Start the server using the production build
-CMD ["pnpm", "run", "start:prod"]
+# Command to start your Nest.js application
+CMD [ "pnpm", "run", "start:prod" ]
