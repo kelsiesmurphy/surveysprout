@@ -19,7 +19,7 @@ export default function SurveyLayout({
     <ThemeWrapper
       defaultTheme={survey ? survey.theme : { color: "zinc", radius: 0.5 }}
     >
-      {children}
+      <div className="bg-background">{children}</div>
     </ThemeWrapper>
   );
 }
