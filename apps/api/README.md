@@ -1,4 +1,4 @@
-# `backend-fastify`
+# `api`
 
 ## `npm run dev`
 

@@ -85,9 +85,7 @@ importers:
         specifier: 2.3.3
         version: 2.3.3
 
-  apps/backend: {}
-
-  apps/backend-fastify:
+  apps/api:
     dependencies:
       '@fastify/autoload':
         specifier: ^6.0.0
@@ -192,28 +190,6 @@ importers:
       '@types/react-dom':
         specifier: catalog:react18
         version: 18.3.1
-
-  apps/prisma:
-    dependencies:
-      '@prisma/client':
-        specifier: ^6.0.1
-        version: 6.0.1(prisma@6.0.1)
-    devDependencies:
-      '@types/node':
-        specifier: ^22.10.2
-        version: 22.10.2
-      prisma:
-        specifier: ^6.0.1
-        version: 6.0.1
-      ts-node:
-        specifier: ^10.9.2
-        version: 10.9.2(@types/node@22.10.2)(typescript@5.7.2)
-      tsx:
-        specifier: ^4.19.2
-        version: 4.19.2
-      typescript:
-        specifier: ^5.7.2
-        version: 5.7.2
 
   apps/survey:
     dependencies:
@@ -380,6 +356,28 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 5.6.3
+
+  packages/prisma:
+    dependencies:
+      '@prisma/client':
+        specifier: ^6.0.1
+        version: 6.0.1(prisma@6.0.1)
+    devDependencies:
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.10.2
+      prisma:
+        specifier: ^6.0.1
+        version: 6.0.1
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@types/node@22.10.2)(typescript@5.7.2)
+      tsx:
+        specifier: ^4.19.2
+        version: 4.19.2
+      typescript:
+        specifier: ^5.7.2
+        version: 5.7.2
 
   packages/shared:
     dependencies:
