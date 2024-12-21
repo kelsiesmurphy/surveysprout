@@ -20,7 +20,8 @@
     "prisma:init": "npx prisma migrate dev --name init",
     "prisma:seed": "npx prisma db seed ",
     "prisma:reset": "npx prisma migrate reset",
-    "prisma:migrate": "npx prisma migrate dev"
+    "prisma:migrate": "npx prisma migrate dev",
+    "start:migrate:prod": "prisma migrate deploy && npm run start:prod"
   },
   "engines": {
     "npm": ">=8.0.0",
