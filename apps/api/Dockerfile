@@ -1,23 +1,20 @@
-# Use the official Node.js 20 LTS image as the base image
-FROM node:20
+FROM node:20 AS build
 
-# Install pnpm globally
-RUN npm install -g pnpm
-
-# Set the working directory inside the container
 WORKDIR /app
-
-# Copy package.json and package-lock.json to the container
 COPY package*.json ./
-
-# Install project dependencies
-RUN pnpm install
-
-# Copy the rest of the application source code to the container
+COPY prisma ./prisma/
+COPY .env .env
+RUN npm install
+RUN npx prisma generate
 COPY . .
+RUN npm run build
 
-# Expose the port your Nest.js application is listening on
-EXPOSE 3004
+FROM node:20
+WORKDIR /app
+COPY package.json .
+COPY prisma ./prisma/
+COPY .env .env
+RUN npm install --only=production
+COPY --from=build /app/dist ./dist
 
-# Command to start your Nest.js application
-CMD [ "pnpm", "run", "start:prod" ]
+CMD [ "npm", "run", "start:prod" ]
