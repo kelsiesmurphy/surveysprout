@@ -1,10 +1,18 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
-import { PrismaService } from './prisma.service';
+import { AppService } from './app.service';
+import { ApiKeyMiddleware } from './middleware/api-key/api-key.middleware';
 
 @Module({
-  imports: [],
+  imports: [ConfigModule.forRoot()],
   controllers: [AppController],
-  providers: [PrismaService],
+  providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(ApiKeyMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}
