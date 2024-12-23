@@ -16,18 +16,22 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # 2. Setup Node.js environment
-    - name: Setup Node.js
+    # 2. Setup Node.js environment with version 21.5.0
+    - name: Setup Node.js 21.5.0
       uses: actions/setup-node@v3
       with:
-        node-version: 21.5.0  # Ensure Node.js 20.17.0 is being used
+        node-version: 21.5.0  # Use Node.js 21.5.0 instead of 20.17.0
 
-    # 3. Install dependencies for the API (using `--filter` to only install for the /api app)
+    # 3. Install pnpm globally
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    # 4. Install dependencies for the API (using `--filter` to only install for the /api app)
     - name: Install dependencies
       run: |
         pnpm install --filter ./apps/api...
 
-    # 4. Log in to Azure Container Registry
+    # 5. Log in to Azure Container Registry
     - name: Log in to Azure Container Registry
       uses: azure/docker-login@v1
       with:
@@ -35,13 +39,13 @@ jobs:
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
 
-    # 5. Build the Docker image (using the /api context)
+    # 6. Build the Docker image (using the /api context)
     - name: Build Docker image
       run: |
         cd apps/api
         docker build --no-cache --platform linux/amd64 -t surveysproutcontainerregistry1.azurecr.io/app:latest .
 
-    # 6. Push the Docker image to Azure Container Registry
+    # 7. Push the Docker image to Azure Container Registry
     - name: Push Docker image
       run: |
         docker push surveysproutcontainerregistry1.azurecr.io/app:latest
