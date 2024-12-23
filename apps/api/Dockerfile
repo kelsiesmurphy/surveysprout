@@ -4,12 +4,14 @@ FROM node:20.11.1-alpine
 # Set working directory
 WORKDIR /app
 
+# Install pnpm globally
+RUN npm install -g pnpm
+
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install dependencies
-RUN npm cache clean --force
-RUN npm install --legacy-peer-deps
+RUN pnpm install --strict-peer-dependencies=false
 
 # Copy the rest of the application code
 COPY . .
@@ -21,4 +23,4 @@ RUN npx prisma generate
 EXPOSE 3333
 
 # Command to run the app
-CMD [  "npm", "run", "start:migrate:prod" ]
+CMD ["pnpm", "run", "start:migrate:prod"]
