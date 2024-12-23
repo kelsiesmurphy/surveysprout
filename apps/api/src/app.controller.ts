@@ -6,6 +6,11 @@ import { SurveyQuestion as SurveyQuestionModel } from '@prisma/client';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  @Get('/')
+  async getPing() {
+    return { ping: 'pong' };
+  }
+
   @Get('survey_questions')
   async getAllSurveyQuestions(): Promise<SurveyQuestionModel[]> {
     return this.appService.surveyQuestion.findMany();
