@@ -3,9 +3,11 @@ name: Deploy API to Azure Container Registry
 
 on:
   push:
+    branches:
+      - 'main'
     paths:
-      - 'apps/api/**'  # Only trigger deployment if changes are made in the /api folder
-  workflow_dispatch:  # Allow manual trigger from GitHub
+      - 'apps/api/**'
+  workflow_dispatch:
 
 jobs:
   build-and-push:
