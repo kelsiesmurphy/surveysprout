@@ -8,7 +8,7 @@ export class AppController {
 
   @Get('/')
   async getPing() {
-    return { ping: 'poing boing' };
+    return { ping: 'boing' };
   }
 
   @Get('survey_questions')
