@@ -21,7 +21,7 @@
     "prisma:seed": "npx prisma db seed ",
     "prisma:reset": "npx prisma migrate reset",
     "prisma:migrate": "npx prisma migrate dev",
-    "start:migrate:prod": "prisma migrate deploy && npm run start:prod"
+    "start:migrate:prod": "npx prisma migrate deploy && pnpm run start:prod"
   },
   "engines": {
     "npm": ">=8.0.0",
