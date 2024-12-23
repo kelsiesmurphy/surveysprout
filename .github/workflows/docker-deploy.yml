@@ -1,10 +1,11 @@
+# .github/workflows/docker-deploy.yml
 name: Deploy API to Azure Container Registry
 
 on:
   push:
     paths:
-      - 'apps/api/**' # Trigger only when files in the /api directory change
-  workflow_dispatch: # Allow manual triggering if needed
+      - 'apps/api/**'  # Only trigger deployment if changes are made in the /api folder
+  workflow_dispatch:  # Allow manual trigger from GitHub
 
 jobs:
   build-and-push:
@@ -15,18 +16,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # 2. Set up caching for pnpm
-    - name: Set up pnpm with caching
-      uses: pnpm/action-setup@v2
+    # 2. Setup Node.js environment
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
       with:
-        version: 8.6.3 # Use the desired version of pnpm
-        cache: true
+        node-version: 21.5.0  # Ensure Node.js 20.17.0 is being used
 
-    # 3. Install dependencies for the API
+    # 3. Install dependencies for the API (using `--filter` to only install for the /api app)
     - name: Install dependencies
       run: |
-        cd apps/api
-        pnpm install
+        pnpm install --filter ./apps/api...
 
     # 4. Log in to Azure Container Registry
     - name: Log in to Azure Container Registry
@@ -36,13 +35,13 @@ jobs:
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
 
-    # 5. Build the Docker image
+    # 5. Build the Docker image (using the /api context)
     - name: Build Docker image
       run: |
         cd apps/api
         docker build --no-cache --platform linux/amd64 -t surveysproutcontainerregistry1.azurecr.io/app:latest .
 
-    # 6. Push the Docker image to ACR
+    # 6. Push the Docker image to Azure Container Registry
     - name: Push Docker image
       run: |
         docker push surveysproutcontainerregistry1.azurecr.io/app:latest
