@@ -7,6 +7,7 @@ import { Survey as SurveyModel } from '@prisma/client';
 
 describe('SurveyService', () => {
   let surveyService: SurveyService;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let prismaService: PrismaService;
 
   const mockPrismaService = {
