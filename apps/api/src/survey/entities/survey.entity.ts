@@ -5,10 +5,10 @@ export class SurveyEntity implements Survey {
   @ApiProperty()
   createdAt: Date;
 
-  @ApiProperty()
+  @ApiProperty({ required: false, nullable: true })
   updatedAt: Date;
 
-  @ApiProperty()
+  @ApiProperty({ required: false, nullable: true })
   deletedAt: Date;
 
   @ApiProperty()

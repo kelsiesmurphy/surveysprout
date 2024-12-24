@@ -1,1 +1,6 @@
-export class CreateSurveyResponseDto {}
+import { ApiProperty } from '@nestjs/swagger';
+
+export class CreateSurveyResponseDto {
+  @ApiProperty()
+  surveyId: number;
+}
