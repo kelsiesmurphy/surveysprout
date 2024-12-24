@@ -39,7 +39,7 @@ describe('NewsletterContactService', () => {
   });
 
   describe('create', () => {
-    it('should call PrismaService.newsletterContacts.create with correct params', async () => {
+    it('should create a new newsletterContact', async () => {
       const createDto: CreateNewsletterContactDto = {
         email: 'johndoe@email.com',
       };

@@ -42,7 +42,7 @@ describe('NewsletterContactController', () => {
   });
 
   describe('create', () => {
-    it('should call NewsletterContactService.create with correct params', async () => {
+    it('should create a new newsletterContact', async () => {
       const createDto: CreateNewsletterContactDto = {
         email: 'johndoe@email.com',
       };

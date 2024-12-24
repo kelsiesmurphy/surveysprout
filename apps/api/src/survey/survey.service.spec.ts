@@ -37,7 +37,7 @@ describe('SurveyService', () => {
   });
 
   describe('create', () => {
-    it('should call PrismaService.survey.create with correct params', async () => {
+    it('should create a new survey', async () => {
       const createDto: CreateSurveyDto = {
         title: 'Post-purchase Survey Template',
         metadata: {

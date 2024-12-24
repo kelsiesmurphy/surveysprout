@@ -18,6 +18,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/jest/bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prisma:init": "npx prisma migrate dev --name init",
+    "prisma:generate": "npx prisma generate",
     "prisma:seed": "npx prisma db seed ",
     "prisma:reset": "npx prisma migrate reset",
     "prisma:migrate": "npx prisma migrate dev",

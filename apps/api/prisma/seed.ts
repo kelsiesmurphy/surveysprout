@@ -3,6 +3,14 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const main = async () => {
+  console.log('Clearing database...');
+  await prisma.surveyQuestion.deleteMany();
+  await prisma.survey.deleteMany();
+  await prisma.exampleBusinessProduct.deleteMany();
+  await prisma.exampleBusiness.deleteMany();
+
+  console.log('Database cleared.');
+
   console.time('Seeding complete 🌱');
 
   const FellowHumansExampleBusiness = await prisma.exampleBusiness.create({

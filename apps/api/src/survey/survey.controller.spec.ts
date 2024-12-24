@@ -33,7 +33,7 @@ describe('SurveyController', () => {
   });
 
   describe('create', () => {
-    it('should call SurveyService.create with correct params', async () => {
+    it('should create a new survey', async () => {
       const createDto: CreateSurveyDto = {
         title: 'Post-purchase Survey Template',
         metadata: {

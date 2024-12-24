@@ -11,7 +11,7 @@ datasource db {
 model Survey {
   id             Int              @id @default(autoincrement())
   createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
+  updatedAt      DateTime?        @updatedAt
   deletedAt      DateTime?
   title          String           @db.VarChar(255)
   metadata       Json?
@@ -23,6 +23,8 @@ model Survey {
 model SurveyQuestion {
   id           Int            @id @default(autoincrement())
   createdAt    DateTime       @default(now())
+  updatedAt    DateTime?      @updatedAt
+  deletedAt    DateTime?
   surveyId     Int
   fieldName    String
   title        String
@@ -37,6 +39,7 @@ model SurveyQuestion {
 model SurveyResponse {
   id           Int            @id @default(autoincrement())
   createdAt    DateTime       @default(now())
+  updatedAt    DateTime?      @updatedAt
   deletedAt    DateTime?
   surveyId     Int
   SurveyAnswer SurveyAnswer[]
@@ -46,6 +49,8 @@ model SurveyResponse {
 model SurveyAnswer {
   id               Int            @id @default(autoincrement())
   createdAt        DateTime       @default(now())
+  updatedAt        DateTime?      @updatedAt
+  deletedAt        DateTime?
   surveyResponseId Int
   surveyQuestionId Int
   textAnswer       String?
