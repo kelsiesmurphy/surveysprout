@@ -11,10 +11,12 @@ async function bootstrap() {
   const port = process.env.PORT;
 
   const config = new DocumentBuilder()
-    .setTitle('SurveySprout')
-    .setDescription('The SurveySprout API')
+    .addApiKey({ type: 'apiKey', name: 'x-api-key', in: 'header' }, 'x-api-key')
+    .setTitle('SurveySprout API')
+    .setDescription(
+      'The API for the SurveySprout application, built in NestJS with Prisma. Connects to a PostgreSQL database hosted on Azure. Built by Kelsie Murphy',
+    )
     .setVersion('1.0')
-    .addTag('surveysprout')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);

@@ -1,34 +1,68 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { SurveyResponseService } from './survey-response.service';
 import { CreateSurveyResponseDto } from './dto/create-survey-response.dto';
 import { UpdateSurveyResponseDto } from './dto/update-survey-response.dto';
+import { SurveyResponse as SurveyResponseModel } from '@prisma/client';
+import { SurveyResponseEntity } from './entities/survey-response.entity';
+import {
+  ApiTags,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiSecurity,
+} from '@nestjs/swagger';
 
+@ApiSecurity('x-api-key')
 @Controller('survey-response')
+@ApiTags('Survey Responses')
 export class SurveyResponseController {
   constructor(private readonly surveyResponseService: SurveyResponseService) {}
 
   @Post()
-  create(@Body() createSurveyResponseDto: CreateSurveyResponseDto) {
+  @ApiOperation({ summary: 'Create a survey response' })
+  @ApiCreatedResponse({ type: SurveyResponseEntity })
+  async create(
+    @Body() createSurveyResponseDto: CreateSurveyResponseDto,
+  ): Promise<SurveyResponseModel> {
     return this.surveyResponseService.create(createSurveyResponseDto);
   }
 
   @Get()
-  findAll() {
+  @ApiOperation({ summary: 'Get all survey responses' })
+  @ApiOkResponse({ type: SurveyResponseEntity, isArray: true })
+  async findAll(): Promise<SurveyResponseModel[]> {
     return this.surveyResponseService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  @ApiOperation({ summary: 'Get a survey response' })
+  @ApiOkResponse({ type: SurveyResponseEntity })
+  async findOne(@Param('id') id: string): Promise<SurveyResponseModel> {
     return this.surveyResponseService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSurveyResponseDto: UpdateSurveyResponseDto) {
+  @ApiOperation({ summary: 'Update a survey response' })
+  @ApiOkResponse({ type: SurveyResponseEntity })
+  async update(
+    @Param('id') id: string,
+    @Body() updateSurveyResponseDto: UpdateSurveyResponseDto,
+  ): Promise<SurveyResponseModel> {
     return this.surveyResponseService.update(+id, updateSurveyResponseDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  @ApiOperation({ summary: 'Delete a survey response' })
+  @ApiOkResponse({ type: SurveyResponseEntity })
+  async remove(@Param('id') id: string): Promise<SurveyResponseModel> {
     return this.surveyResponseService.remove(+id);
   }
 }
