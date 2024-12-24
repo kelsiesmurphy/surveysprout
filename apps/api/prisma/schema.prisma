@@ -73,8 +73,9 @@ model ExampleBusinessProduct {
 }
 
 model NewsletterContact {
-  id    Int    @id @default(autoincrement())
-  email String @unique
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime? @default(now())
+  email     String    @unique
 }
 
 enum ExampleBusinessProductSize {
