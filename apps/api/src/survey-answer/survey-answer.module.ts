@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { SurveyAnswerService } from './survey-answer.service';
 import { SurveyAnswerController } from './survey-answer.controller';
-import { PrismaModule } from 'src/prisma/prisma.module';
+import { PrismaModule } from '../prisma/prisma.module';
 
 @Module({
   controllers: [SurveyAnswerController],
