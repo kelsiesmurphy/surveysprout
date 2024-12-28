@@ -7,7 +7,7 @@ import { MobileNav } from "./mobile-nav";
 export default function Header() {
   return (
     <header className="container flex justify-between items-center py-6">
-      <Button asChild variant="link">
+      <Button asChild variant="link" className="px-0">
         <Link href="/">
           <SurveySproutLogoMark />
         </Link>

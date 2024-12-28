@@ -21,12 +21,15 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useToast } from "@repo/ui/hooks/use-toast";
+import { useState } from "react";
 
 const forgotPasswordSchema = z.object({
   email: z.string().email(),
 });
 
 export function ForgotPaswordModal() {
+  const [open, setOpen] = useState(false);
+
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof forgotPasswordSchema>>({
@@ -43,10 +46,12 @@ export function ForgotPaswordModal() {
       description:
         "If there's an account associated with this email, we've sent you a link to reset your password.",
     });
+    form.reset();
+    setOpen(false);
   }
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="link" className="px-0">
           Forgot password?

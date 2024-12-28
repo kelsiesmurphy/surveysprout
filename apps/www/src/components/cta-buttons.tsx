@@ -19,7 +19,7 @@ export default function CTAButtons({
         </Link>
       </Button>
       <Button size={isLargeButtons ? "lg" : "default"} asChild>
-        <Link href="">Create account</Link>
+        <Link href="/signup">Create account</Link>
       </Button>
     </div>
   );

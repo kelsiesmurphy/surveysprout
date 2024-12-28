@@ -17,16 +17,28 @@ import SurveySproutLogo from "../logo";
 import { useToast } from "@repo/ui/hooks/use-toast";
 import GoogleLogo from "./google-logo";
 import Link from "next/link";
-import { ForgotPaswordModal } from "./forgot-password";
 
-const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8, {
-    message: "Password must be at least 8 characters.",
-  }),
-});
+const formSchema = z
+  .object({
+    email: z.string().email(),
+    password: z.string().min(8, {
+      message: "Password must be at least 8 characters.",
+    }),
+    confirm_password: z.string().min(8, {
+      message: "Password must be at least 8 characters.",
+    }),
+  })
+  .superRefine(({ confirm_password, password }, ctx) => {
+    if (confirm_password !== password) {
+      ctx.addIssue({
+        code: "custom",
+        message: "The passwords did not match",
+        path: ["confirm_password"],
+      });
+    }
+  });
 
-export function LoginForm() {
+export function SignupForm() {
   const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -34,6 +46,7 @@ export function LoginForm() {
     defaultValues: {
       email: "",
       password: "",
+      confirm_password: "",
     },
   });
 
@@ -50,10 +63,10 @@ export function LoginForm() {
       <div className="space-y-3 flex flex-col items-center text-center pb-8">
         <SurveySproutLogo />
         <h1 className="text-2xl md:text-3xl font-semibold">
-          Log in to your account
+          Create an account
         </h1>
         <p className="text-muted-foreground">
-          Welcome back! Please enter your details.
+          Start creating a survey in minutes.
         </p>
       </div>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
@@ -87,20 +100,34 @@ export function LoginForm() {
             </FormItem>
           )}
         />
-        <div className="flex justify-end">
-          <ForgotPaswordModal />
-        </div>
+        <FormField
+          control={form.control}
+          name="confirm_password"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Confirm Password</FormLabel>
+              <FormControl>
+                <Input
+                  type="password"
+                  placeholder="Enter your password again"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <Button type="submit" className="w-full">
-          Sign in
+          Sign up
         </Button>
         <Button className="w-full gap-3" variant="outline">
           <GoogleLogo />
-          Sign in with Google
+          Sign up with Google
         </Button>
         <p className="text-sm text-muted-foreground text-center">
-          Don't have an account?{" "}
+          Already have an account?{" "}
           <Button variant="link" className="px-0" asChild>
-            <Link href="/signup">Sign up</Link>
+            <Link href="/login">Log in</Link>
           </Button>
         </p>
       </form>
