@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <section className="container max-w-5xl space-y-12">
+    <section className="container max-w-5xl space-y-12 pt-6">
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
         {footerColumns.map((column: FooterColumn, index: number) => {
           return (

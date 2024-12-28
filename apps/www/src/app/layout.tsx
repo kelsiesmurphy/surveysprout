@@ -25,17 +25,16 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en" suppressHydrationWarning={true}>
-      <body className={inter.className + " min-h-screen"}>
+      <body className={inter.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <main>
+          <main className="flex flex-col min-h-screen">
             <Header />
             {children}
-            <Footer />
           </main>
           <Toaster />
           <DevTools />
