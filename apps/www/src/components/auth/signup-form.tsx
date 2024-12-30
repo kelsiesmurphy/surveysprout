@@ -15,8 +15,8 @@ import {
 import { Input } from "@repo/ui/components/ui/input";
 import SurveySproutLogo from "../logo";
 import { useToast } from "@repo/ui/hooks/use-toast";
-import GoogleLogo from "./google-logo";
 import Link from "next/link";
+import GoogleSignOn from "./google-sign-on";
 
 const formSchema = z
   .object({
@@ -120,10 +120,7 @@ export function SignupForm() {
         <Button type="submit" className="w-full">
           Sign up
         </Button>
-        <Button className="w-full gap-3" variant="outline">
-          <GoogleLogo />
-          Sign up with Google
-        </Button>
+        <GoogleSignOn />
         <p className="text-sm text-muted-foreground text-center">
           Already have an account?{" "}
           <Button variant="link" className="px-0" asChild>

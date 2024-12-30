@@ -15,9 +15,9 @@ import {
 import { Input } from "@repo/ui/components/ui/input";
 import SurveySproutLogo from "../logo";
 import { useToast } from "@repo/ui/hooks/use-toast";
-import GoogleLogo from "./google-logo";
 import Link from "next/link";
 import { ForgotPaswordModal } from "./forgot-password";
+import GoogleSignOn from "./google-sign-on";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -93,10 +93,7 @@ export function LoginForm() {
         <Button type="submit" className="w-full">
           Sign in
         </Button>
-        <Button className="w-full gap-3" variant="outline">
-          <GoogleLogo />
-          Sign in with Google
-        </Button>
+        <GoogleSignOn />
         <p className="text-sm text-muted-foreground text-center">
           Don't have an account?{" "}
           <Button variant="link" className="px-0" asChild>

@@ -2,7 +2,7 @@
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
   "globalDependencies": [".env"],
-  "globalEnv": ["WWW_BASE_URL", "SURVEY_BASE_URL", "DASHBOARD_BASE_URL"],
+  "globalEnv": ["NEXT_PUBLIC_WWW_BASE_URL", "NEXT_PUBLIC_SURVEY_BASE_URL", "NEXT_PUBLIC_DASHBOARD_BASE_URL"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
