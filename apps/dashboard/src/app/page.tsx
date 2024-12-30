@@ -1,16 +1,13 @@
 import { apiCall } from "@repo/shared/lib/api";
+import { redirect } from "next/navigation";
+import ErrorPage from "../components/error-page";
 
 export default async function DefaultLayout() {
-  const data = await apiCall<any>("GET", "/survey");
+  const surveys = await apiCall<any>("GET", "/survey");
 
-  if (!data) {
-    return <div>Error: Failed to fetch survey data</div>;
+  if (!surveys) {
+    return <ErrorPage message="Error: Failed to fetch survey data" />;
   }
 
-  return (
-    <div>
-      <h1>Survey Data</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
-  );
+  redirect(`${surveys[0].id}`);
 }

@@ -1,5 +1,3 @@
-"use client";
-
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -26,18 +24,18 @@ import {
   Settings,
   User2,
 } from "lucide-react";
-import { usePathname, useRouter } from "next/navigation";
-import { Survey, surveys } from "@repo/shared/content/test-data/example-surveys";
+import { redirect } from "next/navigation";
+// import { usePathname, useRouter } from "next/navigation";
+// import { Survey } from "@repo/shared/content/test-data/example-surveys";
 import { generateSurveyUrl } from "@repo/shared/lib/utils/navigation";
+import { apiCall } from "@repo/shared/lib/api";
+import DashboardSidebarDropdown from "./dashboard-sidebar-dropdown";
 
-export function AppSidebar({ surveySlug }: { surveySlug: string }) {
-  const router = useRouter();
-  const pathname = usePathname();
+export async function AppSidebar({ surveySlug }: { surveySlug: string }) {
+  // const router = useRouter();
+  // const pathname = usePathname();
 
-  // TODO - remove and switch with real api calls
-  const surveyName = surveys.find((survey) => {
-    return survey.id === surveySlug;
-  })?.name;
+  const surveys = await apiCall<any>("GET", "/survey");
 
   const items = [
     {
@@ -57,37 +55,15 @@ export function AppSidebar({ surveySlug }: { surveySlug: string }) {
     },
   ];
 
-  const handleSurveyChange = (surveySlug: string) => {
-    const currentPage = pathname.split("/")[3] || "";
-    const newPath = generateSurveyUrl(surveySlug, currentPage);
-    router.push(newPath);
-  };
-
   return (
     <Sidebar>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  {surveyName ? surveyName : "Select Survey"}
-                  <ChevronDown className="ml-auto" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
-                {surveys.map((survey: Survey) => {
-                  return (
-                    <DropdownMenuItem
-                      key={survey.id}
-                      onClick={() => handleSurveyChange(survey.id)}
-                    >
-                      <span>{survey.name}</span>
-                    </DropdownMenuItem>
-                  );
-                })}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <DashboardSidebarDropdown
+              surveySlug={surveySlug}
+              surveys={surveys}
+            />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
