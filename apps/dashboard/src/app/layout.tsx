@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className + " min-w-72"}>
         <ThemeProvider
-          attribute="data-theme"
+          attribute="class"
           defaultTheme="light"
           enableSystem
           disableTransitionOnChange
