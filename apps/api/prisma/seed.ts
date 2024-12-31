@@ -31,7 +31,7 @@ const main = async () => {
         color: 'red',
         radius: 1,
       },
-      logoUrl: 'https://fakeimg.pl/300/',
+      logoUrl: '',
     },
   });
 
@@ -42,7 +42,8 @@ const main = async () => {
         name: 'T-Shirt',
         description: 'Fellow Humans T-Shirt',
         size: 'SMALL',
-        image: 'https://fakeimg.pl/300/',
+        image:
+          'https://cothfwilejjjgulziyfd.supabase.co/storage/v1/object/public/group-graphics/tshirt.jpg',
       },
     });
   const NotAnEscapeRoomExampleBusinessProduct1 =
@@ -51,6 +52,8 @@ const main = async () => {
         exampleBusinessId: NotAnEscapeRoomExampleBusiness.id,
         name: 'The Crypt',
         description: 'The Crypt is an easy puzzle room for the whole family.',
+        image:
+          'https://cothfwilejjjgulziyfd.supabase.co/storage/v1/object/public/group-graphics/book.jpg',
       },
     });
 
