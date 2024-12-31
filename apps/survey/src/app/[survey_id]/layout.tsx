@@ -1,19 +1,15 @@
 import { ThemeWrapper } from "@repo/ui/components/theme-wrapper";
-import { surveys } from "@repo/shared/content/test-data/example-surveys";
+import { apiCall } from "@repo/shared/lib/api";
 
-export default function SurveyLayout({
+export default async function SurveyLayout({
   children,
   params,
 }: {
   children: Readonly<React.ReactNode>;
-  params: { survey_slug: string };
+  params: Promise<{ survey_id: string }>;
 }) {
-  const surveySlug = params.survey_slug;
-
-  // TODO - remove and switch with real api calls
-  const survey = surveys.find((survey) => {
-    return survey.id === surveySlug;
-  });
+  const surveyId = (await params).survey_id;
+  const survey = await apiCall<any>("GET", `/survey/${surveyId}`);
 
   return (
     <ThemeWrapper

@@ -1,3 +1,4 @@
+import { apiCall } from "@repo/shared/lib/api";
 import { Metadata } from "next";
 import React from "react";
 import Survey from "~/src/components/survey";
@@ -9,8 +10,9 @@ export const metadata: Metadata = {
 export default async function SurveyPage({
   params,
 }: {
-  params: Promise<{ survey_slug: string }>;
+  params: Promise<{ survey_id: string }>;
 }) {
-  const surveySlug = (await params).survey_slug;
-  return <Survey surveySlug={surveySlug} />;
+  const surveyId = (await params).survey_id;
+  const survey = await apiCall<any>("GET", `/survey/${surveyId}`);
+  return <Survey survey={survey} />;
 }

@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { NewsletterContactService } from './newsletter-contact.service';
 import { NewsletterContactController } from './newsletter-contact.controller';
-import { PrismaModule } from 'src/prisma/prisma.module';
+import { PrismaModule } from '../prisma/prisma.module';
 
 @Module({
   controllers: [NewsletterContactController],

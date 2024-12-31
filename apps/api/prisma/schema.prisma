@@ -15,6 +15,7 @@ model Survey {
   deletedAt      DateTime?
   title          String           @db.VarChar(255)
   metadata       Json?
+  theme          Json?
   surveyType     SurveyType       @default(POSTPURCHASE)
   SurveyQuestion SurveyQuestion[]
   SurveyResponse SurveyResponse[]

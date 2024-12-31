@@ -28,7 +28,7 @@ export default function SurveyFooter({
         questions={questions}
         currentQuestion={currentQuestion}
       />
-      {process.env.WWW_BASE_URL ? (
+      {process.env.NEXT_PUBLIC_WWW_BASE_URL ? (
         <p className="text-xs text-muted-foreground">
           Powered by{" "}
           <Button
@@ -36,7 +36,9 @@ export default function SurveyFooter({
             variant="link"
             asChild
           >
-            <Link href={process.env.WWW_BASE_URL}>SurveySprout</Link>
+            <Link href={process.env.NEXT_PUBLIC_WWW_BASE_URL}>
+              SurveySprout
+            </Link>
           </Button>
         </p>
       ) : null}

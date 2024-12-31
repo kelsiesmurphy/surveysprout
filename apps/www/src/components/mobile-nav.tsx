@@ -20,7 +20,7 @@ export function MobileNav() {
       <DrawerTrigger asChild>
         <Button
           variant="ghost"
-          className="-ml-2 mr-2 h-8 w-8 px-0 text-base hover:bg-transparent focus-visible:bg-transparent md:hidden"
+          className="h-8 w-8 px-0 text-base hover:bg-transparent focus-visible:bg-transparent md:hidden"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

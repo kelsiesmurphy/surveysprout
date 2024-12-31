@@ -9,12 +9,12 @@ export default async function DashboardLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ survey_slug: string }>;
+  params: Promise<{ survey_id: string }>;
 }) {
-  const surveySlug = (await params).survey_slug;
+  const surveyId = (await params).survey_id;
   return (
     <SidebarProvider>
-      <AppSidebar surveySlug={surveySlug} />
+      <AppSidebar surveyId={surveyId} />
       <main className="flex-1 flex flex-col">
         <SidebarTrigger />
         <section className="flex-1 container py-16">{children}</section>

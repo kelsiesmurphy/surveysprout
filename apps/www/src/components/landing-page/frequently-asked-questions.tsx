@@ -12,7 +12,7 @@ export default function FrequentlyAskedQuestions({
   content: FAQSection;
 }) {
   return (
-    <section className="container text-center flex flex-col gap-16 items-center py-16 md:py-24">
+    <section id="faq" className="container text-center flex flex-col gap-16 items-center py-16 md:py-24">
       <div className="max-w-2xl space-y-6 flex flex-col items-center">
         <h2 className="text-3xl md:text-6xl font-semibold">
           {content.heading}

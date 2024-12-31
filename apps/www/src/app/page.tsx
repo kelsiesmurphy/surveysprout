@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import LandingPage from "../components/landing-page";
+import Footer from "../components/footer";
 
 export const metadata: Metadata = {
   title: "Home | SurveySprout",
@@ -8,5 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default function LandingPageWrapper() {
-  return <LandingPage />;
+  return (
+    <>
+      <LandingPage />
+      <Footer />
+    </>
+  );
 }

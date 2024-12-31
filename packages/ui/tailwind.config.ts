@@ -93,8 +93,12 @@ const config = {
           },
         },
         "infinite-scroll": {
-          from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-50%)" },
+          from: {
+            transform: "translateX(0)",
+          },
+          to: {
+            transform: "translateX(-50%)",
+          },
         },
       },
       animation: {

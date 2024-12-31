@@ -1,5 +1,5 @@
 import { Button } from "@repo/ui/components/ui/button";
-import SurveySproutLogo from "./logo";
+import SurveySproutLogoMark from "./logomark";
 import Link from "next/link";
 import NavItems from "./nav-items";
 import { MobileNav } from "./mobile-nav";
@@ -7,9 +7,9 @@ import { MobileNav } from "./mobile-nav";
 export default function Header() {
   return (
     <header className="container flex justify-between items-center py-6">
-      <Button asChild variant="link">
+      <Button asChild variant="link" className="px-0">
         <Link href="/">
-          <SurveySproutLogo />
+          <SurveySproutLogoMark />
         </Link>
       </Button>
       <nav className="hidden md:flex gap-2">

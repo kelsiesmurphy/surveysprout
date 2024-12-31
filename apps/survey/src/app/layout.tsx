@@ -3,7 +3,7 @@ import "@repo/ui/themes.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "@repo/ui/components/ui/toaster";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "@repo/shared/components/theme-provider";
 import DevTools from "@repo/shared/components/dev-tools";
 
 const inter = Inter({
@@ -22,11 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.className + " min-w-72"}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="light"
           enableSystem
           disableTransitionOnChange
         >

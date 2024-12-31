@@ -23,7 +23,7 @@ describe('ApiKeyMiddleware', () => {
 
   it('should call next() when the API key is valid', () => {
     const validApiKey = 'valid-api-key';
-    process.env.API_KEY = validApiKey;
+    process.env.NEXT_PUBLIC_API_KEY = validApiKey;
 
     const req = mockRequest(validApiKey);
     const res = mockResponse;
@@ -34,7 +34,7 @@ describe('ApiKeyMiddleware', () => {
 
   it('should throw UnauthorizedException when the API key is invalid', () => {
     const validApiKey = 'valid-api-key';
-    process.env.API_KEY = validApiKey;
+    process.env.NEXT_PUBLIC_API_KEY = validApiKey;
 
     const req = mockRequest('invalid-api-key');
     const res = mockResponse;
@@ -46,7 +46,7 @@ describe('ApiKeyMiddleware', () => {
 
   it('should throw UnauthorizedException when no API key is provided', () => {
     const validApiKey = 'valid-api-key';
-    process.env.API_KEY = validApiKey;
+    process.env.NEXT_PUBLIC_API_KEY = validApiKey;
 
     const req = mockRequest(undefined);
     const res = mockResponse;
