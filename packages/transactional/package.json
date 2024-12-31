@@ -1,0 +1,28 @@
+{
+  "name": "transactional",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "email build",
+    "dev": "email dev -p 3004",
+    "export": "email export"
+  },
+  "dependencies": {
+    "@react-email/components": "0.0.31",
+    "@react-email/tailwind": "1.0.4",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "react": "catalog:react18",
+    "react-dom": "catalog:react18"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/react": "catalog:react18",
+    "@types/react-dom": "catalog:react18",
+    "react-email": "3.0.4"
+  },
+  "exports": {
+    "./emails/*": "./emails/**/*.tsx"
+  }
+}
