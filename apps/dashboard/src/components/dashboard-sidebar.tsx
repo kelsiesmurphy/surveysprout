@@ -31,7 +31,7 @@ import { generateSurveyUrl } from "@repo/shared/lib/utils/navigation";
 import { apiCall } from "@repo/shared/lib/api";
 import DashboardSidebarDropdown from "./dashboard-sidebar-dropdown";
 
-export async function AppSidebar({ surveySlug }: { surveySlug: string }) {
+export async function AppSidebar({ surveyId }: { surveyId: string }) {
   // const router = useRouter();
   // const pathname = usePathname();
 
@@ -40,17 +40,17 @@ export async function AppSidebar({ surveySlug }: { surveySlug: string }) {
   const items = [
     {
       title: "Home",
-      url: generateSurveyUrl(surveySlug),
+      url: generateSurveyUrl(surveyId),
       icon: Home,
     },
     {
       title: "Editor",
-      url: generateSurveyUrl(surveySlug, "editor"),
+      url: generateSurveyUrl(surveyId, "editor"),
       icon: FileEditIcon,
     },
     {
       title: "Survey Settings",
-      url: generateSurveyUrl(surveySlug, "survey-settings"),
+      url: generateSurveyUrl(surveyId, "survey-settings"),
       icon: Settings,
     },
   ];
@@ -60,10 +60,7 @@ export async function AppSidebar({ surveySlug }: { surveySlug: string }) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <DashboardSidebarDropdown
-              surveySlug={surveySlug}
-              surveys={surveys}
-            />
+            <DashboardSidebarDropdown surveyId={surveyId} surveys={surveys} />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -87,7 +84,7 @@ export async function AppSidebar({ surveySlug }: { surveySlug: string }) {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <SidebarGroupLabel>Survey ID: {surveySlug}</SidebarGroupLabel>
+        <SidebarGroupLabel>Survey ID: {surveyId}</SidebarGroupLabel>
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>

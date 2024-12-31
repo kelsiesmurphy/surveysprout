@@ -16,20 +16,20 @@ interface Survey {
 }
 
 interface DashboardSidebarDropdownProps {
-  surveySlug: string;
+  surveyId: string;
   surveys: Survey[];
 }
 
 export default function DashboardSidebarDropdown({
-  surveySlug,
+  surveyId,
   surveys,
 }: DashboardSidebarDropdownProps) {
-  const handleSurveyChange = (surveySlug: string) => {
-    redirect(`/${surveySlug}`);
+  const handleSurveyChange = (surveyId: string) => {
+    redirect(`/${surveyId}`);
   };
 
   const surveyName = surveys.find((survey: { id: string }) => {
-    return survey.id === surveySlug;
+    return survey.id === surveyId;
   })?.title;
 
   return (

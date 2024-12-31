@@ -9,14 +9,16 @@ export const metadata: Metadata = {
 export default async function DashboardEditorPage({
   params,
 }: {
-  params: Promise<{ survey_slug: string }>;
+  params: Promise<{ survey_id: string }>;
 }) {
-  const surveySlug = (await params).survey_slug;
+  const surveyId = (await params).survey_id;
   return (
     <>
       <p>Dashboard Survey Editor</p>
       <Button asChild>
-        <Link href={`${process.env.NEXT_PUBLIC_SURVEY_BASE_URL}/${surveySlug}`}>Go to Survey</Link>
+        <Link href={`${process.env.NEXT_PUBLIC_SURVEY_BASE_URL}/${surveyId}`}>
+          Go to Survey
+        </Link>
       </Button>
     </>
   );

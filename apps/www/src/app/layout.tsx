@@ -3,10 +3,9 @@ import "@repo/ui/themes.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Toaster } from "@repo/ui/components/ui/toaster";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "@repo/shared/components/theme-provider";
 import DevTools from "@repo/shared/components/dev-tools";
 import Header from "../components/header";
-import Footer from "../components/footer";
 
 const inter = Inter({
   subsets: ["latin"],
