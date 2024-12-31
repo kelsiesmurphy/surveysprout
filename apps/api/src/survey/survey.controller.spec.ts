@@ -41,6 +41,10 @@ describe('SurveyController', () => {
           productSize: 'SMALL',
           productImage: 'https://fakeimg.pl/300/',
         },
+        theme: {
+          color: 'blue',
+          radius: 0.5,
+        },
         surveyType: 'POSTPURCHASE',
       };
       mockSurveyService.create.mockResolvedValue(createDto);
@@ -62,6 +66,10 @@ describe('SurveyController', () => {
           title: 'Post-purchase Survey Template',
           surveyType: 'POSTPURCHASE',
           metadata: {},
+          theme: {
+            color: 'blue',
+            radius: 0.5,
+          },
         },
       ];
       mockSurveyService.findAll.mockResolvedValue(surveys);
@@ -82,6 +90,10 @@ describe('SurveyController', () => {
         title: 'Post-purchase Survey Template',
         surveyType: 'POSTPURCHASE',
         metadata: {},
+        theme: {
+          color: 'blue',
+          radius: 0.5,
+        },
       };
       mockSurveyService.findOne.mockResolvedValue(survey);
 
@@ -99,6 +111,10 @@ describe('SurveyController', () => {
         ...updateDto,
         surveyType: 'POSTPURCHASE',
         metadata: {},
+        theme: {
+          color: 'blue',
+          radius: 0.5,
+        },
       };
       mockSurveyService.update.mockResolvedValue(updatedSurvey);
 
@@ -118,6 +134,10 @@ describe('SurveyController', () => {
         title: 'Post-purchase Survey Template',
         surveyType: 'POSTPURCHASE',
         metadata: {},
+        theme: {
+          color: 'blue',
+          radius: 0.5,
+        },
       };
       mockSurveyService.remove.mockResolvedValue(survey);
 

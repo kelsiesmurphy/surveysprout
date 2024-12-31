@@ -20,6 +20,9 @@ export class SurveyEntity implements Survey {
   @ApiProperty({ required: false, nullable: true })
   metadata: object;
 
+  @ApiProperty({ required: false, nullable: true })
+  theme: object;
+
   @ApiProperty()
   surveyType: SurveyType;
 }

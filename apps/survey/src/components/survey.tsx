@@ -17,7 +17,7 @@ import SurveyHeader from "~/src/components/survey-header";
 import SurveyError from "~/src/components/survey-error";
 import useLenis from "@repo/shared/hooks/use-lenis";
 
-export default function Survey({ survey }) {
+export default function Survey({ survey }: any) {
   const lenisRef = useLenis();
   const router = useRouter();
 

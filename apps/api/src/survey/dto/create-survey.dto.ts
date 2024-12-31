@@ -8,6 +8,9 @@ export class CreateSurveyDto {
   @ApiProperty({ required: false })
   metadata?: object;
 
+  @ApiProperty({ required: false })
+  theme?: object;
+
   @ApiProperty()
   surveyType: SurveyType;
 }
