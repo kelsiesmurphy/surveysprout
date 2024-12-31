@@ -15,9 +15,6 @@ const SurveySproutLogo = () => {
     return null;
   }
 
-  const textColor =
-    resolvedTheme === "light" ? "#052E16" : "hsl(var(--foreground))";
-
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

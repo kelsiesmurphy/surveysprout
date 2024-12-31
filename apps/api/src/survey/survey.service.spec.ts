@@ -68,6 +68,10 @@ describe('SurveyService', () => {
           title: 'Post-purchase Survey Template',
           surveyType: 'POSTPURCHASE',
           metadata: {},
+          theme: {
+            color: 'blue',
+            radius: 0.5,
+          },
         },
       ];
       mockPrismaService.survey.findMany.mockResolvedValue(surveys);
@@ -88,6 +92,10 @@ describe('SurveyService', () => {
         title: 'Post-purchase Survey Template',
         surveyType: 'POSTPURCHASE',
         metadata: {},
+        theme: {
+          color: 'blue',
+          radius: 0.5,
+        },
       };
       mockPrismaService.survey.findUnique.mockResolvedValue(survey);
 
@@ -111,6 +119,10 @@ describe('SurveyService', () => {
         ...updateDto,
         surveyType: 'POSTPURCHASE',
         metadata: {},
+        theme: {
+          color: 'blue',
+          radius: 0.5,
+        },
       };
       mockPrismaService.survey.update.mockResolvedValue(updatedSurvey);
 
@@ -133,6 +145,10 @@ describe('SurveyService', () => {
         title: 'Post-purchase Survey Template',
         surveyType: 'POSTPURCHASE',
         metadata: {},
+        theme: {
+          color: 'blue',
+          radius: 0.5,
+        },
       };
       mockPrismaService.survey.delete.mockResolvedValue(survey);
 

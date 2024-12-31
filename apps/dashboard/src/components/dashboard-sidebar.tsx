@@ -16,25 +16,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@repo/ui/components/ui/sidebar";
-import {
-  ChevronDown,
-  ChevronUp,
-  FileEditIcon,
-  Home,
-  Settings,
-  User2,
-} from "lucide-react";
-import { redirect } from "next/navigation";
-// import { usePathname, useRouter } from "next/navigation";
-// import { Survey } from "@repo/shared/content/test-data/example-surveys";
+import { ChevronUp, FileEditIcon, Home, Settings, User2 } from "lucide-react";
 import { generateSurveyUrl } from "@repo/shared/lib/utils/navigation";
 import { apiCall } from "@repo/shared/lib/api";
 import DashboardSidebarDropdown from "./dashboard-sidebar-dropdown";
 
 export async function AppSidebar({ surveyId }: { surveyId: string }) {
-  // const router = useRouter();
-  // const pathname = usePathname();
-
   const surveys = await apiCall<any>("GET", "/survey");
 
   const items = [
