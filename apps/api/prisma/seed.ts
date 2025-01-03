@@ -4,6 +4,7 @@ const prisma = new PrismaClient();
 
 const main = async () => {
   console.log('Clearing database...');
+  await prisma.user.deleteMany();
   await prisma.surveyQuestion.deleteMany();
   await prisma.survey.deleteMany();
   await prisma.exampleBusinessProduct.deleteMany();
@@ -12,6 +13,20 @@ const main = async () => {
   console.log('Database cleared.');
 
   console.time('Seeding complete 🌱');
+
+  // Create sample users
+  console.log('Creating users...');
+  const adminUser = await prisma.user.create({
+    data: {
+      email: 'admin@example.com',
+      password: 'securepassword123',
+      hashedRefreshToken: null,
+      name: 'Admin User',
+      role: 'ADMIN',
+    },
+  });
+
+  console.log('Users created:', adminUser);
 
   const FellowHumansExampleBusiness = await prisma.exampleBusiness.create({
     data: {
@@ -70,6 +85,7 @@ const main = async () => {
         radius: 0.5,
       },
       surveyType: 'POSTPURCHASE',
+      userId: adminUser.id,
     },
   });
 
@@ -185,6 +201,7 @@ const main = async () => {
         radius: 1,
       },
       surveyType: 'POSTPURCHASE',
+      userId: adminUser.id,
     },
   });
 

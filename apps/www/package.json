@@ -20,6 +20,7 @@
     "@types/react-dom": "catalog:react18",
     "autoprefixer": "catalog:",
     "eslint": "catalog:",
+    "jose": "^5.9.6",
     "lenis": "catalog:",
     "lucide-react": "catalog:",
     "motion": "^11.13.1",

@@ -9,33 +9,28 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  email     String    @unique
-  password  String? // Nullable for magic link or social login
-  name      String?
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  sessions  Session[]
-}
-
-model Session {
-  id        String   @id @default(uuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  token     String   @unique
-  createdAt DateTime @default(now())
-  expiresAt DateTime
+  id                 String   @id @default(uuid())
+  email              String   @unique
+  password           String?
+  name               String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  hashedRefreshToken String?
+  role               Role     @default(USER)
+  surveys            Survey[]
 }
 
 model Survey {
-  id             Int              @id @default(autoincrement())
+  id             String           @id @default(uuid())
   createdAt      DateTime         @default(now())
   updatedAt      DateTime?        @updatedAt
   deletedAt      DateTime?
   title          String           @db.VarChar(255)
   metadata       Json?
-  theme          Json?
   surveyType     SurveyType       @default(POSTPURCHASE)
+  theme          Json?
+  userId         String?
+  user           User?            @relation(fields: [userId], references: [id])
   SurveyQuestion SurveyQuestion[]
   SurveyResponse SurveyResponse[]
 }
@@ -43,25 +38,25 @@ model Survey {
 model SurveyQuestion {
   id           Int            @id @default(autoincrement())
   createdAt    DateTime       @default(now())
-  updatedAt    DateTime?      @updatedAt
-  deletedAt    DateTime?
-  surveyId     Int
+  surveyId     String
   fieldName    String
   title        String
   subtitle     String
   icon         String
   questionType QuestionType
   options      Json[]
-  survey       Survey         @relation(fields: [surveyId], references: [id])
+  deletedAt    DateTime?
+  updatedAt    DateTime?      @updatedAt
   SurveyAnswer SurveyAnswer[]
+  survey       Survey         @relation(fields: [surveyId], references: [id])
 }
 
 model SurveyResponse {
   id           Int            @id @default(autoincrement())
   createdAt    DateTime       @default(now())
-  updatedAt    DateTime?      @updatedAt
   deletedAt    DateTime?
-  surveyId     Int
+  surveyId     String
+  updatedAt    DateTime?      @updatedAt
   SurveyAnswer SurveyAnswer[]
   survey       Survey         @relation(fields: [surveyId], references: [id])
 }
@@ -69,18 +64,18 @@ model SurveyResponse {
 model SurveyAnswer {
   id               Int            @id @default(autoincrement())
   createdAt        DateTime       @default(now())
-  updatedAt        DateTime?      @updatedAt
-  deletedAt        DateTime?
   surveyResponseId Int
   surveyQuestionId Int
   textAnswer       String?
   sliderValue      Int?
+  deletedAt        DateTime?
+  updatedAt        DateTime?      @updatedAt
   surveyQuestion   SurveyQuestion @relation(fields: [surveyQuestionId], references: [id])
   surveyResponse   SurveyResponse @relation(fields: [surveyResponseId], references: [id])
 }
 
 model ExampleBusiness {
-  id                     Int                      @id @default(autoincrement())
+  id                     String                   @id @default(uuid())
   name                   String                   @db.VarChar(255)
   theme                  Json
   logoUrl                String
@@ -88,8 +83,8 @@ model ExampleBusiness {
 }
 
 model ExampleBusinessProduct {
-  id                Int                         @id @default(autoincrement())
-  exampleBusinessId Int
+  id                String                      @id @default(uuid())
+  exampleBusinessId String
   name              String                      @db.VarChar(255)
   description       String
   size              ExampleBusinessProductSize?
@@ -98,9 +93,9 @@ model ExampleBusinessProduct {
 }
 
 model NewsletterContact {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime? @default(now())
+  id        String    @id @default(uuid())
   email     String    @unique
+  createdAt DateTime? @default(now())
 }
 
 enum ExampleBusinessProductSize {
@@ -117,4 +112,10 @@ enum QuestionType {
 
 enum SurveyType {
   POSTPURCHASE
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+  USER
 }

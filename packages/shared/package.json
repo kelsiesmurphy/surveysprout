@@ -31,6 +31,7 @@
       "./src/content/*.ts",
       "./src/content/*.tsx"
     ],
-    "./components/*": "./src/components/*.tsx"
+    "./components/*": "./src/components/*.tsx",
+    "./context/*": "./src/context/*.tsx"
   }
 }

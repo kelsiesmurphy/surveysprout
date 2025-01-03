@@ -18,6 +18,8 @@ import { useToast } from "@repo/ui/hooks/use-toast";
 import Link from "next/link";
 import { ForgotPaswordModal } from "./forgot-password";
 import GoogleSignOn from "./google-sign-on";
+import { useAuth } from "@repo/shared/context/auth-provider";
+import { useState } from "react";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -28,6 +30,8 @@ const formSchema = z.object({
 
 export function LoginForm() {
   const { toast } = useToast();
+  const { login } = useAuth();
+  const [error, setError] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -37,12 +41,16 @@ export function LoginForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something
-    console.log(values);
-    toast({
-      description: "You have successfully logged in.",
-    });
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      setError(null);
+      await login(values.email, values.password);
+      toast({
+        description: "You have successfully logged in.",
+      });
+    } catch (err) {
+      setError("Invalid email or password.");
+    }
   }
 
   return (
@@ -94,6 +102,7 @@ export function LoginForm() {
           Sign in
         </Button>
         <GoogleSignOn />
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <p className="text-sm text-muted-foreground text-center">
           Don't have an account?{" "}
           <Button variant="link" className="px-0" asChild>
