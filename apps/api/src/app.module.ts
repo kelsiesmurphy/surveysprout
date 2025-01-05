@@ -1,19 +1,20 @@
-import { Module, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { ApiKeyMiddleware } from './middleware/api-key/api-key.middleware';
-import { SurveyModule } from './survey/survey.module';
 import { AppService } from './app.service';
+import { PrismaService } from './prisma/prisma.service';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import { ConfigModule } from '@nestjs/config';
+import { NewsletterContactModule } from './newsletter-contact/newsletter-contact.module';
+import { SurveyAnswerModule } from './survey-answer/survey-answer.module';
 import { SurveyQuestionModule } from './survey-question/survey-question.module';
 import { SurveyResponseModule } from './survey-response/survey-response.module';
-import { SurveyAnswerModule } from './survey-answer/survey-answer.module';
-import { NewsletterContactModule } from './newsletter-contact/newsletter-contact.module';
-import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
+import { SurveyModule } from './survey/survey.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    AuthModule,
+    UserModule,
     SurveyModule,
     SurveyQuestionModule,
     SurveyResponseModule,
@@ -21,15 +22,9 @@ import { AuthModule } from './auth/auth.module';
     NewsletterContactModule,
     AuthModule,
     UserModule,
+    ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, PrismaService],
 })
-export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(ApiKeyMiddleware)
-      .exclude('auth/*', 'user/*')
-      .forRoutes({ path: '*', method: RequestMethod.ALL });
-  }
-}
+export class AppModule {}

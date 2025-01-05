@@ -11,7 +11,8 @@
     "@repo/ui": "workspace:*",
     "lenis": "catalog:",
     "lucide-react": "catalog:",
-    "next-themes": "catalog:"
+    "next-themes": "catalog:",
+    "jose": "^5.9.6"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

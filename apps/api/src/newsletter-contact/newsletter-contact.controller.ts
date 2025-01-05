@@ -15,12 +15,10 @@ import {
   ApiCreatedResponse,
   ApiOkResponse,
   ApiOperation,
-  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
 import { NewsletterContactEntity } from './entities/newsletter-contact.entity';
 
-@ApiSecurity('x-api-key')
 @Controller('newsletter-contact')
 @ApiTags('Newsletter Contacts')
 export class NewsletterContactController {

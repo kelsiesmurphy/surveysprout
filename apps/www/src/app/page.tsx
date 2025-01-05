@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import LandingPage from "../components/landing-page";
 import Footer from "../components/footer";
-import { getSession } from "../lib/session";
+import { getSession, redirectToLogin } from "../lib/adapters/session-adapter";
 
 export const metadata: Metadata = {
   title: "Home | SurveySprout",
@@ -11,6 +11,9 @@ export const metadata: Metadata = {
 
 export default async function LandingPageWrapper() {
   const session = await getSession();
+  if (!session) {
+    redirectToLogin();
+  }
   console.log({ session });
 
   return (

@@ -12,7 +12,6 @@ async function bootstrap() {
   const port = process.env.PORT;
 
   const config = new DocumentBuilder()
-    .addApiKey({ type: 'apiKey', name: 'x-api-key', in: 'header' }, 'x-api-key')
     .setTitle('SurveySprout API')
     .setDescription(
       'The API for the SurveySprout application, built in NestJS with Prisma. Connects to a PostgreSQL database hosted on Azure. Built by Kelsie Murphy',

@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { BACKEND_URL } from "./constants";
-import { createSession } from "./session";
+import { createSession } from "./adapters/session-adapter";
 
 export async function signUp(
   email: string,
@@ -18,7 +18,7 @@ export async function signUp(
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password }), // Send email and password directly
+    body: JSON.stringify({ email, password }),
   });
 
   if (response.ok) {
@@ -36,10 +36,9 @@ export async function signUp(
 }
 
 export async function signIn(
-  email: string, // Accept email directly
-  password: string, // Accept password directly
+  email: string,
+  password: string,
 ): Promise<{ message?: string; error?: string }> {
-  // Validate the fields if necessary, assuming you're using zod on the client already
   const validationResponse = validateLoginFields(email, password);
   if (!validationResponse.isValid) {
     return {
@@ -52,12 +51,11 @@ export async function signIn(
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password }), // Send email and password directly
+    body: JSON.stringify({ email, password }),
   });
 
   if (response.ok) {
     const result = await response.json();
-    // Create a session with the returned user data
     await createSession({
       user: {
         id: result.id,
@@ -67,7 +65,7 @@ export async function signIn(
       accessToken: result.accessToken,
       refreshToken: result.refreshToken,
     });
-    redirect("/"); // Redirect to the homepage (or wherever you'd like)
+    redirect("/");
   } else {
     return {
       message:
@@ -77,7 +75,6 @@ export async function signIn(
 }
 
 function validateLoginFields(email: string, password: string) {
-  // You can add more specific validation if needed (e.g., regex for email)
   if (!email || !password) {
     return { isValid: false, error: "Both email and password are required." };
   }
@@ -101,7 +98,6 @@ export const refreshToken = async (oldRefreshToken: string) => {
     }
 
     const { accessToken, refreshToken } = await response.json();
-    // update session with new tokens
     const updateRes = await fetch(
       `${process.env.NEXT_PUBLIC_WWW_BASE_URL}/api/auth/update`,
       {

@@ -15,12 +15,10 @@ import {
   ApiCreatedResponse,
   ApiOkResponse,
   ApiOperation,
-  ApiSecurity,
   ApiTags,
 } from '@nestjs/swagger';
 import { SurveyEntity } from './entities/survey.entity';
 
-@ApiSecurity('x-api-key')
 @Controller('survey')
 @ApiTags('Surveys')
 export class SurveyController {
