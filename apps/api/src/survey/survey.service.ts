@@ -15,18 +15,18 @@ export class SurveyService {
     return this.prisma.survey.findMany();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.prisma.survey.findUnique({ where: { id } });
   }
 
-  update(id: number, updateSurveyDto: UpdateSurveyDto) {
+  update(id: string, updateSurveyDto: UpdateSurveyDto) {
     return this.prisma.survey.update({
       where: { id },
       data: updateSurveyDto,
     });
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.prisma.survey.delete({ where: { id } });
   }
 }

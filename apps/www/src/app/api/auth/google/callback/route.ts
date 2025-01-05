@@ -1,8 +1,7 @@
-import { createSession } from "@/lib/session";
-import { Role } from "@/lib/type";
+import { createSession } from "~/src/lib/session";
+import { Role } from "~/src/lib/type";
 import { redirect } from "next/navigation";
 import { NextRequest } from "next/server";
-import { use } from "react";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);

@@ -44,7 +44,7 @@ export class SurveyController {
   @ApiOperation({ summary: 'Get a survey' })
   @ApiOkResponse({ type: SurveyEntity })
   async findOne(@Param('id') id: string): Promise<SurveyModel> {
-    return this.surveyService.findOne(+id);
+    return this.surveyService.findOne(id);
   }
 
   @Patch(':id')
@@ -54,13 +54,13 @@ export class SurveyController {
     @Param('id') id: string,
     @Body() updateSurveyDto: UpdateSurveyDto,
   ): Promise<SurveyModel> {
-    return this.surveyService.update(+id, updateSurveyDto);
+    return this.surveyService.update(id, updateSurveyDto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a survey' })
   @ApiOkResponse({ type: SurveyEntity })
   async remove(@Param('id') id: string): Promise<SurveyModel> {
-    return this.surveyService.remove(+id);
+    return this.surveyService.remove(id);
   }
 }

@@ -5,7 +5,6 @@ import { Inter } from "next/font/google";
 import { Toaster } from "@repo/ui/components/ui/toaster";
 import { ThemeProvider } from "@repo/shared/components/theme-provider";
 import DevTools from "@repo/shared/components/dev-tools";
-import { AuthProvider } from "@repo/shared/context/auth-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,18 +24,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.className + " min-w-72"}>
-        <AuthProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <main>{children}</main>
-            <Toaster />
-            <DevTools />
-          </ThemeProvider>
-        </AuthProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main>{children}</main>
+          <Toaster />
+          <DevTools />
+        </ThemeProvider>
       </body>
     </html>
   );

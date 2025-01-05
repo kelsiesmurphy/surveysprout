@@ -46,6 +46,7 @@ describe('SurveyService', () => {
           productImage: 'https://fakeimg.pl/300/',
         },
         surveyType: 'POSTPURCHASE',
+        userId: '123',
       };
       mockPrismaService.survey.create.mockResolvedValue(createDto);
 
@@ -61,7 +62,7 @@ describe('SurveyService', () => {
     it('should return all surveys', async () => {
       const surveys: SurveyModel[] = [
         {
-          id: 1,
+          id: 'abc',
           createdAt: new Date(),
           updatedAt: new Date(),
           deletedAt: null,
@@ -72,6 +73,7 @@ describe('SurveyService', () => {
             color: 'blue',
             radius: 0.5,
           },
+          userId: '123',
         },
       ];
       mockPrismaService.survey.findMany.mockResolvedValue(surveys);
@@ -85,7 +87,7 @@ describe('SurveyService', () => {
   describe('findOne', () => {
     it('should return a single survey by id', async () => {
       const survey: SurveyModel = {
-        id: 1,
+        id: 'abc',
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null,
@@ -96,13 +98,14 @@ describe('SurveyService', () => {
           color: 'blue',
           radius: 0.5,
         },
+        userId: '123',
       };
       mockPrismaService.survey.findUnique.mockResolvedValue(survey);
 
-      const result = await surveyService.findOne(1);
+      const result = await surveyService.findOne('abc');
       expect(result).toEqual(survey);
       expect(mockPrismaService.survey.findUnique).toHaveBeenCalledWith({
-        where: { id: 1 },
+        where: { id: 'abc' },
       });
     });
   });
@@ -111,7 +114,7 @@ describe('SurveyService', () => {
     it('should update a survey and return it', async () => {
       const updateDto: UpdateSurveyDto = { title: 'Updated Survey Title' };
       const updatedSurvey: SurveyModel = {
-        id: 1,
+        id: 'abc',
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null,
@@ -123,13 +126,14 @@ describe('SurveyService', () => {
           color: 'blue',
           radius: 0.5,
         },
+        userId: '123',
       };
       mockPrismaService.survey.update.mockResolvedValue(updatedSurvey);
 
-      const result = await surveyService.update(1, updateDto);
+      const result = await surveyService.update('abc', updateDto);
       expect(result).toEqual(updatedSurvey);
       expect(mockPrismaService.survey.update).toHaveBeenCalledWith({
-        where: { id: 1 },
+        where: { id: 'abc' },
         data: updateDto,
       });
     });
@@ -138,7 +142,7 @@ describe('SurveyService', () => {
   describe('remove', () => {
     it('should remove a survey and return it', async () => {
       const survey: SurveyModel = {
-        id: 1,
+        id: 'abc',
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null,
@@ -149,13 +153,14 @@ describe('SurveyService', () => {
           color: 'blue',
           radius: 0.5,
         },
+        userId: '123',
       };
       mockPrismaService.survey.delete.mockResolvedValue(survey);
 
-      const result = await surveyService.remove(1);
+      const result = await surveyService.remove('abc');
       expect(result).toEqual(survey);
       expect(mockPrismaService.survey.delete).toHaveBeenCalledWith({
-        where: { id: 1 },
+        where: { id: 'abc' },
       });
     });
   });

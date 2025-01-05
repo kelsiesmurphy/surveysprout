@@ -60,7 +60,7 @@ describe('NewsletterContactController', () => {
     it('should return an array of newsletterContacts', async () => {
       const newsletterContacts: NewsletterContactModel[] = [
         {
-          id: 1,
+          id: 'abc',
           createdAt: new Date(),
           email: 'johndoe@email.com',
         },
@@ -78,15 +78,15 @@ describe('NewsletterContactController', () => {
   describe('findOne', () => {
     it('should return a single newsletterContact by id', async () => {
       const newsletterContact: NewsletterContactModel = {
-        id: 1,
+        id: 'abc',
         createdAt: new Date(),
         email: 'johndoe@email.com',
       };
       mockNewsletterContactService.findOne.mockResolvedValue(newsletterContact);
 
-      const result = await newsletterContactController.findOne('1');
+      const result = await newsletterContactController.findOne('abc');
       expect(result).toEqual(newsletterContact);
-      expect(mockNewsletterContactService.findOne).toHaveBeenCalledWith(1);
+      expect(mockNewsletterContactService.findOne).toHaveBeenCalledWith('abc');
     });
   });
 
@@ -96,16 +96,16 @@ describe('NewsletterContactController', () => {
         email: 'johndoe@email.com',
       };
       const updatedSurvey = {
-        id: 1,
+        id: 'abc',
         ...updateDto,
         email: 'johndoe@email.com',
       };
       mockNewsletterContactService.update.mockResolvedValue(updatedSurvey);
 
-      const result = await newsletterContactController.update('1', updateDto);
+      const result = await newsletterContactController.update('abc', updateDto);
       expect(result).toEqual(updatedSurvey);
       expect(mockNewsletterContactService.update).toHaveBeenCalledWith(
-        1,
+        'abc',
         updateDto,
       );
     });
@@ -114,15 +114,15 @@ describe('NewsletterContactController', () => {
   describe('remove', () => {
     it('should remove a newsletterContact and return it', async () => {
       const newsletterContact: NewsletterContactModel = {
-        id: 1,
+        id: 'abc',
         createdAt: new Date(),
         email: 'johndoe@email.com',
       };
       mockNewsletterContactService.remove.mockResolvedValue(newsletterContact);
 
-      const result = await newsletterContactController.remove('1');
+      const result = await newsletterContactController.remove('abc');
       expect(result).toEqual(newsletterContact);
-      expect(mockNewsletterContactService.remove).toHaveBeenCalledWith(1);
+      expect(mockNewsletterContactService.remove).toHaveBeenCalledWith('abc');
     });
   });
 });

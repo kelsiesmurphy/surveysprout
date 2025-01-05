@@ -15,5 +15,5 @@ export class SurveyResponseEntity implements SurveyResponse {
   deletedAt: Date;
 
   @ApiProperty()
-  surveyId: number;
+  surveyId: string;
 }

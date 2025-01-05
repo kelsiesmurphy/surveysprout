@@ -57,7 +57,7 @@ describe('NewsletterContactService', () => {
     it('should return all newsletterContact', async () => {
       const newsletterContact: NewsletterContactModel[] = [
         {
-          id: 1,
+          id: 'abc',
           createdAt: new Date(),
           email: 'johndoe@email.com',
         },
@@ -75,7 +75,7 @@ describe('NewsletterContactService', () => {
   describe('findOne', () => {
     it('should return a single newsletterContact by id', async () => {
       const newsletterContact: NewsletterContactModel = {
-        id: 1,
+        id: 'abc',
         createdAt: new Date(),
         email: 'johndoe@email.com',
       };
@@ -83,12 +83,12 @@ describe('NewsletterContactService', () => {
         newsletterContact,
       );
 
-      const result = await newsletterContactService.findOne(1);
+      const result = await newsletterContactService.findOne('abc');
       expect(result).toEqual(newsletterContact);
       expect(
         mockPrismaService.newsletterContact.findUnique,
       ).toHaveBeenCalledWith({
-        where: { id: 1 },
+        where: { id: 'abc' },
       });
     });
   });
@@ -99,7 +99,7 @@ describe('NewsletterContactService', () => {
         email: 'johndoe@email.com',
       };
       const updatedNewsletterContact: NewsletterContactModel = {
-        id: 1,
+        id: 'abc',
         createdAt: new Date(),
         email: 'johndoe@email.com',
         ...updateDto,
@@ -108,10 +108,10 @@ describe('NewsletterContactService', () => {
         updatedNewsletterContact,
       );
 
-      const result = await newsletterContactService.update(1, updateDto);
+      const result = await newsletterContactService.update('abc', updateDto);
       expect(result).toEqual(updatedNewsletterContact);
       expect(mockPrismaService.newsletterContact.update).toHaveBeenCalledWith({
-        where: { id: 1 },
+        where: { id: 'abc' },
         data: updateDto,
       });
     });
@@ -120,7 +120,7 @@ describe('NewsletterContactService', () => {
   describe('remove', () => {
     it('should remove a newsletterContact and return it', async () => {
       const newsletterContact: NewsletterContactModel = {
-        id: 1,
+        id: 'abc',
         createdAt: new Date(),
         email: 'johndoe@email.com',
       };
@@ -128,10 +128,10 @@ describe('NewsletterContactService', () => {
         newsletterContact,
       );
 
-      const result = await newsletterContactService.remove(1);
+      const result = await newsletterContactService.remove('abc');
       expect(result).toEqual(newsletterContact);
       expect(mockPrismaService.newsletterContact.delete).toHaveBeenCalledWith({
-        where: { id: 1 },
+        where: { id: 'abc' },
       });
     });
   });

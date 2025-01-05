@@ -17,18 +17,18 @@ export class NewsletterContactService {
     return this.prisma.newsletterContact.findMany();
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return this.prisma.newsletterContact.findUnique({ where: { id } });
   }
 
-  update(id: number, updateNewsletterContactDto: UpdateNewsletterContactDto) {
+  update(id: string, updateNewsletterContactDto: UpdateNewsletterContactDto) {
     return this.prisma.newsletterContact.update({
       where: { id },
       data: updateNewsletterContactDto,
     });
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.prisma.newsletterContact.delete({ where: { id } });
   }
 }

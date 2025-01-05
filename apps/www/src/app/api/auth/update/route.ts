@@ -1,4 +1,4 @@
-import { updateTokens } from "@/lib/session";
+import { updateTokens } from "~/src/lib/session";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {

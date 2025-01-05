@@ -3,7 +3,7 @@ import { QuestionType } from '@prisma/client';
 
 export class CreateSurveyQuestionDto {
   @ApiProperty()
-  surveyId: number;
+  surveyId: string;
 
   @ApiProperty()
   fieldName: string;

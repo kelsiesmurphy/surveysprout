@@ -8,7 +8,7 @@ export async function apiCall<T>(
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
     "x-api-key":
-      "kOhCGX0kt1faJfjVEIWfeyC5AURnoICDUwt7TaMd2B36xLvYxaOb3Jnx166DCmPM",
+      "J9Hw8SZemyuT6eh9Iy4RQ2yTTTaOu8VQN7Ghe6b+cEE=",
   };
 
   try {

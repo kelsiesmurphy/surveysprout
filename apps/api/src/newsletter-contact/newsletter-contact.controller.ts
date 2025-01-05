@@ -48,7 +48,7 @@ export class NewsletterContactController {
   @ApiOperation({ summary: 'Get a newsletter contact' })
   @ApiOkResponse({ type: NewsletterContactEntity })
   async findOne(@Param('id') id: string): Promise<NewsletterContactModel> {
-    return this.newsletterContactService.findOne(+id);
+    return this.newsletterContactService.findOne(id);
   }
 
   @Patch(':id')
@@ -58,16 +58,13 @@ export class NewsletterContactController {
     @Param('id') id: string,
     @Body() updateNewsletterContactDto: UpdateNewsletterContactDto,
   ): Promise<NewsletterContactModel> {
-    return this.newsletterContactService.update(
-      +id,
-      updateNewsletterContactDto,
-    );
+    return this.newsletterContactService.update(id, updateNewsletterContactDto);
   }
 
   @Delete(':id')
   @ApiOperation({ summary: 'Delete a newsletter contact' })
   @ApiOkResponse({ type: NewsletterContactEntity })
   async remove(@Param('id') id: string): Promise<NewsletterContactModel> {
-    return this.newsletterContactService.remove(+id);
+    return this.newsletterContactService.remove(id);
   }
 }

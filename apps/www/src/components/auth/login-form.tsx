@@ -18,8 +18,8 @@ import { useToast } from "@repo/ui/hooks/use-toast";
 import Link from "next/link";
 import { ForgotPaswordModal } from "./forgot-password";
 import GoogleSignOn from "./google-sign-on";
-import { useAuth } from "@repo/shared/context/auth-provider";
 import { useState } from "react";
+import { signIn } from "~/src/lib/auth";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -30,7 +30,6 @@ const formSchema = z.object({
 
 export function LoginForm() {
   const { toast } = useToast();
-  const { login } = useAuth();
   const [error, setError] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -44,7 +43,7 @@ export function LoginForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setError(null);
-      await login(values.email, values.password);
+      await signIn(values.email, values.password);
       toast({
         description: "You have successfully logged in.",
       });

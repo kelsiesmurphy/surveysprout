@@ -29,6 +29,7 @@ export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(ApiKeyMiddleware)
+      .exclude('auth/*', 'user/*')
       .forRoutes({ path: '*', method: RequestMethod.ALL });
   }
 }

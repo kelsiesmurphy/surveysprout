@@ -6,7 +6,7 @@ export class NewsletterContactEntity implements NewsletterContact {
   createdAt: Date;
 
   @ApiProperty()
-  id: number;
+  id: string;
 
   @ApiProperty()
   email: string;

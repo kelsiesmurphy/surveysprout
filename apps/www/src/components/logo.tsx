@@ -1,10 +1,8 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
 
 const SurveySproutLogo = () => {
-  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

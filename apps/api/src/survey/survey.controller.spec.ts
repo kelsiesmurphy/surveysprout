@@ -46,6 +46,7 @@ describe('SurveyController', () => {
           radius: 0.5,
         },
         surveyType: 'POSTPURCHASE',
+        userId: '123',
       };
       mockSurveyService.create.mockResolvedValue(createDto);
 
@@ -59,12 +60,13 @@ describe('SurveyController', () => {
     it('should return an array of surveys', async () => {
       const surveys: SurveyModel[] = [
         {
-          id: 1,
+          id: '123',
           createdAt: new Date(),
           updatedAt: new Date(),
           deletedAt: null,
           title: 'Post-purchase Survey Template',
           surveyType: 'POSTPURCHASE',
+          userId: '123',
           metadata: {},
           theme: {
             color: 'blue',
@@ -83,12 +85,13 @@ describe('SurveyController', () => {
   describe('findOne', () => {
     it('should return a single survey by id', async () => {
       const survey: SurveyModel = {
-        id: 1,
+        id: '123',
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null,
         title: 'Post-purchase Survey Template',
         surveyType: 'POSTPURCHASE',
+        userId: '123',
         metadata: {},
         theme: {
           color: 'blue',
@@ -97,9 +100,9 @@ describe('SurveyController', () => {
       };
       mockSurveyService.findOne.mockResolvedValue(survey);
 
-      const result = await surveyController.findOne('1');
+      const result = await surveyController.findOne('abc');
       expect(result).toEqual(survey);
-      expect(mockSurveyService.findOne).toHaveBeenCalledWith(1);
+      expect(mockSurveyService.findOne).toHaveBeenCalledWith('abc');
     });
   });
 
@@ -107,9 +110,10 @@ describe('SurveyController', () => {
     it('should update a survey and return it', async () => {
       const updateDto: UpdateSurveyDto = { title: 'Updated Survey Title' };
       const updatedSurvey = {
-        id: 1,
+        id: '123',
         ...updateDto,
         surveyType: 'POSTPURCHASE',
+        userId: '123',
         metadata: {},
         theme: {
           color: 'blue',
@@ -118,21 +122,22 @@ describe('SurveyController', () => {
       };
       mockSurveyService.update.mockResolvedValue(updatedSurvey);
 
-      const result = await surveyController.update('1', updateDto);
+      const result = await surveyController.update('123', updateDto);
       expect(result).toEqual(updatedSurvey);
-      expect(mockSurveyService.update).toHaveBeenCalledWith(1, updateDto);
+      expect(mockSurveyService.update).toHaveBeenCalledWith('abc', updateDto);
     });
   });
 
   describe('remove', () => {
     it('should remove a survey and return it', async () => {
       const survey: SurveyModel = {
-        id: 1,
+        id: '123',
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null,
         title: 'Post-purchase Survey Template',
         surveyType: 'POSTPURCHASE',
+        userId: '123',
         metadata: {},
         theme: {
           color: 'blue',
@@ -141,9 +146,9 @@ describe('SurveyController', () => {
       };
       mockSurveyService.remove.mockResolvedValue(survey);
 
-      const result = await surveyController.remove('1');
+      const result = await surveyController.remove('abc');
       expect(result).toEqual(survey);
-      expect(mockSurveyService.remove).toHaveBeenCalledWith(1);
+      expect(mockSurveyService.remove).toHaveBeenCalledWith('abc');
     });
   });
 });

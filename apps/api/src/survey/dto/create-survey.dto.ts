@@ -13,4 +13,7 @@ export class CreateSurveyDto {
 
   @ApiProperty()
   surveyType: SurveyType;
+
+  @ApiProperty()
+  userId: string;
 }

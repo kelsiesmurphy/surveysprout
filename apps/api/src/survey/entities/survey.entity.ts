@@ -12,7 +12,7 @@ export class SurveyEntity implements Survey {
   deletedAt: Date;
 
   @ApiProperty()
-  id: number;
+  id: string;
 
   @ApiProperty()
   title: string;
@@ -25,4 +25,7 @@ export class SurveyEntity implements Survey {
 
   @ApiProperty()
   surveyType: SurveyType;
+
+  @ApiProperty()
+  userId: string;
 }

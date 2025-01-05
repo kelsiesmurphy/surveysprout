@@ -41,7 +41,7 @@ describe('SurveyResponseService', () => {
   describe('create', () => {
     it('should create a new surveyResponse', async () => {
       const createDto: CreateSurveyResponseDto = {
-        surveyId: 1,
+        surveyId: 'abc',
       };
       mockPrismaService.surveyResponse.create.mockResolvedValue(createDto);
 
@@ -61,7 +61,7 @@ describe('SurveyResponseService', () => {
           createdAt: new Date(),
           updatedAt: new Date(),
           deletedAt: null,
-          surveyId: 1,
+          surveyId: 'abc',
         },
       ];
       mockPrismaService.surveyResponse.findMany.mockResolvedValue(
@@ -81,7 +81,7 @@ describe('SurveyResponseService', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null,
-        surveyId: 1,
+        surveyId: 'abc',
       };
       mockPrismaService.surveyResponse.findUnique.mockResolvedValue(
         surveyResponse,
@@ -98,7 +98,7 @@ describe('SurveyResponseService', () => {
   describe('update', () => {
     it('should update a surveyResponse and return it', async () => {
       const updateDto: UpdateSurveyResponseDto = {
-        surveyId: 2,
+        surveyId: 'def',
       };
       const updatedSurvey: SurveyResponseModel = {
         id: 1,
@@ -106,7 +106,7 @@ describe('SurveyResponseService', () => {
         updatedAt: new Date(),
         deletedAt: null,
         ...updateDto,
-        surveyId: 1,
+        surveyId: 'abc',
       };
       mockPrismaService.surveyResponse.update.mockResolvedValue(updatedSurvey);
 
@@ -126,7 +126,7 @@ describe('SurveyResponseService', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null,
-        surveyId: 1,
+        surveyId: 'abc',
       };
       mockPrismaService.surveyResponse.delete.mockResolvedValue(surveyResponse);
 

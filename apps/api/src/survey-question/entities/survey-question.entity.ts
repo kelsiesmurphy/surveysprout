@@ -15,7 +15,7 @@ export class SurveyQuestionEntity implements SurveyQuestion {
   deletedAt: Date;
 
   @ApiProperty()
-  surveyId: number;
+  surveyId: string;
 
   @ApiProperty()
   fieldName: string;

@@ -17,6 +17,7 @@ import SurveySproutLogo from "../logo";
 import { useToast } from "@repo/ui/hooks/use-toast";
 import Link from "next/link";
 import GoogleSignOn from "./google-sign-on";
+import { signUp } from "~/src/lib/auth";
 
 const formSchema = z
   .object({
@@ -50,12 +51,27 @@ export function SignupForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something
-    console.log(values);
-    toast({
-      description: "You have successfully logged in.",
-    });
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const { email, password } = values; // Extract email and password
+      const response = await signUp(email, password); // Call the signUp function
+
+      if (response.error) {
+        toast({
+          description: response.error,
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          description: "Account created successfully. Please log in.",
+        });
+      }
+    } catch (err) {
+      toast({
+        description: "An unexpected error occurred.",
+        variant: "destructive",
+      });
+    }
   }
 
   return (

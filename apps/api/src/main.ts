@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
 
 declare const module: {
   hot: { accept: () => void; dispose: (arg0: () => Promise<void>) => void };
@@ -22,6 +23,12 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, documentFactory);
 
   await app.listen(port ?? 3333);
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+      whitelist: true,
+    }),
+  );
   console.log(`Application is running on: http://localhost:${port}`);
 
   if (module.hot) {

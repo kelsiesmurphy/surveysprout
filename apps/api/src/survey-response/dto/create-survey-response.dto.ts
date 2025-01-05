@@ -2,5 +2,5 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateSurveyResponseDto {
   @ApiProperty()
-  surveyId: number;
+  surveyId: string;
 }

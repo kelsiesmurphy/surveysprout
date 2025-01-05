@@ -41,7 +41,7 @@ describe('SurveyResponseController', () => {
   describe('create', () => {
     it('should create a new surveyResponse', async () => {
       const createDto: CreateSurveyResponseDto = {
-        surveyId: 1,
+        surveyId: 'abc',
       };
       mockSurveyResponseService.create.mockResolvedValue(createDto);
 
@@ -59,7 +59,7 @@ describe('SurveyResponseController', () => {
           createdAt: new Date(),
           updatedAt: new Date(),
           deletedAt: null,
-          surveyId: 1,
+          surveyId: 'abc',
         },
       ];
       mockSurveyResponseService.findAll.mockResolvedValue(surveyResponses);
@@ -77,7 +77,7 @@ describe('SurveyResponseController', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null,
-        surveyId: 1,
+        surveyId: 'abc',
       };
       mockSurveyResponseService.findOne.mockResolvedValue(surveyResponse);
 
@@ -90,7 +90,7 @@ describe('SurveyResponseController', () => {
   describe('update', () => {
     it('should update a surveyResponse and return it', async () => {
       const updateDto: UpdateSurveyResponseDto = {
-        surveyId: 2,
+        surveyId: 'def',
       };
       const updatedSurveyResponse = {
         id: 1,
@@ -98,7 +98,7 @@ describe('SurveyResponseController', () => {
         updatedAt: new Date(),
         deletedAt: null,
         ...updateDto,
-        surveyId: 1,
+        surveyId: 'abc',
       };
       mockSurveyResponseService.update.mockResolvedValue(updatedSurveyResponse);
 
@@ -118,7 +118,7 @@ describe('SurveyResponseController', () => {
         createdAt: new Date(),
         updatedAt: new Date(),
         deletedAt: null,
-        surveyId: 1,
+        surveyId: 'abc',
       };
       mockSurveyResponseService.remove.mockResolvedValue(surveyResponse);
 
