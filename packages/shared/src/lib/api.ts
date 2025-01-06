@@ -1,15 +1,21 @@
 export async function apiCall<T>(
   method: "GET" | "POST" | "PATCH" | "DELETE",
   endpoint: string,
+  token?: string,
   data?: any,
 ): Promise<T | null> {
-  const url = `http://localhost:3333${endpoint}`;
+  // eslint-disable-next-line no-undef
+  const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}${endpoint}`;
+
+  console.log(token);
 
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
-    "x-api-key":
-      "J9Hw8SZemyuT6eh9Iy4RQ2yTTTaOu8VQN7Ghe6b+cEE=",
   };
+
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
 
   try {
     const response = await fetch(url, {

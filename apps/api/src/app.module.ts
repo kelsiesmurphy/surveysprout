@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { PrismaService } from './prisma/prisma.service';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config'; // This is fine
 import { NewsletterContactModule } from './newsletter-contact/newsletter-contact.module';
 import { SurveyAnswerModule } from './survey-answer/survey-answer.module';
 import { SurveyQuestionModule } from './survey-question/survey-question.module';
@@ -13,6 +13,10 @@ import { SurveyModule } from './survey/survey.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
     AuthModule,
     UserModule,
     SurveyModule,
@@ -20,9 +24,6 @@ import { SurveyModule } from './survey/survey.module';
     SurveyResponseModule,
     SurveyAnswerModule,
     NewsletterContactModule,
-    AuthModule,
-    UserModule,
-    ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],

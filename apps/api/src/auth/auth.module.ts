@@ -5,8 +5,8 @@ import { UserService } from 'src/user/user.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { LocalStrategy } from './strategies/local.strategy';
 import { JwtModule } from '@nestjs/jwt';
-import jwtConfig from './config/jwt.config';
 import { ConfigModule } from '@nestjs/config';
+import jwtConfig from './config/jwt.config';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import refreshConfig from './config/refresh.config';
 import { RefreshStrategy } from './strategies/refresh-token.strategy';
@@ -34,11 +34,11 @@ import { RolesGuard } from './guards/roles/roles.guard';
     GoogleStrategy,
     {
       provide: APP_GUARD,
-      useClass: JwtAuthGuard, //@UseGuard(JwtAuthGuard)
+      useClass: JwtAuthGuard,
     },
     {
       provide: APP_GUARD,
-      useClass: RolesGuard, //@UseGuard(Roles)
+      useClass: RolesGuard,
     },
   ],
 })

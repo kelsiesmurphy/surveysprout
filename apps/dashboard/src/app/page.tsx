@@ -4,13 +4,14 @@ import ErrorPage from "../components/error-page";
 import { getSession, redirectToLogin } from "../lib/adapters/session-adapter";
 
 export default async function DefaultLayout() {
-  const surveys = await apiCall<any>("GET", "/survey");
   const session = await getSession();
   if (!session) {
     redirectToLogin();
   }
+
   console.log({ session });
 
+  const surveys = await apiCall<any>("GET", "/survey", session?.accessToken);
   if (!surveys) {
     return <ErrorPage message="Error: Failed to fetch survey data" />;
   }
