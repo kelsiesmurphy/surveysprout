@@ -7,8 +7,6 @@ export async function apiCall<T>(
   // eslint-disable-next-line no-undef
   const url = `${process.env.NEXT_PUBLIC_API_BASE_URL}${endpoint}`;
 
-  console.log(token);
-
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
   };

@@ -16,11 +16,11 @@ export const metadata: Metadata = {
     "SurveySprout is a post-purchase survey tool with a focus on sustainability.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}): Promise<JSX.Element> {
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <body className={inter.className + " min-w-72"}>

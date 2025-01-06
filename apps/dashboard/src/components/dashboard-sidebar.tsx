@@ -20,9 +20,16 @@ import { ChevronUp, FileEditIcon, Home, Settings, User2 } from "lucide-react";
 import { generateSurveyUrl } from "@repo/shared/lib/utils/navigation";
 import { apiCall } from "@repo/shared/lib/api";
 import DashboardSidebarDropdown from "./dashboard-sidebar-dropdown";
+import { getSession, redirectToLogin } from "../lib/adapters/session-adapter";
 
 export async function AppSidebar({ surveyId }: { surveyId: string }) {
-  const surveys = await apiCall<any>("GET", "/survey");
+  const session = await getSession();
+  if (!session) {
+    redirectToLogin();
+  }
+
+  console.log({ session });
+  const surveys = await apiCall<any>("GET", "/survey", session?.accessToken);
 
   const items = [
     {
