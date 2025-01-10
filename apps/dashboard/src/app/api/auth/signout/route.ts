@@ -7,10 +7,10 @@ import { deleteSession } from "~/src/lib/adapters/session-adapter";
 
 // eslint-disable-next-line no-unused-vars
 export async function GET(req: NextRequest) {
-  const response = await authFetch(`${BACKEND_URL}/auth/signout`, {
+  const respone = await authFetch(`${BACKEND_URL}/auth/signout`, {
     method: "POST",
   });
-  if (response.ok) {
+  if (respone.ok) {
     /* empty */
   }
   await deleteSession();

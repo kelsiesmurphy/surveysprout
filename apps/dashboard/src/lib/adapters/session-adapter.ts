@@ -20,20 +20,24 @@ export async function createSession(payload: any) {
   );
 }
 
+export async function redirectToLogin() {
+  redirect(`${process.env.NEXT_PUBLIC_WWW_BASE_URL}/login`);
+}
+
 export async function getSession() {
   const cookieStore = cookies();
   const cookie = (await cookieStore).get("session")?.value || null;
   if (!sessionSecret) {
     throw new Error("SESSION_SECRET_KEY is not defined");
   }
-  return sharedGetSession(cookie, sessionSecret);
+  const session = sharedGetSession(cookie, sessionSecret);
+  if (!session) {
+    redirectToLogin();
+  }
+  return session;
 }
 
 export async function deleteSession() {
   const cookieStore = cookies();
   return sharedDeleteSession((await cookieStore).delete.bind(cookieStore));
-}
-
-export async function redirectToLogin() {
-  redirect(`${process.env.NEXT_PUBLIC_WWW_BASE_URL}/login`);
 }

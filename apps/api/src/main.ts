@@ -11,6 +11,16 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const port = process.env.PORT;
 
+  app.enableCors({
+    origin: [
+      process.env.NEXT_PUBLIC_WWW_BASE_URL,
+      process.env.NEXT_PUBLIC_DASHBOARD_BASE_URL,
+    ],
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type, Authorization',
+    credentials: true,
+  });
+
   const config = new DocumentBuilder()
     .setTitle('SurveySprout API')
     .setDescription(

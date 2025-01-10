@@ -6,6 +6,6 @@
       "@repo/shared/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "../../apps/www/src/lib/auth.ts", "../../apps/www/src/lib/authFetch.ts"],
   "exclude": ["node_modules"]
 }

@@ -20,6 +20,7 @@ import { ForgotPaswordModal } from "./forgot-password";
 import GoogleSignOn from "./google-sign-on";
 import { useState } from "react";
 import { signIn } from "~/src/lib/auth";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   email: z.string().email(),
@@ -29,6 +30,7 @@ const formSchema = z.object({
 });
 
 export function LoginForm() {
+  const router = useRouter();
   const { toast } = useToast();
   const [error, setError] = useState<string | null>(null);
 
@@ -47,6 +49,7 @@ export function LoginForm() {
       toast({
         description: "You have successfully logged in.",
       });
+      router.push(`${process.env.NEXT_PUBLIC_DASHBOARD_BASE_URL}`);
     } catch (err) {
       setError("Invalid email or password.");
     }

@@ -26,7 +26,11 @@ export async function getSession() {
   if (!sessionSecret) {
     throw new Error("SESSION_SECRET_KEY is not defined");
   }
-  return sharedGetSession(cookie, sessionSecret);
+  const session = sharedGetSession(cookie, sessionSecret);
+  if (!session) {
+    redirectToLogin();
+  }
+  return session;
 }
 
 export async function deleteSession() {

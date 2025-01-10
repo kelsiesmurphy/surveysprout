@@ -17,6 +17,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "../../packages/ui/src/hooks/use-config.ts", "../../packages/ui/src/components/theme-wrapper.tsx", "../../packages/ui/src/components/theme-customiser.tsx"  ],
+, "../../packages/ui/src/hooks/use-config.ts", "../../packages/ui/src/components/theme-wrapper.tsx", "../../packages/ui/src/components/theme-customiser.tsx", "src/lib/auth.ts"  ],
   "exclude": ["node_modules"]
 }
